@@ -1,0 +1,37 @@
+---
+title: "Arabic-support Example"
+keep-md: true
+filters:
+  - arabic-support
+format:
+  html:
+    mainfont: "DejaVu Sans"
+    sansfont: "DejaVu Sans"
+  pdf:
+    keep-tex: true
+    toc: true
+    number-sections: true
+    colorlinks: true
+    mainfont: "DejaVu Sans"
+    sansfont: "DejaVu Sans"
+    pdf-engine: xelatex
+    documentclass: report
+    # babelfont for Arabic font needs to be in the `template-partial`
+    # `before-title.tex`. If I put it in the `include-in-header` option, then it
+    # gets put before `\usepackage{babel}` and doesn't work.
+    template-partials:
+      - before-title.tex
+---
+
+## Heading with inline [عربي]{.ar}
+
+This is some inline Arabic text [هَـٰذَا كَلَامٌ عَرَبِيٌّ.]{.ar}. This is its transliteration: [hApA kalAmun earabiyyun.]{.trn}. This is some Romanized Arabic text: [#eumar]{.trn2}, [E#usAmah]{.trn2}.
+
+This is an Arabic div:
+
+::: {.otherlanguage data-latex="{arabic}" lang="ar"}
+هذا كلام عربي طويل. أريد أن أكتب حتى يبلغ الكلام سطرين. أستعمل برنامج قواطرو لإنتاج الملف الخارجي. هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
+:::
+
+This is some English text after it.
+
