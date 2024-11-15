@@ -1,11 +1,8 @@
--- Reformat all heading text 
+-- Add attributes for Arabic text in a span
 function Span (el)
   if el.classes:includes 'ar' then
-    --text = "احمد ضياء."
     text = pandoc.utils.stringify(el)
-    --text = pandoc.Plain(el)
     contents = {pandoc.Str(text)}
-    --return pandoc.Span(contents, {class='regartext', lang='ar', dir='rtl'})
     if FORMAT:match 'latex' then
       -- no dir needed for babel and throws error if it sees dir attribute. was previously needed for polyglossia
       return pandoc.Span(contents, {class='regartext', lang='ar'})
