@@ -1,5 +1,6 @@
 project:
   type: book
+  output-dir: docs
 
 book:
   title: "Minimum(ish) Working Example of Quarto with Arabic RTL text in an LTR document"
@@ -11,7 +12,7 @@ book:
     - srcqmd/summary.qmd
     - srcqmd/references.qmd
 
-keep-md: true
+#keep-md: true
 filters:
   - arabic-support
 
@@ -25,7 +26,7 @@ format:
     #fontsize: 10pt
     theme: cosmo
   pdf:
-    keep-tex: true
+    #keep-tex: true
     #documentclass: scrreprt # no roman numeral pagination but chapter page can be left or right
     documentclass: scrbook # new chapter page only on right but adds \frontmatter command for roman numeral pagination
     toc: true
