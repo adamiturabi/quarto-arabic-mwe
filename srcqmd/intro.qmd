@@ -1,10 +1,55 @@
-# Introduction
+# Introduction {#sec-introduction}
 
-This is a book created from markdown and executable code.
+## Inline Arabic text
 
-See @knuth84 for additional discussion of literate programming.
+This is some inline Arabic text [هَـٰذَا كَلَامٌ عَرَبِيٌّ.]{.ar}. 
+It has been typed in the `.qmd` markdown source thus:
 
-This is some inline Arabic text [هَـٰذَا كَلَامٌ عَرَبِيٌّ.]{.ar}. This is its transliteration: [hApA kalAmun earabiyyun.]{.trn}. This is some Romanized Arabic text: [#eumar]{.trn2}, [E#usAmah]{.trn2}.
+```
+[هَـٰذَا كَلَامٌ عَرَبِيٌّ.]{.ar}
+```
+
+This is a pandoc span with the class name `ar`. I have written a pandoc filter in `_extensions/arabic_support/inline-arabic-span.lua` that adds the correct attributes (`lang="ar"` and `dir="rtl"`) to the span so that it is processed correctly in the output:
+
++ HTML: Creates the following span:
+  
+  ```
+  <span class="artextreg" lang="ar" dir="rtl"> ... </span>
+  ```
+
+  The class `artextreg` will be useful for selecting the Arabic font for HTML output as we will see below.
+
++ Latex: Uses babel:
+
+  ```
+  \foreignlanguage{arabic}{...}
+  ```
+
+## Transcription of Arabic
+
+This is the transcription of the above Arabic text: [hApA kalAmun earabiyyun.]{.trn}. 
+It has been typed in the `.qmd` markdown source thus:
+
+```
+[hApA kalAmun earabiyyun.]{.trn}
+```
+
+Another custom pandoc filter (`_extensions/arabic_support/transliteration-span.lua`) processes the above ASCII and adds the Unicode dots, macrons, and other diacritics to render it correctly.
+
+The mapping for ASCII to transliterated output is also found in the Lua file for the filter.
+
+By default, it renders the transcription in _italics_.
+
+## Non-italic transliteration of Arabic
+
+Sometimes, we may wish to use a transliteration in the English text unitalicized. This is ofter done for names like
+[#eumar]{.trn2} ([عُمَر]{.ar}) and [E#usAmah]{.trn2} ([أُسَامَة]{.ar}).
+
+These are typed thus: `[#eumar]{.trn2}` and `[E#usAmah]{.trn2}`
+
+Note how the hash character `#` is used to capitalize a letter in the rendered output. `trn2` indicates non-italic output.
+
+## Arabic divs
 
 This is an Arabic div:
 
@@ -12,9 +57,76 @@ This is an Arabic div:
 هذا كلام عربي طويل. أريد أن أكتب حتى يبلغ الكلام سطرين. أستعمل برنامج قواطرو لإنتاج الملف الخارجي. هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
 :::
 
-This is some English text after it.
+It is typed thus:
+
+```
+::: {.otherlanguage data-latex="{arabic}" lang="ar"}
+<Arabic text here>
+:::
+```
+
+The `.otherlanguage` and `data-latex="{arabic}"` are needed for the correct Latex syntax.
+
+## Fonts
+
+### Arabic font
+
+#### PDF output
+
+For PDF output, the Arabic font is specified in the file `srctex/before-title.tex` thus:
+
+```tex
+\babelfont[arabic]{rm}[Language=Default]{Vazirmatn-Light}
+\babelfont[arabic]{sf}[Language=Default]{Vazirmatn-Light}
+```
+
+#### HTML output
+
+For HTML output, the Arabic font is specified using CSS. This can be done for per `class`. TODO.
+
+### Latin font
+
+The Latin font should support the special characters needed by the transliteration. I am using a rather complex non-standard transliteration scheme:
+
+| Arabic letter | Transliteration |
+|:--|:--|
+|[ء]{.ar} | [E]{.trn2} |
+|[ا]{.ar} | [A]{.trn2} |
+|[ب]{.ar} | [b]{.trn2} |
+|[ت]{.ar} | [t]{.trn2} |
+|[ث]{.ar} | [v]{.trn2} |
+|[ج]{.ar} | [j]{.trn2} |
+|[ح]{.ar} | [H]{.trn2} |
+|[خ]{.ar} | [x]{.trn2} |
+|[د]{.ar} | [d]{.trn2} |
+|[ذ]{.ar} | [p]{.trn2} |
+|[ر]{.ar} | [r]{.trn2} |
+|[ز]{.ar} | [z]{.trn2} |
+|[س]{.ar} | [s]{.trn2} |
+|[ش]{.ar} | [c]{.trn2} |
+|[ص]{.ar} | [S]{.trn2} |
+|[ض]{.ar} | [D]{.trn2} |
+|[ط]{.ar} | [T]{.trn2} |
+|[ظ]{.ar} | [P]{.trn2} |
+|[ع]{.ar} | [e]{.trn2} |
+|[غ]{.ar} | [g]{.trn2} |
+|[ف]{.ar} | [f]{.trn2} |
+|[ق]{.ar} | [q]{.trn2} |
+|[ك]{.ar} | [k]{.trn2} |
+|[ل]{.ar} | [l]{.trn2} |
+|[م]{.ar} | [m]{.trn2} |
+|[ن]{.ar} | [n]{.trn2} |
+|[ه]{.ar} | [h]{.trn2} |
+|[و]{.ar} | [w]{.trn2} |
+|[ي]{.ar} | [y]{.trn2} |
+
+I have found very few fonts supporting this, like Charis SIL which is what I am using.
 
 ## Some section
+
+This is a book created from markdown and executable code.
+
+See @knuth84 for additional discussion of literate programming.
 
 \lipsum[1-3]
 

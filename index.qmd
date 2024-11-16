@@ -1,5 +1,15 @@
 # Preface {.unnumbered}
 
-This is a Quarto book.
+::: {.otherlanguage data-latex="{arabic}" lang="ar"}
+بسم الله الرحمن الرحيم
+:::
+
+This is a MWE of a Quarto book that in left-to-right text (English), with portions of 
+right-to-left text (Arabic) in it. Examples:
+
+1. The [basmalah]{.trn2} above.
+2. This inline text: [العربية]{.ar}
+
+To learn how to type Arabic text and its transcription/transliteration see the next chapter @sec-introduction.
 
 To learn more about Quarto books visit <https://quarto.org/docs/books>.
