@@ -20,16 +20,34 @@ bibliography: srcqmd/references.bib
 format:
   html:
     mainfont: "Charis SIL"
+    mainfontoptions: Numbers=OldStyle
+    sansfont: "Charis SIL"
+    #fontsize: 10pt
     theme: cosmo
   pdf:
-    #documentclass: scrreprt
-    documentclass: scrbook
     keep-tex: true
+    #documentclass: scrreprt # no roman numeral pagination but chapter page can be left or right
+    documentclass: scrbook # new chapter page only on right but adds \frontmatter command for roman numeral pagination
     toc: true
+    geometry:
+      # A4 2 pages per sheet draft
+      #- paper=a5paper               # a5: 148.5 by 210mm
+      - paperwidth=170mm
+      - paperheight=244mm
+      #- paperwidth=156mm
+      #- paperheight=234mm
+      #- paperwidth=6in
+      #- paperheight=9in
+      - bindingoffset=16mm
+      - textwidth=114.8mm           # = (170 - 6)*0.7
+      - textheight=170.8mm          # = 244 * 0.7
+      - twoside
     number-sections: true
     colorlinks: true
     mainfont: "Charis SIL"
-    #sansfont: "DejaVu Sans"
+    mainfontoptions: Numbers=OldStyle
+    sansfont: "Charis SIL"
+    fontsize: 10pt
     pdf-engine: xelatex
     include-in-header:
       - file: srctex/include_in_header.tex
