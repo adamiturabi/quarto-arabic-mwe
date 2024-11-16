@@ -236,7 +236,7 @@ div.csl-indent {
 <h2 data-number="1.1" class="anchored" data-anchor-id="inline-arabic-text"><span class="header-section-number">1.1</span> Inline Arabic text</h2>
 <p>This is some inline Arabic text <span class="regartext" lang="ar" dir="rtl">هَـٰذَا كَلَامٌ عَرَبِيٌّ.</span>. It has been typed in the <code>.qmd</code> markdown source thus:</p>
 <pre><code>[هَـٰذَا كَلَامٌ عَرَبِيٌّ.]{.ar}</code></pre>
-<p>This is a pandoc span with the class name <code>ar</code>. I have written a pandoc filter in <code>_extensions/arabic_support/inline-arabic-span.lua</code> that adds the correct attributes (<code>lang="ar"</code> and <code>dir="rtl"</code>) to the span so that it is processed correctly in the output:</p>
+<p>This is a pandoc span with the class name <code>ar</code>. I have written a pandoc filter in <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_extensions/arabic-support/inline-arabic-span.lua">inline-arabic-span.lua</a> that adds the correct attributes (<code>lang="ar"</code> and <code>dir="rtl"</code>) to the span so that it is processed correctly in the output:</p>
 <ul>
 <li><p>HTML: Creates the following span:</p>
 <pre><code>&lt;span class="artextreg" lang="ar" dir="rtl"&gt; ... &lt;/span&gt;</code></pre>
@@ -249,7 +249,7 @@ div.csl-indent {
 <h2 data-number="1.2" class="anchored" data-anchor-id="transcription-of-arabic"><span class="header-section-number">1.2</span> Transcription of Arabic</h2>
 <p>This is the transcription of the above Arabic text: <span class="trn2"><span class="trn"><em>hād͡hā kalāmun ɛarabiyyun.</em></span></span>. It has been typed in the <code>.qmd</code> markdown source thus:</p>
 <pre><code>[hApA kalAmun earabiyyun.]{.trn}</code></pre>
-<p>Another custom pandoc filter (<code>_extensions/arabic_support/transliteration-span.lua</code>) processes the above ASCII and adds the Unicode dots, macrons, and other diacritics to render it correctly.</p>
+<p>Another custom pandoc filter <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_extensions/arabic-support/transliteration-span.lua">transliteration-span.lua</a> processes the above ASCII and adds the Unicode dots, macrons, and other diacritics to render it correctly.</p>
 <p>The mapping for ASCII to transliterated output is also found in the Lua file for the filter.</p>
 <p>By default, it renders the transcription in <em>italics</em>.</p>
 </section>

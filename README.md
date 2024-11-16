@@ -1,6 +1,8 @@
 # quarto-arabic-mwe
 Minimum(ish) working example of Quarto source files of English main text with Arabic divs and spans.
 
+Output is published here: https://adamiturabi.github.io/quarto-arabic-mwe/
+
 # To build
 
 Install [Quarto](https://quarto.org/docs/get-started/).

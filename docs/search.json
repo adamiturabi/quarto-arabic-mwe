@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Minimum(ish) Working Example of Quarto with Arabic RTL text in an LTR document",
     "section": "",
-    "text": "Preface\n\nبسم الله الرحمن الرحيم\n\nThis is a MWE of a Quarto book that in left-to-right text (English), with portions of right-to-left text (Arabic) in it. Examples:\n\nThe basmalah above.\nThis inline text: العربية\n\nTo learn how to type Arabic text and its transcription/transliteration see the next chapter 1  Introduction.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "text": "Preface\n\nبسم الله الرحمن الرحيم\n\nThis is a MWE of a Quarto book that in left-to-right text (English), with portions of right-to-left text (Arabic) in it. Examples:\n\nThe basmalah above.\nThis inline text: العربية\n\nTo learn how to type Arabic text and its transcription/transliteration see the next chapter 1  Introduction.\nThe source code for this book can be found here: https://github.com/adamiturabi/quarto-arabic-mwe\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
     "crumbs": [
       "Preface"
     ]
@@ -14,7 +14,7 @@
     "href": "srcqmd/intro.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "1.1 Inline Arabic text\nThis is some inline Arabic text هَـٰذَا كَلَامٌ عَرَبِيٌّ.. It has been typed in the .qmd markdown source thus:\nThis is a pandoc span with the class name ar. I have written a pandoc filter in _extensions/arabic_support/inline-arabic-span.lua that adds the correct attributes (lang=\"ar\" and dir=\"rtl\") to the span so that it is processed correctly in the output:",
+    "text": "1.1 Inline Arabic text\nThis is some inline Arabic text هَـٰذَا كَلَامٌ عَرَبِيٌّ.. It has been typed in the .qmd markdown source thus:\nThis is a pandoc span with the class name ar. I have written a pandoc filter in inline-arabic-span.lua that adds the correct attributes (lang=\"ar\" and dir=\"rtl\") to the span so that it is processed correctly in the output:",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -34,7 +34,7 @@
     "href": "srcqmd/intro.html#transcription-of-arabic",
     "title": "1  Introduction",
     "section": "1.2 Transcription of Arabic",
-    "text": "1.2 Transcription of Arabic\nThis is the transcription of the above Arabic text: hād͡hā kalāmun ɛarabiyyun.. It has been typed in the .qmd markdown source thus:\n[hApA kalAmun earabiyyun.]{.trn}\nAnother custom pandoc filter (_extensions/arabic_support/transliteration-span.lua) processes the above ASCII and adds the Unicode dots, macrons, and other diacritics to render it correctly.\nThe mapping for ASCII to transliterated output is also found in the Lua file for the filter.\nBy default, it renders the transcription in italics.",
+    "text": "1.2 Transcription of Arabic\nThis is the transcription of the above Arabic text: hād͡hā kalāmun ɛarabiyyun.. It has been typed in the .qmd markdown source thus:\n[hApA kalAmun earabiyyun.]{.trn}\nAnother custom pandoc filter transliteration-span.lua processes the above ASCII and adds the Unicode dots, macrons, and other diacritics to render it correctly.\nThe mapping for ASCII to transliterated output is also found in the Lua file for the filter.\nBy default, it renders the transcription in italics.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
