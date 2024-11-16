@@ -4,7 +4,7 @@
 بسم الله الرحمن الرحيم
 :::
 
-This is a MWE of a Quarto book that in left-to-right text (English), with portions of 
+This is a MWE of a Quarto book that is in left-to-right text (English), with portions of 
 right-to-left text (Arabic) in it. Examples:
 
 1. The [basmalah]{.trn2} above.
@@ -12,6 +12,6 @@ right-to-left text (Arabic) in it. Examples:
 
 To learn how to type Arabic text and its transcription/transliteration see the next chapter @sec-introduction.
 
-The source code for this book can be found here: https://github.com/adamiturabi/quarto-arabic-mwe
+The source code for this book can be found here: <https://github.com/adamiturabi/quarto-arabic-mwe>.
 
 To learn more about Quarto books visit <https://quarto.org/docs/books>.
