@@ -1,0 +1,23 @@
+# Introduction
+
+This is a book created from markdown and executable code.
+
+See @knuth84 for additional discussion of literate programming.
+
+This is some inline Arabic text [هَـٰذَا كَلَامٌ عَرَبِيٌّ.]{.ar}. This is its transliteration: [hApA kalAmun earabiyyun.]{.trn}. This is some Romanized Arabic text: [#eumar]{.trn2}, [E#usAmah]{.trn2}.
+
+This is an Arabic div:
+
+::: {.otherlanguage data-latex="{arabic}" lang="ar"}
+هذا كلام عربي طويل. أريد أن أكتب حتى يبلغ الكلام سطرين. أستعمل برنامج قواطرو لإنتاج الملف الخارجي. هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
+:::
+
+This is some English text after it.
+
+## Some section
+
+\lipsum[1-3]
+
+### Some subection
+
+\lipsum[4-9]

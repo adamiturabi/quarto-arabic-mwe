@@ -1,0 +1,41 @@
+project:
+  type: book
+
+book:
+  title: "Minimum(ish) Working Example of Quarto with Arabic RTL text in an LTR document"
+  author: "The Authors"
+  date: "11/16/2024"
+  chapters:
+    - index.qmd
+    - srcqmd/intro.qmd
+    - srcqmd/summary.qmd
+    - srcqmd/references.qmd
+
+keep-md: true
+filters:
+  - arabic-support
+
+bibliography: srcqmd/references.bib
+
+format:
+  html:
+    mainfont: "Charis SIL"
+    theme: cosmo
+  pdf:
+    #documentclass: scrreprt
+    documentclass: scrbook
+    keep-tex: true
+    toc: true
+    number-sections: true
+    colorlinks: true
+    mainfont: "Charis SIL"
+    #sansfont: "DejaVu Sans"
+    pdf-engine: xelatex
+    include-in-header:
+      - file: srctex/include_in_header.tex
+    include-before-body:
+      - file: srctex/before_body.tex
+    template-partials:
+      - srctex/before-title.tex
+
+
