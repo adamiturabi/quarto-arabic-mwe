@@ -5,17 +5,17 @@ filters:
   - arabic-support
 format:
   html:
-    mainfont: "DejaVu Sans"
-    sansfont: "DejaVu Sans"
+    mainfont: "Charis SIL"
+    #sansfont: "DejaVu Sans"
   pdf:
     keep-tex: true
     toc: true
     number-sections: true
     colorlinks: true
-    mainfont: "DejaVu Sans"
-    sansfont: "DejaVu Sans"
+    mainfont: "Charis SIL"
+    #sansfont: "DejaVu Sans"
     pdf-engine: xelatex
-    documentclass: report
+    documentclass: book
     # babelfont for Arabic font needs to be in the `template-partial`
     # `before-title.tex`. If I put it in the `include-in-header` option, then it
     # gets put before `\usepackage{babel}` and doesn't work.
