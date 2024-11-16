@@ -1,4 +1,4 @@
-# Introduction {#sec-introduction}
+# Introduction [مقدمة الكتاب]{.ar} {#sec-introduction}
 
 ## Inline Arabic text
 
@@ -27,7 +27,7 @@ that adds the correct attributes (`lang="ar"` and `dir="rtl"`) to the span so th
   \foreignlanguage{arabic}{...}
   ```
 
-## Transcription of Arabic
+## Transcription of Arabic [al-earabiyyah]{.trn}
 
 This is the transcription of the above Arabic text: [hApA kalAmun earabiyyun.]{.trn}. 
 It has been typed in the `.qmd` markdown source thus:

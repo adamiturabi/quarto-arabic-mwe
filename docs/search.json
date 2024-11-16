@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Minimum(ish) Working Example of Quarto with Arabic RTL text in an LTR document",
     "section": "",
-    "text": "Preface\n\nبسم الله الرحمن الرحيم\n\nThis is a MWE of a Quarto book that in left-to-right text (English), with portions of right-to-left text (Arabic) in it. Examples:\n\nThe basmalah above.\nThis inline text: العربية\n\nTo learn how to type Arabic text and its transcription/transliteration see the next chapter 1  Introduction.\nThe source code for this book can be found here: https://github.com/adamiturabi/quarto-arabic-mwe\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "text": "Preface\n\nبسم الله الرحمن الرحيم\n\nThis is a MWE of a Quarto book that in left-to-right text (English), with portions of right-to-left text (Arabic) in it. Examples:\n\nThe basmalah above.\nThis inline text: العربية\n\nTo learn how to type Arabic text and its transcription/transliteration see the next chapter 1  Introduction مقدمة الكتاب.\nThe source code for this book can be found here: https://github.com/adamiturabi/quarto-arabic-mwe\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
     "crumbs": [
       "Preface"
     ]
@@ -12,71 +12,71 @@
   {
     "objectID": "srcqmd/intro.html",
     "href": "srcqmd/intro.html",
-    "title": "1  Introduction",
+    "title": "1  Introduction مقدمة الكتاب",
     "section": "",
     "text": "1.1 Inline Arabic text\nThis is some inline Arabic text هَـٰذَا كَلَامٌ عَرَبِيٌّ.. It has been typed in the .qmd markdown source thus:\nThis is a pandoc span with the class name ar. I have written a pandoc filter in inline-arabic-span.lua that adds the correct attributes (lang=\"ar\" and dir=\"rtl\") to the span so that it is processed correctly in the output:",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction [مقدمة الكتاب]{.ar}</span>"
     ]
   },
   {
     "objectID": "srcqmd/intro.html#inline-arabic-text",
     "href": "srcqmd/intro.html#inline-arabic-text",
-    "title": "1  Introduction",
+    "title": "1  Introduction مقدمة الكتاب",
     "section": "",
     "text": "[هَـٰذَا كَلَامٌ عَرَبِيٌّ.]{.ar}\n\n\nHTML: Creates the following span:\n&lt;span class=\"artextreg\" lang=\"ar\" dir=\"rtl\"&gt; ... &lt;/span&gt;\nThe class artextreg will be useful for selecting the Arabic font for HTML output as we will see below.\nLatex: Uses babel:\n\\foreignlanguage{arabic}{...}",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction [مقدمة الكتاب]{.ar}</span>"
     ]
   },
   {
-    "objectID": "srcqmd/intro.html#transcription-of-arabic",
-    "href": "srcqmd/intro.html#transcription-of-arabic",
-    "title": "1  Introduction",
-    "section": "1.2 Transcription of Arabic",
-    "text": "1.2 Transcription of Arabic\nThis is the transcription of the above Arabic text: hād͡hā kalāmun ɛarabiyyun.. It has been typed in the .qmd markdown source thus:\n[hApA kalAmun earabiyyun.]{.trn}\nAnother custom pandoc filter transliteration-span.lua processes the above ASCII and adds the Unicode dots, macrons, and other diacritics to render it correctly.\nThe mapping for ASCII to transliterated output is also found in the Lua file for the filter.\nBy default, it renders the transcription in italics.",
+    "objectID": "srcqmd/intro.html#transcription-of-arabic-al-earabiyyah",
+    "href": "srcqmd/intro.html#transcription-of-arabic-al-earabiyyah",
+    "title": "1  Introduction مقدمة الكتاب",
+    "section": "1.2 Transcription of Arabic al-ɛarabiyyah",
+    "text": "1.2 Transcription of Arabic al-ɛarabiyyah\nThis is the transcription of the above Arabic text: hād͡hā kalāmun ɛarabiyyun.. It has been typed in the .qmd markdown source thus:\n[hApA kalAmun earabiyyun.]{.trn}\nAnother custom pandoc filter transliteration-span.lua processes the above ASCII and adds the Unicode dots, macrons, and other diacritics to render it correctly.\nThe mapping for ASCII to transliterated output is also found in the Lua file for the filter.\nBy default, it renders the transcription in italics.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction [مقدمة الكتاب]{.ar}</span>"
     ]
   },
   {
     "objectID": "srcqmd/intro.html#non-italic-transliteration-of-arabic",
     "href": "srcqmd/intro.html#non-italic-transliteration-of-arabic",
-    "title": "1  Introduction",
+    "title": "1  Introduction مقدمة الكتاب",
     "section": "1.3 Non-italic transliteration of Arabic",
     "text": "1.3 Non-italic transliteration of Arabic\nSometimes, we may wish to use a transliteration in the English text unitalicized. This is ofter done for names like Ɛumar (عُمَر) and ʾUsāmah (أُسَامَة).\nThese are typed thus: [#eumar]{.trn2} and [E#usAmah]{.trn2}\nNote how the hash character # is used to capitalize a letter in the rendered output. trn2 indicates non-italic output.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction [مقدمة الكتاب]{.ar}</span>"
     ]
   },
   {
     "objectID": "srcqmd/intro.html#arabic-divs",
     "href": "srcqmd/intro.html#arabic-divs",
-    "title": "1  Introduction",
+    "title": "1  Introduction مقدمة الكتاب",
     "section": "1.4 Arabic divs",
     "text": "1.4 Arabic divs\nThis is an Arabic div:\n\nهذا كلام عربي طويل. أريد أن أكتب حتى يبلغ الكلام سطرين. أستعمل برنامج قواطرو لإنتاج الملف الخارجي. هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.\n\nIt is typed thus:\n::: {.otherlanguage data-latex=\"{arabic}\" lang=\"ar\"}\n&lt;Arabic text here&gt;\n:::\nThe .otherlanguage and data-latex=\"{arabic}\" are needed for the correct Latex syntax.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction [مقدمة الكتاب]{.ar}</span>"
     ]
   },
   {
     "objectID": "srcqmd/intro.html#fonts",
     "href": "srcqmd/intro.html#fonts",
-    "title": "1  Introduction",
+    "title": "1  Introduction مقدمة الكتاب",
     "section": "1.5 Fonts",
     "text": "1.5 Fonts\n\n1.5.1 Arabic font\n\n1.5.1.1 PDF output\nFor PDF output, the Arabic font is specified in the file srctex/before-title.tex thus:\n\\babelfont[arabic]{rm}[Language=Default]{Vazirmatn-Light}\n\\babelfont[arabic]{sf}[Language=Default]{Vazirmatn-Light}\n\n\n1.5.1.2 HTML output\nFor HTML output, the Arabic font is specified using CSS. This can be done for per class. TODO.\n\n\n\n1.5.2 Latin font\nThe Latin font should support the special characters needed by the transliteration. I am using a rather complex non-standard transliteration scheme:\n\n\n\nArabic letter\nTransliteration\n\n\n\n\nء\nʾ\n\n\nا\nā\n\n\nب\nb\n\n\nت\nt\n\n\nث\nt͡h\n\n\nج\nj\n\n\nح\nḥ\n\n\nخ\nk͡h\n\n\nد\nd\n\n\nذ\nd͡h\n\n\nر\nr\n\n\nز\nz\n\n\nس\ns\n\n\nش\ns͡h\n\n\nص\nṣ\n\n\nض\nḍ\n\n\nط\nṭ\n\n\nظ\nḍ͡h\n\n\nع\nɛ\n\n\nغ\ng͡h\n\n\nف\nf\n\n\nق\nq\n\n\nك\nk\n\n\nل\nl\n\n\nم\nm\n\n\nن\nn\n\n\nه\nh\n\n\nو\nw\n\n\nي\ny\n\n\n\nI have found very few fonts supporting this, like Charis SIL which is what I am using.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction [مقدمة الكتاب]{.ar}</span>"
     ]
   },
   {
     "objectID": "srcqmd/intro.html#some-section",
     "href": "srcqmd/intro.html#some-section",
-    "title": "1  Introduction",
+    "title": "1  Introduction مقدمة الكتاب",
     "section": "1.6 Some section",
     "text": "1.6 Some section\nThis is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n1.6.1 Some subection\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction [مقدمة الكتاب]{.ar}</span>"
     ]
   },
   {
