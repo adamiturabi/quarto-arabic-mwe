@@ -12,4 +12,6 @@ right-to-left text (Arabic) in it. Examples:
 
 To learn how to type Arabic text and its transcription/transliteration see the next chapter @sec-introduction.
 
+The source code for this book can be found here: https://github.com/adamiturabi/quarto-arabic-mwe
+
 To learn more about Quarto books visit <https://quarto.org/docs/books>.

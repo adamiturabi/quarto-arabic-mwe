@@ -9,7 +9,9 @@ It has been typed in the `.qmd` markdown source thus:
 [هَـٰذَا كَلَامٌ عَرَبِيٌّ.]{.ar}
 ```
 
-This is a pandoc span with the class name `ar`. I have written a pandoc filter in `_extensions/arabic_support/inline-arabic-span.lua` that adds the correct attributes (`lang="ar"` and `dir="rtl"`) to the span so that it is processed correctly in the output:
+This is a pandoc span with the class name `ar`. I have written a pandoc filter in 
+[inline-arabic-span.lua](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_extensions/arabic-support/inline-arabic-span.lua)
+that adds the correct attributes (`lang="ar"` and `dir="rtl"`) to the span so that it is processed correctly in the output:
 
 + HTML: Creates the following span:
   
@@ -34,7 +36,9 @@ It has been typed in the `.qmd` markdown source thus:
 [hApA kalAmun earabiyyun.]{.trn}
 ```
 
-Another custom pandoc filter (`_extensions/arabic_support/transliteration-span.lua`) processes the above ASCII and adds the Unicode dots, macrons, and other diacritics to render it correctly.
+Another custom pandoc filter 
+[transliteration-span.lua](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_extensions/arabic-support/transliteration-span.lua)
+processes the above ASCII and adds the Unicode dots, macrons, and other diacritics to render it correctly.
 
 The mapping for ASCII to transliterated output is also found in the Lua file for the filter.
 
