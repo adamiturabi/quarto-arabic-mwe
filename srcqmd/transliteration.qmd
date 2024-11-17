@@ -1,5 +1,7 @@
 # Transliteration of Arabic 
 
+## Romanization scheme
+
 In my work, I frequently need to transliterate and transcribe Arabic text in Latin characters.
 There are various Romanization schemes in existence, using dots, macrons, etc.
 The Romanization scheme I am using for my work is tabulated below:
@@ -72,5 +74,18 @@ This is rendered as:
 
 Note how the hash character `#` is used to control capitalization.
 
-For the English font used in your main text, you will need to pick a font that supports the dots, macrons, breves, etc needed for transliteration. I am using the Charis SIL font.
+## Fonts
+
+For the Latin font used in your main text, you will need to pick a font that supports the dots, macrons, breves, etc needed for transliteration. I am using the 
+[Charis SIL](https://software.sil.org/charis/download/)
+font.
+
+Other fonts I have experimented with are:
+
++ [New Computer Modern](https://ctan.org/pkg/newcomputermodern?lang=en)
++ [DejaVu Serif](https://github.com/dejavu-fonts/dejavu-fonts/releases)
++ [Junicode](https://github.com/psb1558/Junicode-font/releases)
++ [Brill](https://brill.com/page/419386?language=en)
++ [Gentium Plus](https://software.sil.org/gentium/download/)
++ [STIX Two Text](https://github.com/stipub/stixfonts/releases)
 

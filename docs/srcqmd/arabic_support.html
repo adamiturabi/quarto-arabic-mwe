@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../srcqmd/arabic_support.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" lang="ar" dir="rtl">العربية</span>) support</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../srcqmd/arabic_support.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" dir="rtl" lang="ar">العربية</span>) support</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -125,7 +125,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../srcqmd/arabic_support.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" lang="ar" dir="rtl">العربية</span>) support</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" dir="rtl" lang="ar">العربية</span>) support</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -177,7 +177,7 @@ watermark
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" lang="ar" dir="rtl">العربية</span>) support</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" dir="rtl" lang="ar">العربية</span>) support</span></h1>
 </div>
 
 
@@ -213,7 +213,7 @@ watermark
 <p>The output Latex code will be something like:</p>
 <pre><code>\foreignlanguage{arabic}{هذا نص عربي.}</code></pre>
 <p>Under the hood, <code>\foreignlanguage</code> is a command that is used by the Latex package <code>babel</code> that Pandoc specifies in its Latex template for handling multiple languages and their scripts.</p>
-<p>Finally, this is an example of an English sentence with inline Arabic text <span class="reg-ar-text" lang="ar" dir="rtl">نَصٌّ عَرَبِيٌّ.</span> within it. Locate this sentence in the source code file <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srcqmd/arabic_support.qmd">here</a> to see how we wrote it.</p>
+<p>Finally, this is an example of an English sentence with inline Arabic text <span class="reg-ar-text" dir="rtl" lang="ar">نَصٌّ عَرَبِيٌّ.</span> within it. Locate this sentence in the source code file <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srcqmd/arabic_support.qmd">here</a> to see how we wrote it.</p>
 </section>
 <section id="arabic-block-text-divs" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="arabic-block-text-divs"><span class="header-section-number">2.2</span> Arabic block text: divs</h2>
@@ -251,7 +251,7 @@ This is the divs's *content text*.
 
 \end{otherlanguage}</code></pre>
 <p>Finally, this is an example of an Arabic div. Locate it in the source code file <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srcqmd/arabic_support.qmd">here</a> to see how we wrote it.</p>
-<div class="reg-ar-text" lang="ar" dir="rtl">
+<div class="reg-ar-text" dir="rtl" lang="ar">
 هذا كلام عربي طويل. أريد أن أكتب حتى يبلغ النص سطرين. أستعمل برنامج قوارطو لإنتاج الملف الخارجي. هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
 </div>
 </section>
@@ -329,7 +329,7 @@ end</code></pre>
 <h2 data-number="2.4" class="anchored" data-anchor-id="arabic-fonts"><span class="header-section-number">2.4</span> Arabic fonts</h2>
 <p>You can use a specific font for the Arabic text which is different from the font used for the English text. This is usually desirable because the typeface design for the Latin font often does not optimize (or even sometimes support) an Arabic font.</p>
 <p>For my project, I am using the <a href="https://github.com/rastikerdar/vazir-font/releases/latest">Vazirmatn</a> and <a href="https://github.com/alif-type/amiri/releases/latest">Amiri</a> fonts.</p>
-<p>Both of these are well designed fonts. For me a major consideration is the correct typesetting of the hamza character (<span class="reg-ar-text" lang="ar" dir="rtl">ء</span>). See here for what I’m talking about: <a href="https://adamiturabi.github.io/hamza-rules/#typographical-limitations" class="uri">https://adamiturabi.github.io/hamza-rules/#typographical-limitations</a></p>
+<p>Both of these are well designed fonts. For me a major consideration is the correct typesetting of the hamza character (<span class="reg-ar-text" dir="rtl" lang="ar">ء</span>). See here for what I’m talking about: <a href="https://adamiturabi.github.io/hamza-rules/#typographical-limitations" class="uri">https://adamiturabi.github.io/hamza-rules/#typographical-limitations</a></p>
 <p>To specify the Arabic fonts the process is different for HTML vs PDF output. We’ll describe both below:</p>
 <section id="specify-arabic-font-for-html" class="level3" data-number="2.4.1">
 <h3 data-number="2.4.1" class="anchored" data-anchor-id="specify-arabic-font-for-html"><span class="header-section-number">2.4.1</span> Specify Arabic font for HTML</h3>
@@ -346,11 +346,12 @@ end</code></pre>
   font-size: 1.2em;
   line-height: 100%;
 }</code></pre>
-<p>The font names <code>Vazirmatn</code> and <code>AmiriWeb</code> are defined in the same CSS file. See <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srchtml/styles.css">our CSS file</a> for details.</p>
+<p>You will also need to add the font files to your project. Quarto will copy them over to the output directory so that they can be served to the browsers of visitors viewing your site. Be aware of fonts licences before uploading and using fonts in this way. Instead of uploading font files, you can instead use a font service service like Google Fonts, although they often have outdated versions. See <a href="https://github.com/adamiturabi/quarto-arabic-mwe/tree/main/srchtml/fonts">my fonts directory</a>.</p>
+<p>The font names <code>Vazirmatn</code> and <code>AmiriWeb</code> are defined in the same CSS file. A relative path to the font files is needed in the CSS file. See <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srchtml/styles.css">our CSS file</a> for details.</p>
 <p>Amiri is specified as an alternate font. It can be specified in the <code>.qmd</code> source with <code>{.aralt}</code> instead of <code>{.ar}</code>. You can also see how we handle it in the source code for the Lua filters above.</p>
-<p>Here is an example of a div and a span in the alternate Arabic font. Span: <span class="alt-ar-text" lang="ar" dir="rtl">هذا نص عربي.</span></p>
+<p>Here is an example of a div and a span in the alternate Arabic font. Span: <span class="alt-ar-text" dir="rtl" lang="ar">هذا نص عربي.</span></p>
 <p>Div:</p>
-<div class="alt-ar-text" lang="ar" dir="rtl">
+<div class="alt-ar-text" dir="rtl" lang="ar">
 هذا كلام عربي طويل. أريد أن أكتب حتى يبلغ النص سطرين. أستعمل برنامج قوارطو لإنتاج الملف الخارجي. هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
 </div>
 <p>By the way, I am not, by any means, an expert (or even proficient) in CSS, so if you see any problems with this method of specifying the font, feel free to let me know in the discussions or issues of the <a href="https://github.com/adamiturabi/quarto-arabic-mwe">Github page for this book</a>.</p>
@@ -368,6 +369,7 @@ end</code></pre>
     template-partials:
       - srctex/before-title.tex</code></pre>
 <p>Again, see our source code in Github for more details.</p>
+<p>By the way, the fonts will need to have been installed on your system in order to generate the PDF output.</p>
 
 
 </section>

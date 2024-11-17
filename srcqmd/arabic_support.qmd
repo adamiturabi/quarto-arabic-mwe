@@ -242,7 +242,13 @@ For HTML output, the Arabic font is specified in the CSS file. The class name th
 }
 ```
 
-The font names `Vazirmatn` and `AmiriWeb` are defined in the same CSS file. 
+You will also need to add the font files to your project. Quarto will copy them over to the output directory so that they can be served to the browsers of visitors viewing your site.
+Be aware of fonts licences before uploading and using fonts in this way.
+Instead of uploading font files, you can instead use a font service service like Google Fonts, although they often have outdated versions.
+See [my fonts directory](https://github.com/adamiturabi/quarto-arabic-mwe/tree/main/srchtml/fonts).
+
+The font names `Vazirmatn` and `AmiriWeb` are defined in the same CSS file.
+A relative path to the font files is needed in the CSS file.
 See 
 [our CSS file](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srchtml/styles.css)
 for details.
@@ -291,3 +297,4 @@ format:
 
 Again, see our source code in Github for more details.
 
+By the way, the fonts will need to have been installed on your system in order to generate the PDF output.
