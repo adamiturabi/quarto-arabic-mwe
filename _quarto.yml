@@ -26,6 +26,8 @@ format:
     sansfont: "Charis SIL"
     #fontsize: 10pt
     theme: cosmo
+    css: srchtml/styles.css
+    include-before-body: srchtml/watermark.html
   pdf:
     #keep-tex: true
     #documentclass: scrreprt # no roman numeral pagination but chapter page can be left or right
