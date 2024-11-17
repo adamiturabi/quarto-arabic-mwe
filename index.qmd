@@ -1,6 +1,6 @@
 # Preface {.unnumbered}
 
-::: {.ar}
+::: {.aralt}
 بسم الله الرحمن الرحيم.
 :::
 
@@ -8,7 +8,7 @@ This is a MWE of a Quarto book that is in left-to-right text (English), with por
 right-to-left text (Arabic) in it. Examples:
 
 1. The [basmalah]{.trn2} above.
-2. This inline text: [العربية]{.ar}
+2. This inline text: [العربية]{.ar} and this one: [سرب القطا]{.aralt}
 
 To learn how to type Arabic text and its transcription/transliteration see the next chapter @sec-introduction.
 

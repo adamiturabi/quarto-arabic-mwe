@@ -99,8 +99,13 @@ li {
   font-size: 500%;
   color: #00407d;
 }
-.regartext {
+.reg-ar-text {
   font-family: Vazirmatn, serif;
+  font-size: 1.2em; 
+  line-height: 100%;
+}
+.alt-ar-text {
+  font-family: AmiriWeb, serif;
   font-size: 1.2em; 
   line-height: 100%;
 }
