@@ -218,7 +218,8 @@ and
 [Amiri](https://github.com/alif-type/amiri/releases/latest)
 fonts.
 
-Both of these are well designed fonts. For me a major consideration is the correct typesetting of the hamza character ([ء]{.ar}). See here for what I'm talking about: <https://adamiturabi.github.io/hamza-rules/>
+Both of these are well designed fonts. For me a major consideration is the correct typesetting of the hamza character ([ء]{.ar}). See here for what I'm talking about: 
+<https://adamiturabi.github.io/hamza-rules/#typographical-limitations>
 
 To specify the Arabic fonts the process is different for HTML vs PDF output. We'll describe both below:
 

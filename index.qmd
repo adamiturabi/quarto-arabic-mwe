@@ -15,7 +15,7 @@ In this write-up, I will describe how to configure Quarto to achieve this.
 
 <!--2. This inline text: [العربية]{.ar} and this one: [سرب القطا]{.aralt} -->
 
-The code for this book can be used as a template for RTL document projects. Along with BiDi, I'll also discuss other aspects like fonts, figures, etc.
+The code for this book can be used as a template for RTL document projects. Along with BiDi, I'll also discuss other aspects like fonts, figures, etc. [إن شاء الله]{.aralt}.
 
 The source code for this book can be found here: <https://github.com/adamiturabi/quarto-arabic-mwe>.
 
