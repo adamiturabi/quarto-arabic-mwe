@@ -1,0 +1,113 @@
+# Arabic ([العربية]{.ar}) support
+
+There are two main ways to insert RTL Arabic text in an LTR document:
+
+1. In-line Arabic within an LTR paragraph.
+2. A block of Arabic text by itself
+
+## In-line Arabic: spans
+
+For inline Arabic, we will use a Pandoc span.
+A span is written using this syntax:
+
+```
+[This is the span's *content text*]{.classname attributekey="attributeval"}
+```
+
+Within square brackets `[]` is the content of the span. This is what will be randered in the output.
+Within the curly braces `{}` is a class name and some attributes that are needed by Quarto to properly process the span.
+
+In order to render the Arabic content text correctly for HTML output, the span is typed thus in the `.qmd` source file.
+
+```
+[هذا نص عربي.]{.reg-ar-txt dir="rtl" lang="ar"}
+```
+
+The class name is arbitrary. We suggest a descriptive name. We will be using it in the CSS for selecting the font later.
+The output HTML code will be something like:
+
+```
+<span class="reg-ar-txt" dir="rtl" lang="ar">هذا نص عربي.</span>
+```
+
+For PDF output, the `dir="rtl"` attribute is unneeded and actually clashes with the Xelatex PDF engine that Quarto mandates we use for documents with RTL text. 
+So the span will need to be typed thus in the `.qmd` source file:
+
+```
+[هذا نص عربي.]{.reg-ar-txt lang="ar"}
+```
+
+The output Latex code will be something like:
+
+```
+\foreignlanguage{arabic}{هذا نص عربي.}
+```
+
+Under the hood, `\foreignlanguage` is a command that is used by the Latex package `babel` that Pandoc specifies in its Latex template for handling multiple languages and their scripts.
+
+Finally, this is an example of an English sentence with inline Arabic text [نَصٌّ عَرَبِيٌّ.]{.ar} within it. Locate this sentence in the source code file [here](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srcqmd/arabic_support.qmd) to see how we wrote it.
+
+## Arabic block text: divs
+
+In order to write a block (one or more paragraphs) of Arabic text within an LTR document we will use a Pandoc div.
+A div is written using this syntax:
+
+```
+:::{.classname attributekey="attributeval"}
+This is the divs's *content text*.
+
+It may comprise multiple lines. It may contain blank lines.
+:::
+```
+
+For HTML output, a div is typed thus in the `.qmd` source:
+
+```
+:::{.reg-ar-txt dir="rtl" lang="ar"}
+نص عربي.
+
+نص عربي مزيد.
+:::
+```
+
+The class name `reg-ar-txt` is, again, arbitrary. The output HTML code will be:
+
+```
+<div class="alt-ar-text" lang="ar" dir="rtl">
+نص عربي.
+
+نص عربي مزيد.
+</div>
+```
+
+For PDF output, a div is typed thus in the `.qmd` source:
+
+```
+:::{.otherlanguage data-latex="{arabic}" lang='ar'}
+نص عربي.
+
+نص عربي مزيد.
+:::
+```
+
+In this case, the class name `otherlanguage` is not arbitrary. Furthermore another attribute 
+`data-latex="{arabic}"` is also needed. And as with spans `lang="ar"` is needed but `dir="rtl"` should not be used. The output Latex code is:
+
+```
+\begin{otherlanguage}{arabic}
+
+\altfamily
+
+نص عربي.
+
+نص عربي مزيد.
+
+\end{otherlanguage}
+```
+
+Finally, this is an example of an Arabic div. Locate it in the source code file [here](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srcqmd/arabic_support.qmd) to see how we wrote it.
+
+::: {.ar}
+هذا كلام عربي طويل. أريد أن أكتب حتى يبلغ الكلام سطرين. أستعمل برنامج قواطرو لإنتاج الملف الخارجي. هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
+:::
+
