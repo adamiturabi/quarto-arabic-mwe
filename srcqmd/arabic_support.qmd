@@ -111,3 +111,166 @@ Finally, this is an example of an Arabic div. Locate it in the source code file 
 هذا كلام عربي طويل. أريد أن أكتب حتى يبلغ الكلام سطرين. أستعمل برنامج قواطرو لإنتاج الملف الخارجي. هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
 :::
 
+## Pandoc Lua fiters
+
+As you can see, the process for typing Arabic text is both lengthy, and different for HTML and PDF outputs. 
+In order to simplify it, we can use [Pandoc Lua filters](https://pandoc.org/lua-filters.html).
+
+We have created a Quarto filter extension (which is a grouping of Lua filters) to support Arabic divs and spans. 
+The process for creating a Quarto filter extension is detailed here: <https://quarto.org/docs/extensions/filters.html>
+
+This is the filter [`inline-arabic-span.lua`](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_extensions/arabic-support/inline-arabic-span.lua) that we wrote for handling Arabic spans:
+
+```
+-- Add attributes for Arabic text in a span
+function Span (el)
+  if el.classes:includes 'ar' or el.classes:includes 'aralt' then
+    text = pandoc.utils.stringify(el)
+    contents = {pandoc.Str(text)}
+    if FORMAT:match 'latex' then
+      -- for handling alternate Arabic font
+      if el.classes:includes 'aralt' then
+        -- can't seem to use string concatenate directly. Have to use RawInline
+        table.insert(
+          contents, 1,
+          pandoc.RawInline('latex', '\\altfamily ')
+        )
+      end
+      -- no dir needed for babel and throws error if it sees dir attribute. was previously needed for polyglossia
+      return pandoc.Span(contents, {lang='ar'})
+    elseif FORMAT:match 'html' then
+      classval = 'reg-ar-text'
+      if el.classes:includes 'aralt' then
+        classval = 'alt-ar-text'
+      end
+      -- dir needed for html otherwise punctuation gets messed up
+      return pandoc.Span(contents, {class=classval, lang='ar', dir='rtl'})
+    end
+  end
+end
+```
+
+This is the filter [`arabic-div.lua`](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_extensions/arabic-support/arabic-div.lua)
+that we wrote for handling Arabic divs:
+
+```
+-- Add attributes for Arabic text in a div
+function Div (el)
+  if el.classes:includes 'ar' or el.classes:includes 'aralt' then
+    text = pandoc.utils.stringify(el)
+    contents = {pandoc.Str(text)}
+    if FORMAT:match 'latex' then
+      -- for handling alternate Arabic font
+      if el.classes:includes 'aralt' then
+        -- can't seem to use string concatenate directly. Have to use RawInline
+        table.insert(
+          contents, 1,
+          pandoc.RawInline('latex', '\\altfamily ')
+        )
+      end
+      -- no dir needed for babel and throws error if it sees dir attribute. was previously needed for polyglossia
+      return pandoc.Div(contents, {class='otherlanguage', data_latex="{arabic}", lang='ar'})
+    elseif FORMAT:match 'html' then
+      classval = 'reg-ar-text'
+      if el.classes:includes 'aralt' then
+        classval = 'alt-ar-text'
+      end
+      -- dir needed for html otherwise punctuation gets messed up
+      return pandoc.Div(contents, {class=classval, lang='ar', dir='rtl'})
+    end
+  end
+end
+```
+
+With activating these filters, now you can use Arabic divs and spans using a simplified syntax. 
+
+Input for an Arabic span:
+
+```
+[هذا نص عربي.]{.ar}
+```
+
+Input for an Arabic div:
+
+```
+:::{.ar}
+نص عربي.
+
+نص عربي مزيد.
+:::
+```
+
+The filters will process them correctly for HTML and PDF output.
+Note that the class name `reg-ar-text` is hardcoded in the filter.
+If you wish to modify it you can edit the Lua files directly.
+
+## Arabic fonts
+
+You can use a specific font for the Arabic text which is different from the font used for the English text.
+This is usually desirable because the typeface design for the Latin font often does not optimize (or even sometimes support) an Arabic font.
+
+For my project, I am using the [Vazirmatn](https://github.com/rastikerdar/vazir-font/releases/latest) 
+and
+[Amiri](https://github.com/alif-type/amiri/releases/latest)
+fonts.
+
+Both of these are well designed fonts. For me a major consideration is the correct typesetting of the hamza character ([ء]{.ar}). See here for what I'm talking about: <https://adamiturabi.github.io/hamza-rules/>
+
+To specify the Arabic fonts the process is different for HTML vs PDF output. We'll describe both below:
+
+### Specify Arabic font for HTML
+
+For HTML output, the Arabic font is specified in the CSS file. The class name that we selected previously `reg-ar-text` is now assigned a font:
+
+```
+.reg-ar-text {
+  font-family: Vazirmatn, serif;
+  /* scaled up slightly w.r.t. the Latin font for readability */
+  font-size: 1.2em; 
+  /* line spacing not scaled for visual congruence at the expense of clashes */
+  line-height: 100%;
+}
+.alt-ar-text {
+  font-family: AmiriWeb, serif;
+  font-size: 1.2em;
+  line-height: 100%;
+}
+```
+
+The font names `Vazirmatn` and `AmiriWeb` are specified in the same CSS file. 
+See 
+[our CSS file](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srchtml/styles.css)
+for details.
+
+Amiri is specified as an alternate font. It can be specified in the `.qmd` source with `{.aralt}` instead of `{.ar}`. 
+You can also see how we handle it in the source code for the Lua filters above.
+
+By the way, I am, by no means, at expert (or even proficient) in CSS, so if you see any problems with this method, feel free to let me know in the discussions or issues of the 
+[Github page for this book](https://github.com/adamiturabi/quarto-arabic-mwe).
+
+### Specify Arabic font for PDF
+
+As we mentioned earlier, Latex uses the babel package to handle multiple languages. 
+In order to specify Arabic font(s), we need to add the following lines in the intermediate `.tex` file produced by Quarto:
+
+```
+\babelfont[arabic]{rm}[Language=Default]{Vazirmatn-Light}
+\babelfont[arabic]{sf}[Language=Default]{Vazirmatn-Light}
+\babelfont[arabic]{alt}[Language=Default]{Amiri}
+```
+
+Quarto provides hooks for inserting such additional code using [includes](https://quarto.org/docs/reference/formats/pdf.html#includes) and [templates](https://quarto.org/docs/journals/templates.html).
+
+The above lines of code need to be inserted at a specific point after the `usepackage{babel}` line. 
+We found that replacing the partial template for `before-title.tex` worked in this case.
+Here is the addition in our `_quarto.yml` file:
+
+```
+format:
+  pdf:
+    template-partials:
+      - srctex/before-title.tex
+```
+
+Again, see our source code in Github for more details.
+

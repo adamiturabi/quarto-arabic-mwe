@@ -1,3 +1,6 @@
 # Summary
 
-In summary, this book has no content whatsoever.
+Dummy text to test references:
+
+See @knuth84 for additional discussion of literate programming.
+

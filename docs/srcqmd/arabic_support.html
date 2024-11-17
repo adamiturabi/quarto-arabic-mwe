@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Summary – Minimum(ish) Working Example of Quarto with Arabic RTL text in an LTR document</title>
+<title>2&nbsp; Arabic (العربية) support – Minimum(ish) Working Example of Quarto with Arabic RTL text in an LTR document</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -50,8 +30,8 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../srcqmd/references.html" rel="next">
-<link href="../srcqmd/transliteration.html" rel="prev">
+<link href="../srcqmd/transliteration.html" rel="next">
+<link href="../srcqmd/intro.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,7 +82,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../srcqmd/summary.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../srcqmd/arabic_support.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" dir="rtl" lang="ar">العربية</span>) support</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -144,7 +124,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../srcqmd/arabic_support.html" class="sidebar-item-text sidebar-link">
+  <a href="../srcqmd/arabic_support.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" dir="rtl" lang="ar">العربية</span>) support</span></span></a>
   </div>
 </li>
@@ -156,7 +136,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../srcqmd/summary.html" class="sidebar-item-text sidebar-link active">
+  <a href="../srcqmd/summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
@@ -171,8 +151,21 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#in-line-arabic-spans" id="toc-in-line-arabic-spans" class="nav-link active" data-scroll-target="#in-line-arabic-spans"><span class="header-section-number">2.1</span> In-line Arabic: spans</a></li>
+  <li><a href="#arabic-block-text-divs" id="toc-arabic-block-text-divs" class="nav-link" data-scroll-target="#arabic-block-text-divs"><span class="header-section-number">2.2</span> Arabic block text: divs</a></li>
+  <li><a href="#pandoc-lua-fiters" id="toc-pandoc-lua-fiters" class="nav-link" data-scroll-target="#pandoc-lua-fiters"><span class="header-section-number">2.3</span> Pandoc Lua fiters</a></li>
+  <li><a href="#arabic-fonts" id="toc-arabic-fonts" class="nav-link" data-scroll-target="#arabic-fonts"><span class="header-section-number">2.4</span> Arabic fonts</a>
+  <ul class="collapse">
+  <li><a href="#specify-arabic-font-for-html" id="toc-specify-arabic-font-for-html" class="nav-link" data-scroll-target="#specify-arabic-font-for-html"><span class="header-section-number">2.4.1</span> Specify Arabic font for HTML</a></li>
+  <li><a href="#specify-arabic-font-for-pdf" id="toc-specify-arabic-font-for-pdf" class="nav-link" data-scroll-target="#specify-arabic-font-for-pdf"><span class="header-section-number">2.4.2</span> Specify Arabic font for PDF</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -184,7 +177,7 @@ watermark
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" dir="rtl" lang="ar">العربية</span>) support</span></h1>
 </div>
 
 
@@ -201,15 +194,179 @@ watermark
 </header>
 
 
-<p>Dummy text to test references:</p>
-<p>See <span class="citation" data-cites="knuth84">Knuth (<a href="references.html#ref-knuth84" role="doc-biblioref">1984</a>)</span> for additional discussion of literate programming.</p>
+<p>There are two main ways to insert RTL Arabic text in an LTR document:</p>
+<ol type="1">
+<li>In-line Arabic within an LTR paragraph.</li>
+<li>A block of Arabic text by itself</li>
+</ol>
+<section id="in-line-arabic-spans" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="in-line-arabic-spans"><span class="header-section-number">2.1</span> In-line Arabic: spans</h2>
+<p>For inline Arabic, we will use a Pandoc span. A span is written using this syntax:</p>
+<pre><code>[This is the span's *content text*]{.classname attributekey="attributeval"}</code></pre>
+<p>Within square brackets <code>[]</code> is the content of the span. This is what will be randered in the output. Within the curly braces <code>{}</code> is a class name and some attributes that are needed by Quarto to properly process the span.</p>
+<p>In order to render the Arabic content text correctly for HTML output, the span is typed thus in the <code>.qmd</code> source file.</p>
+<pre><code>[هذا نص عربي.]{.reg-ar-txt dir="rtl" lang="ar"}</code></pre>
+<p>The class name is arbitrary. We suggest a descriptive name. We will be using it in the CSS for selecting the font later. The output HTML code will be something like:</p>
+<pre><code>&lt;span class="reg-ar-txt" dir="rtl" lang="ar"&gt;هذا نص عربي.&lt;/span&gt;</code></pre>
+<p>For PDF output, the <code>dir="rtl"</code> attribute is unneeded and actually clashes with the Xelatex PDF engine that Quarto mandates we use for documents with RTL text. So the span will need to be typed thus in the <code>.qmd</code> source file:</p>
+<pre><code>[هذا نص عربي.]{.reg-ar-txt lang="ar"}</code></pre>
+<p>The output Latex code will be something like:</p>
+<pre><code>\foreignlanguage{arabic}{هذا نص عربي.}</code></pre>
+<p>Under the hood, <code>\foreignlanguage</code> is a command that is used by the Latex package <code>babel</code> that Pandoc specifies in its Latex template for handling multiple languages and their scripts.</p>
+<p>Finally, this is an example of an English sentence with inline Arabic text <span class="reg-ar-text" dir="rtl" lang="ar">نَصٌّ عَرَبِيٌّ.</span> within it. Locate this sentence in the source code file <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srcqmd/arabic_support.qmd">here</a> to see how we wrote it.</p>
+</section>
+<section id="arabic-block-text-divs" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="arabic-block-text-divs"><span class="header-section-number">2.2</span> Arabic block text: divs</h2>
+<p>In order to write a block (one or more paragraphs) of Arabic text within an LTR document we will use a Pandoc div. A div is written using this syntax:</p>
+<pre><code>:::{.classname attributekey="attributeval"}
+This is the divs's *content text*.
+
+It may comprise multiple lines. It may contain blank lines.
+:::</code></pre>
+<p>For HTML output, a div is typed thus in the <code>.qmd</code> source:</p>
+<pre><code>:::{.reg-ar-txt dir="rtl" lang="ar"}
+نص عربي.
+
+نص عربي مزيد.
+:::</code></pre>
+<p>The class name <code>reg-ar-txt</code> is, again, arbitrary. The output HTML code will be:</p>
+<pre><code>&lt;div class="alt-ar-text" lang="ar" dir="rtl"&gt;
+نص عربي.
+
+نص عربي مزيد.
+&lt;/div&gt;</code></pre>
+<p>For PDF output, a div is typed thus in the <code>.qmd</code> source:</p>
+<pre><code>:::{.otherlanguage data-latex="{arabic}" lang='ar'}
+نص عربي.
+
+نص عربي مزيد.
+:::</code></pre>
+<p>In this case, the class name <code>otherlanguage</code> is not arbitrary. Furthermore another attribute <code>data-latex="{arabic}"</code> is also needed. And as with spans <code>lang="ar"</code> is needed but <code>dir="rtl"</code> should not be used. The output Latex code is:</p>
+<pre><code>\begin{otherlanguage}{arabic}
+
+\altfamily
+
+نص عربي.
+
+نص عربي مزيد.
+
+\end{otherlanguage}</code></pre>
+<p>Finally, this is an example of an Arabic div. Locate it in the source code file <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srcqmd/arabic_support.qmd">here</a> to see how we wrote it.</p>
+<div class="reg-ar-text" dir="rtl" lang="ar">
+هذا كلام عربي طويل. أريد أن أكتب حتى يبلغ الكلام سطرين. أستعمل برنامج قواطرو لإنتاج الملف الخارجي. هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
+</div>
+</section>
+<section id="pandoc-lua-fiters" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="pandoc-lua-fiters"><span class="header-section-number">2.3</span> Pandoc Lua fiters</h2>
+<p>As you can see, the process for typing Arabic text is both lengthy, and different for HTML and PDF outputs. In order to simplify it, we can use <a href="https://pandoc.org/lua-filters.html">Pandoc Lua filters</a>.</p>
+<p>We have created a Quarto filter extension (which is a grouping of Lua filters) to support Arabic divs and spans. The process for creating a Quarto filter extension is detailed here: <a href="https://quarto.org/docs/extensions/filters.html" class="uri">https://quarto.org/docs/extensions/filters.html</a></p>
+<p>This is the filter <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_extensions/arabic-support/inline-arabic-span.lua"><code>inline-arabic-span.lua</code></a> that we wrote for handling Arabic spans:</p>
+<pre><code>-- Add attributes for Arabic text in a span
+function Span (el)
+  if el.classes:includes 'ar' or el.classes:includes 'aralt' then
+    text = pandoc.utils.stringify(el)
+    contents = {pandoc.Str(text)}
+    if FORMAT:match 'latex' then
+      -- for handling alternate Arabic font
+      if el.classes:includes 'aralt' then
+        -- can't seem to use string concatenate directly. Have to use RawInline
+        table.insert(
+          contents, 1,
+          pandoc.RawInline('latex', '\\altfamily ')
+        )
+      end
+      -- no dir needed for babel and throws error if it sees dir attribute. was previously needed for polyglossia
+      return pandoc.Span(contents, {lang='ar'})
+    elseif FORMAT:match 'html' then
+      classval = 'reg-ar-text'
+      if el.classes:includes 'aralt' then
+        classval = 'alt-ar-text'
+      end
+      -- dir needed for html otherwise punctuation gets messed up
+      return pandoc.Span(contents, {class=classval, lang='ar', dir='rtl'})
+    end
+  end
+end</code></pre>
+<p>This is the filter <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_extensions/arabic-support/arabic-div.lua"><code>arabic-div.lua</code></a> that we wrote for handling Arabic divs:</p>
+<pre><code>-- Add attributes for Arabic text in a div
+function Div (el)
+  if el.classes:includes 'ar' or el.classes:includes 'aralt' then
+    text = pandoc.utils.stringify(el)
+    contents = {pandoc.Str(text)}
+    if FORMAT:match 'latex' then
+      -- for handling alternate Arabic font
+      if el.classes:includes 'aralt' then
+        -- can't seem to use string concatenate directly. Have to use RawInline
+        table.insert(
+          contents, 1,
+          pandoc.RawInline('latex', '\\altfamily ')
+        )
+      end
+      -- no dir needed for babel and throws error if it sees dir attribute. was previously needed for polyglossia
+      return pandoc.Div(contents, {class='otherlanguage', data_latex="{arabic}", lang='ar'})
+    elseif FORMAT:match 'html' then
+      classval = 'reg-ar-text'
+      if el.classes:includes 'aralt' then
+        classval = 'alt-ar-text'
+      end
+      -- dir needed for html otherwise punctuation gets messed up
+      return pandoc.Div(contents, {class=classval, lang='ar', dir='rtl'})
+    end
+  end
+end</code></pre>
+<p>With activating these filters, now you can use Arabic divs and spans using a simplified syntax.</p>
+<p>Input for an Arabic span:</p>
+<pre><code>[هذا نص عربي.]{.ar}</code></pre>
+<p>Input for an Arabic div:</p>
+<pre><code>:::{.ar}
+نص عربي.
+
+نص عربي مزيد.
+:::</code></pre>
+<p>The filters will process them correctly for HTML and PDF output. Note that the class name <code>reg-ar-text</code> is hardcoded in the filter. If you wish to modify it you can edit the Lua files directly.</p>
+</section>
+<section id="arabic-fonts" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="arabic-fonts"><span class="header-section-number">2.4</span> Arabic fonts</h2>
+<p>You can use a specific font for the Arabic text which is different from the font used for the English text. This is usually desirable because the typeface design for the Latin font often does not optimize (or even sometimes support) an Arabic font.</p>
+<p>For my project, I am using the <a href="https://github.com/rastikerdar/vazir-font/releases/latest">Vazirmatn</a> and <a href="https://github.com/alif-type/amiri/releases/latest">Amiri</a> fonts.</p>
+<p>Both of these are well designed fonts. For me a major consideration is the correct typesetting of the hamza character (<span class="reg-ar-text" dir="rtl" lang="ar">ء</span>). See here for what I’m talking about: <a href="https://adamiturabi.github.io/hamza-rules/" class="uri">https://adamiturabi.github.io/hamza-rules/</a></p>
+<p>To specify the Arabic fonts the process is different for HTML vs PDF output. We’ll describe both below:</p>
+<section id="specify-arabic-font-for-html" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="specify-arabic-font-for-html"><span class="header-section-number">2.4.1</span> Specify Arabic font for HTML</h3>
+<p>For HTML output, the Arabic font is specified in the CSS file. The class name that we selected previously <code>reg-ar-text</code> is now assigned a font:</p>
+<pre><code>.reg-ar-text {
+  font-family: Vazirmatn, serif;
+  /* scaled up slightly w.r.t. the Latin font for readability */
+  font-size: 1.2em; 
+  /* line spacing not scaled for visual congruence at the expense of clashes */
+  line-height: 100%;
+}
+.alt-ar-text {
+  font-family: AmiriWeb, serif;
+  font-size: 1.2em;
+  line-height: 100%;
+}</code></pre>
+<p>The font names <code>Vazirmatn</code> and <code>AmiriWeb</code> are specified in the same CSS file. See <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srchtml/styles.css">our CSS file</a> for details.</p>
+<p>Amiri is specified as an alternate font. It can be specified in the <code>.qmd</code> source with <code>{.aralt}</code> instead of <code>{.ar}</code>. You can also see how we handle it in the source code for the Lua filters above.</p>
+<p>By the way, I am, by no means, at expert (or even proficient) in CSS, so if you see any problems with this method, feel free to let me know in the discussions or issues of the <a href="https://github.com/adamiturabi/quarto-arabic-mwe">Github page for this book</a>.</p>
+</section>
+<section id="specify-arabic-font-for-pdf" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="specify-arabic-font-for-pdf"><span class="header-section-number">2.4.2</span> Specify Arabic font for PDF</h3>
+<p>As we mentioned earlier, Latex uses the babel package to handle multiple languages. In order to specify Arabic font(s), we need to add the following lines in the intermediate <code>.tex</code> file produced by Quarto:</p>
+<pre><code>\babelfont[arabic]{rm}[Language=Default]{Vazirmatn-Light}
+\babelfont[arabic]{sf}[Language=Default]{Vazirmatn-Light}
+\babelfont[arabic]{alt}[Language=Default]{Amiri}</code></pre>
+<p>Quarto provides hooks for inserting such additional code using <a href="https://quarto.org/docs/reference/formats/pdf.html#includes">includes</a> and <a href="https://quarto.org/docs/journals/templates.html">templates</a>.</p>
+<p>The above lines of code need to be inserted at a specific point after the <code>usepackage{babel}</code> line. We found that replacing the partial template for <code>before-title.tex</code> worked in this case. Here is the addition in our <code>_quarto.yml</code> file:</p>
+<pre><code>format:
+  pdf:
+    template-partials:
+      - srctex/before-title.tex</code></pre>
+<p>Again, see our source code in Github for more details.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-knuth84" class="csl-entry" role="listitem">
-Knuth, Donald E. 1984. <span>“Literate Programming.”</span> <em>Comput. J.</em> 27 (2): 97–111. <a href="https://doi.org/10.1093/comjnl/27.2.97">https://doi.org/10.1093/comjnl/27.2.97</a>.
-</div>
-</div>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -634,13 +791,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../srcqmd/transliteration.html" class="pagination-link" aria-label="Transliteration of Arabic">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Transliteration of Arabic</span></span>
+      <a href="../srcqmd/intro.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../srcqmd/references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../srcqmd/transliteration.html" class="pagination-link" aria-label="Transliteration of Arabic">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Transliteration of Arabic</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

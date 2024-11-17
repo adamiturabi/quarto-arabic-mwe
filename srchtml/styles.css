@@ -103,20 +103,15 @@ li {
   font-family: Vazirmatn, serif;
   font-size: 1.2em; 
   line-height: 100%;
+  /* the followuing may be needed if the dir attribute is not set in the source */
+  /*
+  direction: rtl;
+  unicode-bidi: isolate;
+  */
 }
 .alt-ar-text {
   font-family: AmiriWeb, serif;
   font-size: 1.2em; 
   line-height: 100%;
-}
-.otherlanguage {
-  font-family: Vazirmatn, serif;
-  font-size: 1.2em; 
-  /*line-height: 150%;*/
-  /* needed for divs for right alignment: */
-  /*
-  direction: rtl;
-  unicode-bidi: isolate;
-  */
 }
 

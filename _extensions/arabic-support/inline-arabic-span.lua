@@ -4,9 +4,9 @@ function Span (el)
     text = pandoc.utils.stringify(el)
     contents = {pandoc.Str(text)}
     if FORMAT:match 'latex' then
+      -- for handling alternate Arabic font
       if el.classes:includes 'aralt' then
-        --text = [[\altfamily ]] .. text
-        --contents = {pandoc.RawInline('latex', '\\altfamily')} .. contents.content
+        -- can't seem to use string concatenate directly. Have to use RawInline
         table.insert(
           contents, 1,
           pandoc.RawInline('latex', '\\altfamily ')

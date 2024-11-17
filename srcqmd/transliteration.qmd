@@ -1,0 +1,76 @@
+# Transliteration of Arabic 
+
+In my work, I frequently need to transliterate and transcribe Arabic text in Latin characters.
+There are various Romanization schemes in existence, using dots, macrons, etc.
+The Romanization scheme I am using for my work is tabulated below:
+
+| Arabic letter | Transliterated output | ASCII input |
+|:--|:--|:--|
+|[ء]{.ar}    | [E]{.trn2} | `E`|
+|[ا]{.ar}    | [A]{.trn2} | `A`|
+|[ب]{.ar}    | [b]{.trn2} | `b`|
+|[ت]{.ar}    | [t]{.trn2} | `t`|
+|[ث]{.ar}    | [v]{.trn2} | `v`|
+|[ج]{.ar}    | [j]{.trn2} | `j`|
+|[ح]{.ar}    | [H]{.trn2} | `H`|
+|[خ]{.ar}    | [x]{.trn2} | `x`|
+|[د]{.ar}    | [d]{.trn2} | `d`|
+|[ذ]{.ar}    | [p]{.trn2} | `p`|
+|[ر]{.ar}    | [r]{.trn2} | `r`|
+|[ز]{.ar}    | [z]{.trn2} | `z`|
+|[س]{.ar}    | [s]{.trn2} | `s`|
+|[ش]{.ar}    | [c]{.trn2} | `c`|
+|[ص]{.ar}    | [S]{.trn2} | `S`|
+|[ض]{.ar}    | [D]{.trn2} | `D`|
+|[ط]{.ar}    | [T]{.trn2} | `T`|
+|[ظ]{.ar}    | [P]{.trn2} | `P`|
+|[ع]{.ar}    | [e]{.trn2} | `e`|
+|[غ]{.ar}    | [g]{.trn2} | `g`|
+|[ف]{.ar}    | [f]{.trn2} | `f`|
+|[ق]{.ar}    | [q]{.trn2} | `q`|
+|[ك]{.ar}    | [k]{.trn2} | `k`|
+|[ل]{.ar}    | [l]{.trn2} | `l`|
+|[م]{.ar}    | [m]{.trn2} | `m`|
+|[ن]{.ar}    | [n]{.trn2} | `n`|
+|[ه]{.ar}    | [h]{.trn2} | `h`|
+|[و]{.ar} (C)| [w]{.trn2} | `w`|
+|[ي]{.ar} (C)| [y]{.trn2} | `y`|
+|[و]{.ar} (V)| [U]{.trn2} | `U`|
+|[ي]{.ar} (V)| [I]{.trn2} | `I`|
+
+As you can see, I use digraphs [p]{.trn}, [g]{.trn}, etc. for some letters.
+This is because for my current work, I value readability over precision.
+
+It is possible to input these special characters directly by modifying your keyboard layout or mapping, either at a operating system, or editor level.
+Andreas Hallberg has described a technique for inputing them in the vim editor here:
+<https://andreasmhallberg.github.io/ergonomic-arabic-transcription/>
+
+For Quarto, I prefer to input the transliterated text as ASCII characters and write a Lua filter 
+[`transliteration-span.lua`](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_extensions/arabic-support/transliteration-span.lua)
+to handle rendering them correctly. The ASCII to transliterated output mapping is shown in the table above. So if I type:
+
+```
+[pahabtu maphaban]{.trn}
+```
+
+It will be output as 
+[pahabtu maphaban]{.trn}.
+
+Note the dot character · is automatically inserted by the filter between the digraph [p]{.trn} and the following [h]{.trn} for helping in disambiguation.
+
+With `{.trn}` the output is in italic (as above).
+But sometimes I need to have non-italic output, as in the case of names. For that I use `{.trn2}`. For example:
+
+```
+[#eumar]{.trn2} and [E#usAmah]{.trn2} are studying 
+the [#qurEAn]{.trn2} and [#HadIv]{.trn2}.
+```
+
+This is rendered as:
+
+[#eumar]{.trn2} and [E#usAmah]{.trn2} are studying the [#qurEAn]{.trn2} and [#HadIv]{.trn2}.
+
+Note how the hash character `#` is used to control capitalization.
+
+For the English font used in your main text, you will need to pick a font that supports the dots, macrons, breves, etc needed for transliteration. I am using the Charis SIL font.
+

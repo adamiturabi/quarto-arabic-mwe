@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Summary – Minimum(ish) Working Example of Quarto with Arabic RTL text in an LTR document</title>
+<title>3&nbsp; Transliteration of Arabic – Minimum(ish) Working Example of Quarto with Arabic RTL text in an LTR document</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -50,8 +30,8 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../srcqmd/references.html" rel="next">
-<link href="../srcqmd/transliteration.html" rel="prev">
+<link href="../srcqmd/summary.html" rel="next">
+<link href="../srcqmd/arabic_support.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,7 +82,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../srcqmd/summary.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../srcqmd/transliteration.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Transliteration of Arabic</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -150,13 +130,13 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../srcqmd/transliteration.html" class="sidebar-item-text sidebar-link">
+  <a href="../srcqmd/transliteration.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Transliteration of Arabic</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../srcqmd/summary.html" class="sidebar-item-text sidebar-link active">
+  <a href="../srcqmd/summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
@@ -184,7 +164,7 @@ watermark
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Transliteration of Arabic</span></h1>
 </div>
 
 
@@ -201,15 +181,188 @@ watermark
 </header>
 
 
-<p>Dummy text to test references:</p>
-<p>See <span class="citation" data-cites="knuth84">Knuth (<a href="references.html#ref-knuth84" role="doc-biblioref">1984</a>)</span> for additional discussion of literate programming.</p>
+<p>In my work, I frequently need to transliterate and transcribe Arabic text in Latin characters. There are various Romanization schemes in existence, using dots, macrons, etc. The Romanization scheme I am using for my work is tabulated below:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Arabic letter</th>
+<th style="text-align: left;">Transliterated output</th>
+<th style="text-align: left;">ASCII input</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ء</span></td>
+<td style="text-align: left;"><span class="trn2">ʾ</span></td>
+<td style="text-align: left;"><code>E</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ا</span></td>
+<td style="text-align: left;"><span class="trn2">ā</span></td>
+<td style="text-align: left;"><code>A</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ب</span></td>
+<td style="text-align: left;"><span class="trn2">b</span></td>
+<td style="text-align: left;"><code>b</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ت</span></td>
+<td style="text-align: left;"><span class="trn2">t</span></td>
+<td style="text-align: left;"><code>t</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ث</span></td>
+<td style="text-align: left;"><span class="trn2">t͡h</span></td>
+<td style="text-align: left;"><code>v</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ج</span></td>
+<td style="text-align: left;"><span class="trn2">j</span></td>
+<td style="text-align: left;"><code>j</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ح</span></td>
+<td style="text-align: left;"><span class="trn2">ḥ</span></td>
+<td style="text-align: left;"><code>H</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">خ</span></td>
+<td style="text-align: left;"><span class="trn2">k͡h</span></td>
+<td style="text-align: left;"><code>x</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">د</span></td>
+<td style="text-align: left;"><span class="trn2">d</span></td>
+<td style="text-align: left;"><code>d</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ذ</span></td>
+<td style="text-align: left;"><span class="trn2">d͡h</span></td>
+<td style="text-align: left;"><code>p</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ر</span></td>
+<td style="text-align: left;"><span class="trn2">r</span></td>
+<td style="text-align: left;"><code>r</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ز</span></td>
+<td style="text-align: left;"><span class="trn2">z</span></td>
+<td style="text-align: left;"><code>z</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">س</span></td>
+<td style="text-align: left;"><span class="trn2">s</span></td>
+<td style="text-align: left;"><code>s</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ش</span></td>
+<td style="text-align: left;"><span class="trn2">s͡h</span></td>
+<td style="text-align: left;"><code>c</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ص</span></td>
+<td style="text-align: left;"><span class="trn2">ṣ</span></td>
+<td style="text-align: left;"><code>S</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ض</span></td>
+<td style="text-align: left;"><span class="trn2">ḍ</span></td>
+<td style="text-align: left;"><code>D</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ط</span></td>
+<td style="text-align: left;"><span class="trn2">ṭ</span></td>
+<td style="text-align: left;"><code>T</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ظ</span></td>
+<td style="text-align: left;"><span class="trn2">ḍ͡h</span></td>
+<td style="text-align: left;"><code>P</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ع</span></td>
+<td style="text-align: left;"><span class="trn2">ɛ</span></td>
+<td style="text-align: left;"><code>e</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">غ</span></td>
+<td style="text-align: left;"><span class="trn2">g͡h</span></td>
+<td style="text-align: left;"><code>g</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ف</span></td>
+<td style="text-align: left;"><span class="trn2">f</span></td>
+<td style="text-align: left;"><code>f</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ق</span></td>
+<td style="text-align: left;"><span class="trn2">q</span></td>
+<td style="text-align: left;"><code>q</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ك</span></td>
+<td style="text-align: left;"><span class="trn2">k</span></td>
+<td style="text-align: left;"><code>k</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ل</span></td>
+<td style="text-align: left;"><span class="trn2">l</span></td>
+<td style="text-align: left;"><code>l</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">م</span></td>
+<td style="text-align: left;"><span class="trn2">m</span></td>
+<td style="text-align: left;"><code>m</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ن</span></td>
+<td style="text-align: left;"><span class="trn2">n</span></td>
+<td style="text-align: left;"><code>n</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ه</span></td>
+<td style="text-align: left;"><span class="trn2">h</span></td>
+<td style="text-align: left;"><code>h</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">و</span> (C)</td>
+<td style="text-align: left;"><span class="trn2">w</span></td>
+<td style="text-align: left;"><code>w</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ي</span> (C)</td>
+<td style="text-align: left;"><span class="trn2">y</span></td>
+<td style="text-align: left;"><code>y</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">و</span> (V)</td>
+<td style="text-align: left;"><span class="trn2">ū</span></td>
+<td style="text-align: left;"><code>U</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="reg-ar-text" dir="rtl" lang="ar">ي</span> (V)</td>
+<td style="text-align: left;"><span class="trn2">ī</span></td>
+<td style="text-align: left;"><code>I</code></td>
+</tr>
+</tbody>
+</table>
+<p>As you can see, I use digraphs <span class="trn2"><span class="trn"><em>d͡h</em></span></span>, <span class="trn2"><span class="trn"><em>g͡h</em></span></span>, etc. for some letters. This is because for my current work, I value readability over precision.</p>
+<p>It is possible to input these special characters directly by modifying your keyboard layout or mapping, either at a operating system, or editor level. Andreas Hallberg has described a technique for inputing them in the vim editor here: <a href="https://andreasmhallberg.github.io/ergonomic-arabic-transcription/" class="uri">https://andreasmhallberg.github.io/ergonomic-arabic-transcription/</a></p>
+<p>For Quarto, I prefer to input the transliterated text as ASCII characters and write a Lua filter <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_extensions/arabic-support/transliteration-span.lua"><code>transliteration-span.lua</code></a> to handle rendering them correctly. The ASCII to transliterated output mapping is shown in the table above. So if I type:</p>
+<pre><code>[pahabtu maphaban]{.trn}</code></pre>
+<p>It will be output as <span class="trn2"><span class="trn"><em>d͡hahabtu mad͡h·haban</em></span></span>.</p>
+<p>Note the dot character · is automatically inserted by the filter between the digraph <span class="trn2"><span class="trn"><em>d͡h</em></span></span> and the following <span class="trn2"><span class="trn"><em>h</em></span></span> for helping in disambiguation.</p>
+<p>With <code>{.trn}</code> the output is in italic (as above). But sometimes I need to have non-italic output, as in the case of names. For that I use <code>{.trn2}</code>. For example:</p>
+<pre><code>[#eumar]{.trn2} and [E#usAmah]{.trn2} are studying 
+the [#qurEAn]{.trn2} and [#HadIv]{.trn2}.</code></pre>
+<p>This is rendered as:</p>
+<p><span class="trn2">Ɛumar</span> and <span class="trn2">ʾUsāmah</span> are studying the <span class="trn2">Qurʾān</span> and <span class="trn2">Ḥadīt͡h</span>.</p>
+<p>Note how the hash character <code>#</code> is used to control capitalization.</p>
+<p>For the English font used in your main text, you will need to pick a font that supports the dots, macrons, breves, etc needed for transliteration. I am using the Charis SIL font.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-knuth84" class="csl-entry" role="listitem">
-Knuth, Donald E. 1984. <span>“Literate Programming.”</span> <em>Comput. J.</em> 27 (2): 97–111. <a href="https://doi.org/10.1093/comjnl/27.2.97">https://doi.org/10.1093/comjnl/27.2.97</a>.
-</div>
-</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -634,13 +787,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../srcqmd/transliteration.html" class="pagination-link" aria-label="Transliteration of Arabic">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Transliteration of Arabic</span></span>
+      <a href="../srcqmd/arabic_support.html" class="pagination-link" aria-label="Arabic ([العربية]{.ar}) support">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" dir="rtl" lang="ar">العربية</span>) support</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../srcqmd/references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../srcqmd/summary.html" class="pagination-link" aria-label="Summary">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

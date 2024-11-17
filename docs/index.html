@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1d68538210f3e1ca8cfed00303eaeecd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-38b73869005c16fa110ee562df33f09b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -120,13 +120,25 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./srcqmd/intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction <span class="reg-ar-text" lang="ar" dir="rtl">مقدمة الكتاب</span></span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./srcqmd/arabic_support.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" lang="ar" dir="rtl">العربية</span>) support</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./srcqmd/transliteration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Transliteration of Arabic</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./srcqmd/summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -152,9 +164,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 <div class="watermark">
-Work in progress.
+Example
 <br>
-Not ready for study.
+watermark
 </div>
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -191,16 +203,15 @@ Not ready for study.
 <section id="preface" class="level1 unnumbered">
 <h1 class="unnumbered">Preface</h1>
 <div class="alt-ar-text" lang="ar" dir="rtl">
-بسم الله الرحمن الرحيم.
+بسم الله الرحمن الرحيم
 </div>
-<p>This is a MWE of a Quarto book that is in left-to-right text (English), with portions of right-to-left text (Arabic) in it. Examples:</p>
-<ol type="1">
-<li>The <span class="trn2">basmalah</span> above.</li>
-<li>This inline text: <span class="reg-ar-text" lang="ar" dir="rtl">العربية</span> and this one: <span class="alt-ar-text" lang="ar" dir="rtl">سرب القطا</span></li>
-</ol>
-<p>To learn how to type Arabic text and its transcription/transliteration see the next chapter <a href="srcqmd/intro.html" class="quarto-xref"><span>1&nbsp; Introduction مقدمة الكتاب</span></a>.</p>
+<p><a href="https://quarto.org/docs/books">Quarto</a> is a document publishing software. With it, you can write your document in <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">Pandoc flavored markdown</a>. Quarto will use Pandoc under the hood, and do a bunch of other fancy stuff, to output your markdown document in formats of your choice, like HTML for websites, and PDF (via <a href="https://www.latex-project.org/">Latex</a>).</p>
+<p>So far so good. But many of my documents are in English with Arabic content interspersed. Arabic is written right-to-left (RTL) whereas English is written left-to-right (LTR). The support of bidirectional (BiDi) text is a notoriously tricky problem.</p>
+<p>In this write-up, I will describe how to configure Quarto to achieve this.</p>
+<!--2. This inline text: [العربية]{.ar} and this one: [سرب القطا]{.aralt} -->
+<p>The code for this book can be used as a template for RTL document projects. Along with BiDi, I’ll also discuss other aspects like fonts, figures, etc.</p>
 <p>The source code for this book can be found here: <a href="https://github.com/adamiturabi/quarto-arabic-mwe" class="uri">https://github.com/adamiturabi/quarto-arabic-mwe</a>.</p>
-<p>To learn more about Quarto books visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a>.</p>
+<p>The rendered output is published here: <a href="https://adamiturabi.github.io/quarto-arabic-mwe" class="uri">https://adamiturabi.github.io/quarto-arabic-mwe</a>.</p>
 
 
 </section>
@@ -630,8 +641,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./srcqmd/intro.html" class="pagination-link" aria-label="Introduction [مقدمة الكتاب]{.ar}">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction <span class="reg-ar-text" lang="ar" dir="rtl">مقدمة الكتاب</span></span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./srcqmd/intro.html" class="pagination-link" aria-label="Introduction">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -9,6 +9,8 @@ book:
   chapters:
     - index.qmd
     - srcqmd/intro.qmd
+    - srcqmd/arabic_support.qmd
+    - srcqmd/transliteration.qmd
     - srcqmd/summary.qmd
     - srcqmd/references.qmd
   downloads: [pdf]
@@ -24,6 +26,7 @@ format:
     mainfont: "Charis SIL"
     mainfontoptions: Numbers=OldStyle
     sansfont: "Charis SIL"
+    monofont: "DejaVu Sans Mono"
     #fontsize: 10pt
     theme: cosmo
     css: srchtml/styles.css
@@ -51,6 +54,7 @@ format:
     mainfont: "Charis SIL"
     mainfontoptions: Numbers=OldStyle
     sansfont: "Charis SIL"
+    monofont: "DejaVu Sans Mono"
     fontsize: 10pt
     pdf-engine: xelatex
     include-in-header:
