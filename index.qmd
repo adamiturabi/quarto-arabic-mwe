@@ -1,8 +1,6 @@
 # Preface {.unnumbered}
 
-::: {.aralt}
-بسم الله الرحمن الرحيم
-:::
+[بسم الله الرحمن الرحيم]{.aralt}
 
 [Quarto](https://quarto.org/docs/books) is a document publishing software. 
 With it, you can write your document in [Pandoc flavored markdown](https://pandoc.org/MANUAL.html#pandocs-markdown).
@@ -11,6 +9,7 @@ Quarto will use Pandoc under the hood, and do a bunch of other fancy stuff, to o
 So far so good. But many of my documents are in English with Arabic content interspersed.
 Arabic is written right-to-left (RTL) whereas English is written left-to-right (LTR).
 The support of bidirectional (BiDi) text is a notoriously tricky problem.
+The cursive property of the Arabic script (with joining letters) compounds the issue.
 
 In this write-up, I will describe how to configure Quarto to achieve this.
 

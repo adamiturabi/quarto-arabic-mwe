@@ -13,6 +13,7 @@ function Div (el)
         )
       end
       -- no dir needed for babel and throws error if it sees dir attribute. was previously needed for polyglossia
+      -- The underscore in data_latex is automatically converted to a hyphen
       return pandoc.Div(contents, {class='otherlanguage', data_latex="{arabic}", lang='ar'})
     elseif FORMAT:match 'html' then
       classval = 'reg-ar-text'
