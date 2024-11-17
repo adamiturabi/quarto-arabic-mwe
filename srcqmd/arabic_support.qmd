@@ -14,7 +14,7 @@ A span is written using this syntax:
 [This is the span's *content text*]{.classname attributekey="attributeval"}
 ```
 
-Within square brackets `[]` is the content of the span. This is what will be randered in the output.
+Within square brackets `[]` is the content of the span. This is what will be rendered in the output.
 Within the curly braces `{}` is a class name and some attributes that are needed by Quarto to properly process the span.
 
 In order to render the Arabic content text correctly for HTML output, the span is typed thus in the `.qmd` source file.
