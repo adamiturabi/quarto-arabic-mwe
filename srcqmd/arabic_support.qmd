@@ -72,7 +72,7 @@ For HTML output, a div is typed thus in the `.qmd` source:
 The class name `reg-ar-txt` is, again, arbitrary. The output HTML code will be:
 
 ```
-<div class="alt-ar-text" lang="ar" dir="rtl">
+<div class="reg-ar-text" lang="ar" dir="rtl">
 هذا كلام عربي طويل.
 أريد أن أكتب حتى يبلغ النص سطرين.
 أستعمل برنامج قوارطو لإنتاج الملف الخارجي.
