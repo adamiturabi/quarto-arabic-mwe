@@ -62,13 +62,13 @@ With `{.trn}` the output is in italic (as above).
 But sometimes I need to have non-italic output, as in the case of names. For that I use `{.trn2}`. For example:
 
 ```
-[#eumar]{.trn2} and [E#usAmah]{.trn2} are studying 
+[#eAEicah]{.trn2} and [E#usAmah]{.trn2} are studying 
 the [#qurEAn]{.trn2} and [#HadIv]{.trn2}.
 ```
 
 This is rendered as:
 
-[#eumar]{.trn2} and [E#usAmah]{.trn2} are studying the [#qurEAn]{.trn2} and [#HadIv]{.trn2}.
+[#eAEicah]{.trn2} and [E#usAmah]{.trn2} are studying the [#qurEAn]{.trn2} and [#HadIv]{.trn2}.
 
 Note how the hash character `#` is used to control capitalization.
 
