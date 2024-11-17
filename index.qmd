@@ -6,6 +6,8 @@
 With it, you can write your document in [Pandoc flavored markdown](https://pandoc.org/MANUAL.html#pandocs-markdown).
 Quarto will use Pandoc under the hood, and do a bunch of other fancy stuff, to output your markdown document in formats of your choice, like HTML for websites, and PDF (via [Latex](https://www.latex-project.org/)).
 
+A PDF version of this document can be downloaded if you click on the PDF icon next to the title at the top left of this page.
+
 So far so good. But many of my documents are in English with Arabic content interspersed.
 Arabic is written right-to-left (RTL) whereas English is written left-to-right (LTR).
 The support of bidirectional (BiDi) text is a notoriously tricky problem.
