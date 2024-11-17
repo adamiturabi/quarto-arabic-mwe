@@ -260,7 +260,7 @@ Div:
 هذا كلام عربي طويل. أريد أن أكتب حتى يبلغ النص سطرين. أستعمل برنامج قوارطو لإنتاج الملف الخارجي. هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
 :::
 
-By the way, I am not, by any means, at expert (or even proficient) in CSS, so if you see any problems with this method of specifying the font, feel free to let me know in the discussions or issues of the 
+By the way, I am not, by any means, an expert (or even proficient) in CSS, so if you see any problems with this method of specifying the font, feel free to let me know in the discussions or issues of the 
 [Github page for this book](https://github.com/adamiturabi/quarto-arabic-mwe).
 
 ### Specify Arabic font for PDF
