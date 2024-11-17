@@ -109,7 +109,9 @@ li {
   font-size: 1.2em; 
   /*line-height: 150%;*/
   /* needed for divs for right alignment: */
+  /*
   direction: rtl;
   unicode-bidi: isolate;
+  */
 }
 

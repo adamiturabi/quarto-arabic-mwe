@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Minimum(ish) Working Example of Quarto with Arabic RTL text in an LTR document",
     "section": "",
-    "text": "Work in progress.\n\nNot ready for study.\n\n\n\n\n\n\nPreface\n\nبسم الله الرحمن الرحيم\n\nThis is a MWE of a Quarto book that is in left-to-right text (English), with portions of right-to-left text (Arabic) in it. Examples:\n\nThe basmalah above.\nThis inline text: العربية\n\nTo learn how to type Arabic text and its transcription/transliteration see the next chapter 1  Introduction مقدمة الكتاب.\nThe source code for this book can be found here: https://github.com/adamiturabi/quarto-arabic-mwe.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "text": "Work in progress.\n\nNot ready for study.\n\n\n\n\n\n\nPreface\n\nبسم الله الرحمن الرحيم.\n\nThis is a MWE of a Quarto book that is in left-to-right text (English), with portions of right-to-left text (Arabic) in it. Examples:\n\nThe basmalah above.\nThis inline text: العربية\n\nTo learn how to type Arabic text and its transcription/transliteration see the next chapter 1  Introduction مقدمة الكتاب.\nThe source code for this book can be found here: https://github.com/adamiturabi/quarto-arabic-mwe.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
     "crumbs": [
       "Preface"
     ]

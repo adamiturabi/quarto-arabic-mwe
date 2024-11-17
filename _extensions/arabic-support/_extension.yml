@@ -6,4 +6,5 @@ contributes:
   filters:
     - inline-arabic-span.lua
     - transliteration-span.lua
+    - arabic-div.lua
 

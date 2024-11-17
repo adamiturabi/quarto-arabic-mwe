@@ -1,7 +1,7 @@
 # Preface {.unnumbered}
 
-::: {.otherlanguage data-latex="{arabic}" lang="ar"}
-بسم الله الرحمن الرحيم
+::: {.ar}
+بسم الله الرحمن الرحيم.
 :::
 
 This is a MWE of a Quarto book that is in left-to-right text (English), with portions of 
