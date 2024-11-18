@@ -2,46 +2,44 @@
 
 ## Romanization scheme
 
-In my work, I frequently need to transliterate and transcribe Arabic text in Latin characters.
+In my documents, I frequently need to transliterate and transcribe Arabic text in Latin characters.
 There are various Romanization schemes in existence, using dots, macrons, etc.
-The Romanization scheme I am using for my work is tabulated below:
+The Romanization scheme I am using for a few of my projects is tabulated below:
 
 | Arabic letter | Transliterated output | ASCII input |
 |:--|:--|:--|
-|[ء]{.ar}    | [E]{.trn2} | `E`|
-|[ا]{.ar}    | [A]{.trn2} | `A`|
-|[ب]{.ar}    | [b]{.trn2} | `b`|
-|[ت]{.ar}    | [t]{.trn2} | `t`|
-|[ث]{.ar}    | [v]{.trn2} | `v`|
-|[ج]{.ar}    | [j]{.trn2} | `j`|
-|[ح]{.ar}    | [H]{.trn2} | `H`|
-|[خ]{.ar}    | [x]{.trn2} | `x`|
-|[د]{.ar}    | [d]{.trn2} | `d`|
-|[ذ]{.ar}    | [p]{.trn2} | `p`|
-|[ر]{.ar}    | [r]{.trn2} | `r`|
-|[ز]{.ar}    | [z]{.trn2} | `z`|
-|[س]{.ar}    | [s]{.trn2} | `s`|
-|[ش]{.ar}    | [c]{.trn2} | `c`|
-|[ص]{.ar}    | [S]{.trn2} | `S`|
-|[ض]{.ar}    | [D]{.trn2} | `D`|
-|[ط]{.ar}    | [T]{.trn2} | `T`|
-|[ظ]{.ar}    | [P]{.trn2} | `P`|
-|[ع]{.ar}    | [e]{.trn2} | `e`|
-|[غ]{.ar}    | [g]{.trn2} | `g`|
-|[ف]{.ar}    | [f]{.trn2} | `f`|
-|[ق]{.ar}    | [q]{.trn2} | `q`|
-|[ك]{.ar}    | [k]{.trn2} | `k`|
-|[ل]{.ar}    | [l]{.trn2} | `l`|
-|[م]{.ar}    | [m]{.trn2} | `m`|
-|[ن]{.ar}    | [n]{.trn2} | `n`|
-|[ه]{.ar}    | [h]{.trn2} | `h`|
-|[و]{.ar} (C)| [w]{.trn2} | `w`|
-|[ي]{.ar} (C)| [y]{.trn2} | `y`|
-|[و]{.ar} (V)| [U]{.trn2} | `U`|
-|[ي]{.ar} (V)| [I]{.trn2} | `I`|
+|[ء]{.ar}      | [E]{.trn}           | `E`|
+|[ا]{.ar}      | [A]{.trn}           | `A`|
+|[ب]{.ar}      | [b]{.trn}           | `b`|
+|[ت]{.ar}      | [t]{.trn}           | `t`|
+|[ث]{.ar}      | [v]{.trn}           | `v`|
+|[ج]{.ar}      | [j]{.trn}           | `j`|
+|[ح]{.ar}      | [H]{.trn}           | `H`|
+|[خ]{.ar}      | [x]{.trn}           | `x`|
+|[د]{.ar}      | [d]{.trn}           | `d`|
+|[ذ]{.ar}      | [p]{.trn}           | `p`|
+|[ر]{.ar}      | [r]{.trn}           | `r`|
+|[ز]{.ar}      | [z]{.trn}           | `z`|
+|[س]{.ar}      | [s]{.trn}           | `s`|
+|[ش]{.ar}      | [c]{.trn}           | `c`|
+|[ص]{.ar}      | [S]{.trn}           | `S`|
+|[ض]{.ar}      | [D]{.trn}           | `D`|
+|[ط]{.ar}      | [T]{.trn}           | `T`|
+|[ظ]{.ar}      | [P]{.trn}           | `P`|
+|[ع]{.ar}      | [e]{.trn}           | `e`|
+|[غ]{.ar}      | [g]{.trn}           | `g`|
+|[ف]{.ar}      | [f]{.trn}           | `f`|
+|[ق]{.ar}      | [q]{.trn}           | `q`|
+|[ك]{.ar}      | [k]{.trn}           | `k`|
+|[ل]{.ar}      | [l]{.trn}           | `l`|
+|[م]{.ar}      | [m]{.trn}           | `m`|
+|[ن]{.ar}      | [n]{.trn}           | `n`|
+|[ه]{.ar}      | [h]{.trn}           | `h`|
+|[و]{.ar} (C/V)| [w]{.trn}/[U]{.trn} | `w`|
+|[ي]{.ar} (C/V)| [y]{.trn}/[I]{.trn} | `y`|
 
-As you can see, I use digraphs [p]{.trn}, [g]{.trn}, etc. for some letters.
-This is because for my current work, I value readability over precision.
+As you can see, I use digraphs ([p]{.trn}, [g]{.trn}, etc.) for some letters.
+This is because, for my current projects, I prefer readability over precision.
 
 It is possible to input these special characters directly by modifying your keyboard layout or mapping, either at a operating system, or editor level.
 Andreas Hallberg has described a technique for inputing them in the vim editor here:
