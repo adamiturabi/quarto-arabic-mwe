@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -82,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../srcqmd/arabic_support.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" dir="rtl" lang="ar">العربية</span>) support</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../srcqmd/arabic_support.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" lang="ar" dir="rtl">العربية</span>) support</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -125,7 +159,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../srcqmd/arabic_support.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" dir="rtl" lang="ar">العربية</span>) support</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" lang="ar" dir="rtl">العربية</span>) support</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -156,8 +190,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#in-line-arabic-spans" id="toc-in-line-arabic-spans" class="nav-link active" data-scroll-target="#in-line-arabic-spans"><span class="header-section-number">2.1</span> In-line Arabic: spans</a></li>
-  <li><a href="#arabic-block-text-divs" id="toc-arabic-block-text-divs" class="nav-link" data-scroll-target="#arabic-block-text-divs"><span class="header-section-number">2.2</span> Arabic block text: divs</a></li>
+  <li><a href="#in-line-arabic-spans" id="toc-in-line-arabic-spans" class="nav-link active" data-scroll-target="#in-line-arabic-spans"><span class="header-section-number">2.1</span> In-line Arabic: spans</a>
+  <ul class="collapse">
+  <li><a href="#arabic-spans-for-html-output" id="toc-arabic-spans-for-html-output" class="nav-link" data-scroll-target="#arabic-spans-for-html-output"><span class="header-section-number">2.1.1</span> Arabic spans for HTML output</a></li>
+  <li><a href="#arabic-spans-for-pdf-output" id="toc-arabic-spans-for-pdf-output" class="nav-link" data-scroll-target="#arabic-spans-for-pdf-output"><span class="header-section-number">2.1.2</span> Arabic spans for PDF output</a></li>
+  </ul></li>
+  <li><a href="#arabic-block-text-divs" id="toc-arabic-block-text-divs" class="nav-link" data-scroll-target="#arabic-block-text-divs"><span class="header-section-number">2.2</span> Arabic block text: divs</a>
+  <ul class="collapse">
+  <li><a href="#arabic-divs-for-html-output" id="toc-arabic-divs-for-html-output" class="nav-link" data-scroll-target="#arabic-divs-for-html-output"><span class="header-section-number">2.2.1</span> Arabic divs for HTML output</a></li>
+  <li><a href="#arabic-divs-for-pdf-output" id="toc-arabic-divs-for-pdf-output" class="nav-link" data-scroll-target="#arabic-divs-for-pdf-output"><span class="header-section-number">2.2.2</span> Arabic divs for PDF output</a></li>
+  </ul></li>
   <li><a href="#pandoc-lua-fiters" id="toc-pandoc-lua-fiters" class="nav-link" data-scroll-target="#pandoc-lua-fiters"><span class="header-section-number">2.3</span> Pandoc Lua fiters</a></li>
   <li><a href="#arabic-fonts" id="toc-arabic-fonts" class="nav-link" data-scroll-target="#arabic-fonts"><span class="header-section-number">2.4</span> Arabic fonts</a>
   <ul class="collapse">
@@ -177,7 +219,7 @@ watermark
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" dir="rtl" lang="ar">العربية</span>) support</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" lang="ar" dir="rtl">العربية</span>) support</span></h1>
 </div>
 
 
@@ -202,156 +244,168 @@ watermark
 <section id="in-line-arabic-spans" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="in-line-arabic-spans"><span class="header-section-number">2.1</span> In-line Arabic: spans</h2>
 <p>For inline Arabic, we will use a Pandoc span. A span is written using this syntax:</p>
-<pre><code>[This is the span's *content text*]{.classname attributekey="attributeval"}</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">This is the span's *content text*</span><span class="co">]</span>{.classname attributekey="attributeval"}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Within square brackets <code>[]</code> is the content of the span. This is what will be rendered in the output. Within the curly braces <code>{}</code> is a class name and some attributes that are needed by Quarto to properly process the span.</p>
+<section id="arabic-spans-for-html-output" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="arabic-spans-for-html-output"><span class="header-section-number">2.1.1</span> Arabic spans for HTML output</h3>
 <p>In order to render the Arabic content text correctly for HTML output, the span is typed thus in the <code>.qmd</code> source file. (Note that the following code listing does not render correctly in the PDF output, exemplifying how difficult BiDi support is. We haven’t attempted to find a workaround for this.)</p>
-<pre><code>[هذا نص عربي.]{.reg-ar-txt dir="rtl" lang="ar"}</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">هذا نص عربي.</span><span class="co">]</span>{.reg-ar-txt dir="rtl" lang="ar"}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The class name is arbitrary. We suggest a descriptive name. We will be using it in the CSS for selecting the font later. The output HTML code will be something like:</p>
-<pre><code>&lt;span class="reg-ar-txt" dir="rtl" lang="ar"&gt;هذا نص عربي.&lt;/span&gt;</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"reg-ar-txt"</span><span class="ot"> dir</span><span class="op">=</span><span class="st">"rtl"</span><span class="ot"> lang</span><span class="op">=</span><span class="st">"ar"</span><span class="dt">&gt;</span>هذا نص عربي.<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="arabic-spans-for-pdf-output" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="arabic-spans-for-pdf-output"><span class="header-section-number">2.1.2</span> Arabic spans for PDF output</h3>
 <p>For PDF output, the <code>dir="rtl"</code> attribute is unneeded and actually clashes with the Xelatex PDF engine that Quarto mandates we use for documents with RTL text. So the span will need to be typed thus in the <code>.qmd</code> source file:</p>
-<pre><code>[هذا نص عربي.]{.reg-ar-txt lang="ar"}</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">هذا نص عربي.</span><span class="co">]</span>{.reg-ar-txt lang="ar"}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The output Latex code will be something like:</p>
-<pre><code>\foreignlanguage{arabic}{هذا نص عربي.}</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\foreignlanguage</span>{arabic}{هذا نص عربي.}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Under the hood, <code>\foreignlanguage</code> is a command that is used by the Latex package <code>babel</code> that Pandoc specifies in its Latex template for handling multiple languages and their scripts.</p>
-<p>Finally, this is an example of an English sentence with inline Arabic text <span class="reg-ar-text" dir="rtl" lang="ar">نَصٌّ عَرَبِيٌّ.</span> within it. Locate this sentence in the source code file <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srcqmd/arabic_support.qmd">here</a> to see how we wrote it.</p>
+<p>Finally, this is an example of an English sentence with inline Arabic text <span class="reg-ar-text" lang="ar" dir="rtl">نَصٌّ عَرَبِيٌّ.</span> within it. Locate this sentence in the source code file <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srcqmd/arabic_support.qmd">here</a> to see how we wrote it.</p>
+</section>
 </section>
 <section id="arabic-block-text-divs" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="arabic-block-text-divs"><span class="header-section-number">2.2</span> Arabic block text: divs</h2>
 <p>In order to write a block (paragraph) of Arabic text within an LTR document we will use a Pandoc div. A div is written using this syntax:</p>
-<pre><code>:::{.classname attributekey="attributeval"}
-This is the divs's *content text*.
-:::</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>:::{.classname attributekey="attributeval"}</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>This is the divs's *content text*.</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="arabic-divs-for-html-output" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="arabic-divs-for-html-output"><span class="header-section-number">2.2.1</span> Arabic divs for HTML output</h3>
 <p>For HTML output, a div is typed thus in the <code>.qmd</code> source:</p>
-<pre><code>:::{.reg-ar-txt dir="rtl" lang="ar"}
-هذا كلام عربي طويل. أريد أن أكتب حتى يبلغ النص سطرين. 
-أستعمل برنامج قوارطو لإنتاج الملف الخارجي. 
-هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
-:::</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>:::{.reg-ar-txt dir="rtl" lang="ar"}</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>هذا كلام عربي طويل. أريد أن أكتب حتى يبلغ النص سطرين. </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>أستعمل برنامج قوارطو لإنتاج الملف الخارجي. </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The class name <code>reg-ar-txt</code> is, again, arbitrary. The output HTML code will be:</p>
-<pre><code>&lt;div class="reg-ar-text" lang="ar" dir="rtl"&gt;
-هذا كلام عربي طويل.
-أريد أن أكتب حتى يبلغ النص سطرين.
-أستعمل برنامج قوارطو لإنتاج الملف الخارجي.
-هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
-&lt;/div&gt;</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"reg-ar-text"</span><span class="ot"> lang</span><span class="op">=</span><span class="st">"ar"</span><span class="ot"> dir</span><span class="op">=</span><span class="st">"rtl"</span><span class="dt">&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>هذا كلام عربي طويل.</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>أريد أن أكتب حتى يبلغ النص سطرين.</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>أستعمل برنامج قوارطو لإنتاج الملف الخارجي.</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="arabic-divs-for-pdf-output" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="arabic-divs-for-pdf-output"><span class="header-section-number">2.2.2</span> Arabic divs for PDF output</h3>
 <p>For PDF output, a div is typed thus in the <code>.qmd</code> source:</p>
-<pre><code>:::{.otherlanguage data-latex="{arabic}" lang='ar'}
-هذا كلام عربي طويل.
-أريد أن أكتب حتى يبلغ النص سطرين.
-أستعمل برنامج قوارطو لإنتاج الملف الخارجي.
-هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
-:::</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>:::{.otherlanguage data-latex="{arabic}" lang='ar'}</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>هذا كلام عربي طويل.</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>أريد أن أكتب حتى يبلغ النص سطرين.</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>أستعمل برنامج قوارطو لإنتاج الملف الخارجي.</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In this case, the class name <code>otherlanguage</code> is not arbitrary. Furthermore another attribute <code>data-latex="{arabic}"</code> is also needed. And as with spans <code>lang="ar"</code> is needed but <code>dir="rtl"</code> should not be used. The output Latex code is:</p>
-<pre><code>\begin{otherlanguage}{arabic}
-
-هذا كلام عربي طويل.
-أريد أن أكتب حتى يبلغ النص سطرين.
-أستعمل برنامج قوارطو لإنتاج الملف الخارجي.
-هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
-
-\end{otherlanguage}</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">otherlanguage</span>}{arabic}</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>هذا كلام عربي طويل.</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>أريد أن أكتب حتى يبلغ النص سطرين.</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>أستعمل برنامج قوارطو لإنتاج الملف الخارجي.</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">otherlanguage</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Finally, this is an example of an Arabic div. Locate it in the source code file <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srcqmd/arabic_support.qmd">here</a> to see how we wrote it.</p>
-<div class="reg-ar-text" dir="rtl" lang="ar">
+<div class="reg-ar-text" lang="ar" dir="rtl">
 هذا كلام عربي طويل. أريد أن أكتب حتى يبلغ النص سطرين. أستعمل برنامج قوارطو لإنتاج الملف الخارجي. هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
 </div>
+</section>
 </section>
 <section id="pandoc-lua-fiters" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="pandoc-lua-fiters"><span class="header-section-number">2.3</span> Pandoc Lua fiters</h2>
 <p>As you can see, the process for typing Arabic text is both lengthy, and different for HTML and PDF outputs. In order to simplify it, we can use <a href="https://pandoc.org/lua-filters.html">Pandoc Lua filters</a>.</p>
 <p>We have created a Quarto filter extension (which is a grouping of Lua filters) to support Arabic divs and spans. The process for creating a Quarto filter extension is detailed here: <a href="https://quarto.org/docs/extensions/filters.html" class="uri">https://quarto.org/docs/extensions/filters.html</a></p>
 <p>This is the filter <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_extensions/arabic-support/inline-arabic-span.lua"><code>inline-arabic-span.lua</code></a> that we wrote for handling Arabic spans:</p>
-<pre><code>-- Add attributes for Arabic text in a span
-function Span (el)
-  if el.classes:includes 'ar' or el.classes:includes 'aralt' then
-    text = pandoc.utils.stringify(el)
-    contents = {pandoc.Str(text)}
-    if FORMAT:match 'latex' then
-      -- for handling alternate Arabic font
-      if el.classes:includes 'aralt' then
-        -- can't seem to use string concatenate directly. Have to use RawInline
-        table.insert(
-          contents, 1,
-          pandoc.RawInline('latex', '\\altfamily ')
-        )
-      end
-      -- no dir needed for babel and throws error if it sees dir attribute. was previously needed for polyglossia
-      return pandoc.Span(contents, {lang='ar'})
-    elseif FORMAT:match 'html' then
-      classval = 'reg-ar-text'
-      if el.classes:includes 'aralt' then
-        classval = 'alt-ar-text'
-      end
-      -- dir needed for html otherwise punctuation gets messed up
-      return pandoc.Span(contents, {class=classval, lang='ar', dir='rtl'})
-    end
-  end
-end</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Add attributes for Arabic text in a span</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> Span <span class="op">(</span><span class="va">el</span><span class="op">)</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">el</span><span class="op">.</span><span class="va">classes</span><span class="op">:</span>includes <span class="st">'ar'</span> <span class="kw">or</span> <span class="va">el</span><span class="op">.</span><span class="va">classes</span><span class="op">:</span>includes <span class="st">'aralt'</span> <span class="cf">then</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">text</span> <span class="op">=</span> <span class="va">pandoc</span><span class="op">.</span><span class="va">utils</span><span class="op">.</span>stringify<span class="op">(</span><span class="va">el</span><span class="op">)</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">contents</span> <span class="op">=</span> <span class="op">{</span><span class="va">pandoc</span><span class="op">.</span>Str<span class="op">(</span><span class="va">text</span><span class="op">)}</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="cn">FORMAT</span><span class="op">:</span><span class="fu">match</span> <span class="st">'latex'</span> <span class="cf">then</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- for handling alternate Arabic font</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="va">el</span><span class="op">.</span><span class="va">classes</span><span class="op">:</span>includes <span class="st">'aralt'</span> <span class="cf">then</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">-- can't seem to use string concatenate directly. Have to use RawInline</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">table.insert</span><span class="op">(</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>          <span class="va">contents</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>          <span class="va">pandoc</span><span class="op">.</span>RawInline<span class="op">(</span><span class="st">'latex'</span><span class="op">,</span> <span class="st">'</span><span class="sc">\\</span><span class="st">altfamily '</span><span class="op">)</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">)</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>      <span class="cf">end</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- no dir needed for babel and throws error if it sees dir attribute. was previously needed for polyglossia</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="va">pandoc</span><span class="op">.</span>Span<span class="op">(</span><span class="va">contents</span><span class="op">,</span> <span class="op">{</span><span class="va">lang</span><span class="op">=</span><span class="st">'ar'</span><span class="op">})</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elseif</span> <span class="cn">FORMAT</span><span class="op">:</span><span class="fu">match</span> <span class="st">'html'</span> <span class="cf">then</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>      <span class="va">classval</span> <span class="op">=</span> <span class="st">'reg-ar-text'</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="va">el</span><span class="op">.</span><span class="va">classes</span><span class="op">:</span>includes <span class="st">'aralt'</span> <span class="cf">then</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">classval</span> <span class="op">=</span> <span class="st">'alt-ar-text'</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>      <span class="cf">end</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- dir needed for html otherwise punctuation gets messed up</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="va">pandoc</span><span class="op">.</span>Span<span class="op">(</span><span class="va">contents</span><span class="op">,</span> <span class="op">{</span><span class="va">class</span><span class="op">=</span><span class="va">classval</span><span class="op">,</span> <span class="va">lang</span><span class="op">=</span><span class="st">'ar'</span><span class="op">,</span> <span class="va">dir</span><span class="op">=</span><span class="st">'rtl'</span><span class="op">})</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This is the filter <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_extensions/arabic-support/arabic-div.lua"><code>arabic-div.lua</code></a> that we wrote for handling Arabic divs:</p>
-<pre><code>-- Add attributes for Arabic text in a div
-function Div (el)
-  if el.classes:includes 'ar' or el.classes:includes 'aralt' then
-    text = pandoc.utils.stringify(el)
-    contents = {pandoc.Str(text)}
-    if FORMAT:match 'latex' then
-      -- for handling alternate Arabic font
-      if el.classes:includes 'aralt' then
-        -- can't seem to use string concatenate directly. Have to use RawInline
-        table.insert(
-          contents, 1,
-          pandoc.RawInline('latex', '\\altfamily ')
-        )
-      end
-      -- no dir needed for babel and throws error if it sees dir attribute. was previously needed for polyglossia
-      return pandoc.Div(contents, {class='otherlanguage', data_latex="{arabic}", lang='ar'})
-    elseif FORMAT:match 'html' then
-      classval = 'reg-ar-text'
-      if el.classes:includes 'aralt' then
-        classval = 'alt-ar-text'
-      end
-      -- dir needed for html otherwise punctuation gets messed up
-      return pandoc.Div(contents, {class=classval, lang='ar', dir='rtl'})
-    end
-  end
-end</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode lua code-with-copy"><code class="sourceCode lua"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Add attributes for Arabic text in a div</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> Div <span class="op">(</span><span class="va">el</span><span class="op">)</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">el</span><span class="op">.</span><span class="va">classes</span><span class="op">:</span>includes <span class="st">'ar'</span> <span class="kw">or</span> <span class="va">el</span><span class="op">.</span><span class="va">classes</span><span class="op">:</span>includes <span class="st">'aralt'</span> <span class="cf">then</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">text</span> <span class="op">=</span> <span class="va">pandoc</span><span class="op">.</span><span class="va">utils</span><span class="op">.</span>stringify<span class="op">(</span><span class="va">el</span><span class="op">)</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">contents</span> <span class="op">=</span> <span class="op">{</span><span class="va">pandoc</span><span class="op">.</span>Str<span class="op">(</span><span class="va">text</span><span class="op">)}</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="cn">FORMAT</span><span class="op">:</span><span class="fu">match</span> <span class="st">'latex'</span> <span class="cf">then</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- for handling alternate Arabic font</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="va">el</span><span class="op">.</span><span class="va">classes</span><span class="op">:</span>includes <span class="st">'aralt'</span> <span class="cf">then</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">-- can't seem to use string concatenate directly. Have to use RawInline</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">table.insert</span><span class="op">(</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>          <span class="va">contents</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>          <span class="va">pandoc</span><span class="op">.</span>RawInline<span class="op">(</span><span class="st">'latex'</span><span class="op">,</span> <span class="st">'</span><span class="sc">\\</span><span class="st">altfamily '</span><span class="op">)</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">)</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>      <span class="cf">end</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- no dir needed for babel and throws error if it sees dir attribute. was previously needed for polyglossia</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="va">pandoc</span><span class="op">.</span>Div<span class="op">(</span><span class="va">contents</span><span class="op">,</span> <span class="op">{</span><span class="va">class</span><span class="op">=</span><span class="st">'otherlanguage'</span><span class="op">,</span> <span class="va">data_latex</span><span class="op">=</span><span class="st">"{arabic}"</span><span class="op">,</span> <span class="va">lang</span><span class="op">=</span><span class="st">'ar'</span><span class="op">})</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elseif</span> <span class="cn">FORMAT</span><span class="op">:</span><span class="fu">match</span> <span class="st">'html'</span> <span class="cf">then</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>      <span class="va">classval</span> <span class="op">=</span> <span class="st">'reg-ar-text'</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="va">el</span><span class="op">.</span><span class="va">classes</span><span class="op">:</span>includes <span class="st">'aralt'</span> <span class="cf">then</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">classval</span> <span class="op">=</span> <span class="st">'alt-ar-text'</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>      <span class="cf">end</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- dir needed for html otherwise punctuation gets messed up</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="va">pandoc</span><span class="op">.</span>Div<span class="op">(</span><span class="va">contents</span><span class="op">,</span> <span class="op">{</span><span class="va">class</span><span class="op">=</span><span class="va">classval</span><span class="op">,</span> <span class="va">lang</span><span class="op">=</span><span class="st">'ar'</span><span class="op">,</span> <span class="va">dir</span><span class="op">=</span><span class="st">'rtl'</span><span class="op">})</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>With activating these filters, now you can use Arabic divs and spans using a simplified syntax.</p>
 <p>Input for an Arabic span:</p>
-<pre><code>[هذا نص عربي.]{.ar}</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">هذا نص عربي.</span><span class="co">]</span>{.ar}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Input for an Arabic div:</p>
-<pre><code>:::{.ar}
-هذا كلام عربي طويل.
-أريد أن أكتب حتى يبلغ النص سطرين.
-أستعمل برنامج قوارطو لإنتاج الملف الخارجي.
-هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
-:::</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>:::{.ar}</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>هذا كلام عربي طويل.</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>أريد أن أكتب حتى يبلغ النص سطرين.</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>أستعمل برنامج قوارطو لإنتاج الملف الخارجي.</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The filters will process them correctly for HTML and PDF output. Note that the class name <code>reg-ar-text</code> is hardcoded in the filter. If you wish to modify it you can edit the Lua files directly.</p>
 </section>
 <section id="arabic-fonts" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="arabic-fonts"><span class="header-section-number">2.4</span> Arabic fonts</h2>
 <p>You can use a specific font for the Arabic text which is different from the font used for the English text. This is usually desirable because the typeface design for the Latin font often does not optimize (or even sometimes support) an Arabic font.</p>
 <p>For my project, I am using the <a href="https://github.com/rastikerdar/vazir-font/releases/latest">Vazirmatn</a> and <a href="https://github.com/alif-type/amiri/releases/latest">Amiri</a> fonts.</p>
-<p>Both of these are well designed fonts. For me a major consideration is the correct typesetting of the hamza character (<span class="reg-ar-text" dir="rtl" lang="ar">ء</span>). See here for what I’m talking about: <a href="https://adamiturabi.github.io/hamza-rules/#typographical-limitations" class="uri">https://adamiturabi.github.io/hamza-rules/#typographical-limitations</a></p>
+<p>Both of these are well designed fonts. For me a major consideration is the correct typesetting of the hamza character (<span class="reg-ar-text" lang="ar" dir="rtl">ء</span>). See here for what I’m talking about: <a href="https://adamiturabi.github.io/hamza-rules/#typographical-limitations" class="uri">https://adamiturabi.github.io/hamza-rules/#typographical-limitations</a></p>
 <p>To specify the Arabic fonts the process is different for HTML vs PDF output. We’ll describe both below:</p>
 <section id="specify-arabic-font-for-html" class="level3" data-number="2.4.1">
 <h3 data-number="2.4.1" class="anchored" data-anchor-id="specify-arabic-font-for-html"><span class="header-section-number">2.4.1</span> Specify Arabic font for HTML</h3>
 <p>For HTML output, the Arabic font is specified in the CSS file. The class name that we selected previously <code>reg-ar-text</code> is now assigned a font:</p>
-<pre><code>.reg-ar-text {
-  font-family: Vazirmatn, serif;
-  /* scaled up slightly w.r.t. the Latin font for readability */
-  font-size: 1.2em; 
-  /* line spacing not scaled for visual congruence at the expense of clashes */
-  line-height: 100%;
-}
-.alt-ar-text {
-  font-family: AmiriWeb, serif;
-  font-size: 1.2em;
-  line-height: 100%;
-}</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.reg-ar-text</span> {</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-family</span><span class="ch">:</span> <span class="dv">Vazirmatn</span><span class="op">,</span> <span class="dv">serif</span><span class="op">;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* scaled up slightly w.r.t. the Latin font for readability */</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">1.2</span><span class="dt">em</span><span class="op">;</span> </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* line spacing not scaled for visual congruence at the expense of clashes */</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">line-height</span><span class="ch">:</span> <span class="dv">100</span><span class="dt">%</span><span class="op">;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You will also need to add the font files to your project. Quarto will copy them over to the output directory so that they can be served to the browsers of visitors viewing your site. Be aware of fonts licences before uploading and using fonts in this way. Instead of uploading font files, you can instead use a font service service like Google Fonts, although they often have outdated versions. See <a href="https://github.com/adamiturabi/quarto-arabic-mwe/tree/main/srchtml/fonts">my fonts directory</a>.</p>
 <p>The font names <code>Vazirmatn</code> and <code>AmiriWeb</code> are defined in the same CSS file. A relative path to the font files is needed in the CSS file. See <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srchtml/styles.css">our CSS file</a> for details.</p>
-<p>Amiri is specified as an alternate font. It can be specified in the <code>.qmd</code> source with <code>{.aralt}</code> instead of <code>{.ar}</code>. You can also see how we handle it in the source code for the Lua filters above.</p>
-<p>Here is an example of a div and a span in the alternate Arabic font. Span: <span class="alt-ar-text" dir="rtl" lang="ar">هذا نص عربي.</span></p>
+<p>In our CSS file, we have specified the font Amiri is specified as an alternate font:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.alt-ar-text</span> {</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-family</span><span class="ch">:</span> <span class="dv">AmiriWeb</span><span class="op">,</span> <span class="dv">serif</span><span class="op">;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">1.2</span><span class="dt">em</span><span class="op">;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It can be specified in the <code>.qmd</code> source with <code>{.aralt}</code> instead of <code>{.ar}</code>. You can also see how we handle it in the source code for the Lua filters above.</p>
+<p>Here is an example of a div and a span in the alternate Arabic font. Span: <span class="alt-ar-text" lang="ar" dir="rtl">هذا نص عربي.</span></p>
 <p>Div:</p>
-<div class="alt-ar-text" dir="rtl" lang="ar">
+<div class="alt-ar-text" lang="ar" dir="rtl">
 هذا كلام عربي طويل. أريد أن أكتب حتى يبلغ النص سطرين. أستعمل برنامج قوارطو لإنتاج الملف الخارجي. هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
 </div>
 <p>By the way, I am not, by any means, an expert (or even proficient) in CSS, so if you see any problems with this method of specifying the font, feel free to let me know in the discussions or issues of the <a href="https://github.com/adamiturabi/quarto-arabic-mwe">Github page for this book</a>.</p>
@@ -359,15 +413,15 @@ end</code></pre>
 <section id="specify-arabic-font-for-pdf" class="level3" data-number="2.4.2">
 <h3 data-number="2.4.2" class="anchored" data-anchor-id="specify-arabic-font-for-pdf"><span class="header-section-number">2.4.2</span> Specify Arabic font for PDF</h3>
 <p>As we mentioned earlier, Latex uses the babel package to handle multiple languages. In order to specify Arabic font(s), we need to add the following lines in the intermediate <code>.tex</code> file produced by Quarto:</p>
-<pre><code>\babelfont[arabic]{rm}[Language=Default]{Vazirmatn-Light}
-\babelfont[arabic]{sf}[Language=Default]{Vazirmatn-Light}
-\babelfont[arabic]{alt}[Language=Default]{Amiri}</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\babelfont</span>[arabic]{rm}[Language=Default]{Vazirmatn-Light}</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\babelfont</span>[arabic]{sf}[Language=Default]{Vazirmatn-Light}</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\babelfont</span>[arabic]{alt}[Language=Default]{Amiri}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Quarto provides hooks for inserting such additional code using <a href="https://quarto.org/docs/reference/formats/pdf.html#includes">includes</a> and <a href="https://quarto.org/docs/journals/templates.html">templates</a>.</p>
 <p>The above lines of code need to be inserted at a specific point after the <code>usepackage{babel}</code> line. We found that replacing the partial template for <code>before-title.tex</code> worked in this case. Here is the addition in our <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_quarto.yml"><code>_quarto.yml</code></a> file:</p>
-<pre><code>format:
-  pdf:
-    template-partials:
-      - srctex/before-title.tex</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">template-partials</span><span class="kw">:</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> srctex/before-title.tex</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Again, see our source code in Github for more details.</p>
 <p>By the way, the fonts will need to have been installed on your system in order to generate the PDF output.</p>
 

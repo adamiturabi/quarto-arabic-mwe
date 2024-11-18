@@ -51,7 +51,7 @@ For Quarto, I prefer to input the transliterated text as ASCII characters and wr
 [`transliteration-span.lua`](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_extensions/arabic-support/transliteration-span.lua)
 to handle rendering them correctly. The ASCII to transliterated output mapping is shown in the table above. So if I type:
 
-```
+```md
 [pahabtu maphaban]{.trn}
 ```
 
@@ -63,7 +63,7 @@ Note the dot character · is automatically inserted by the filter between the di
 With `{.trn}` the output is in italic (as above).
 But sometimes I need to have non-italic output, as in the case of names. For that I use `{.trn2}`. For example:
 
-```
+```md
 [#eAEicah]{.trn2} and [E#Adam]{.trn2} are studying 
 the [#qurEAn]{.trn2} and [#HadIv]{.trn2}.
 ```

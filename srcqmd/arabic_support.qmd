@@ -10,37 +10,41 @@ There are two main ways to insert RTL Arabic text in an LTR document:
 For inline Arabic, we will use a Pandoc span.
 A span is written using this syntax:
 
-```
+```md
 [This is the span's *content text*]{.classname attributekey="attributeval"}
 ```
 
 Within square brackets `[]` is the content of the span. This is what will be rendered in the output.
 Within the curly braces `{}` is a class name and some attributes that are needed by Quarto to properly process the span.
 
+### Arabic spans for HTML output
+
 In order to render the Arabic content text correctly for HTML output, the span is typed thus in the `.qmd` source file.
 (Note that the following code listing does not render correctly in the PDF output, exemplifying how difficult BiDi support is. We haven't attempted to find a workaround for this.)
 
-```
+```md
 [هذا نص عربي.]{.reg-ar-txt dir="rtl" lang="ar"}
 ```
 
 The class name is arbitrary. We suggest a descriptive name. We will be using it in the CSS for selecting the font later.
 The output HTML code will be something like:
 
-```
+```html
 <span class="reg-ar-txt" dir="rtl" lang="ar">هذا نص عربي.</span>
 ```
+
+### Arabic spans for PDF output
 
 For PDF output, the `dir="rtl"` attribute is unneeded and actually clashes with the Xelatex PDF engine that Quarto mandates we use for documents with RTL text. 
 So the span will need to be typed thus in the `.qmd` source file:
 
-```
+```md
 [هذا نص عربي.]{.reg-ar-txt lang="ar"}
 ```
 
 The output Latex code will be something like:
 
-```
+```tex
 \foreignlanguage{arabic}{هذا نص عربي.}
 ```
 
@@ -53,15 +57,17 @@ Finally, this is an example of an English sentence with inline Arabic text [نَ
 In order to write a block (paragraph) of Arabic text within an LTR document we will use a Pandoc div.
 A div is written using this syntax:
 
-```
+```md
 :::{.classname attributekey="attributeval"}
 This is the divs's *content text*.
 :::
 ```
 
+### Arabic divs for HTML output
+
 For HTML output, a div is typed thus in the `.qmd` source:
 
-```
+```md
 :::{.reg-ar-txt dir="rtl" lang="ar"}
 هذا كلام عربي طويل. أريد أن أكتب حتى يبلغ النص سطرين. 
 أستعمل برنامج قوارطو لإنتاج الملف الخارجي. 
@@ -71,7 +77,7 @@ For HTML output, a div is typed thus in the `.qmd` source:
 
 The class name `reg-ar-txt` is, again, arbitrary. The output HTML code will be:
 
-```
+```html
 <div class="reg-ar-text" lang="ar" dir="rtl">
 هذا كلام عربي طويل.
 أريد أن أكتب حتى يبلغ النص سطرين.
@@ -80,9 +86,11 @@ The class name `reg-ar-txt` is, again, arbitrary. The output HTML code will be:
 </div>
 ```
 
+### Arabic divs for PDF output
+
 For PDF output, a div is typed thus in the `.qmd` source:
 
-```
+```md
 :::{.otherlanguage data-latex="{arabic}" lang='ar'}
 هذا كلام عربي طويل.
 أريد أن أكتب حتى يبلغ النص سطرين.
@@ -94,7 +102,7 @@ For PDF output, a div is typed thus in the `.qmd` source:
 In this case, the class name `otherlanguage` is not arbitrary. Furthermore another attribute 
 `data-latex="{arabic}"` is also needed. And as with spans `lang="ar"` is needed but `dir="rtl"` should not be used. The output Latex code is:
 
-```
+```tex
 \begin{otherlanguage}{arabic}
 
 هذا كلام عربي طويل.
@@ -124,7 +132,7 @@ The process for creating a Quarto filter extension is detailed here: <https://qu
 
 This is the filter [`inline-arabic-span.lua`](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_extensions/arabic-support/inline-arabic-span.lua) that we wrote for handling Arabic spans:
 
-```
+```lua
 -- Add attributes for Arabic text in a span
 function Span (el)
   if el.classes:includes 'ar' or el.classes:includes 'aralt' then
@@ -156,7 +164,7 @@ end
 This is the filter [`arabic-div.lua`](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_extensions/arabic-support/arabic-div.lua)
 that we wrote for handling Arabic divs:
 
-```
+```lua
 -- Add attributes for Arabic text in a div
 function Div (el)
   if el.classes:includes 'ar' or el.classes:includes 'aralt' then
@@ -189,13 +197,13 @@ With activating these filters, now you can use Arabic divs and spans using a sim
 
 Input for an Arabic span:
 
-```
+```md
 [هذا نص عربي.]{.ar}
 ```
 
 Input for an Arabic div:
 
-```
+```md
 :::{.ar}
 هذا كلام عربي طويل.
 أريد أن أكتب حتى يبلغ النص سطرين.
@@ -227,17 +235,12 @@ To specify the Arabic fonts the process is different for HTML vs PDF output. We'
 
 For HTML output, the Arabic font is specified in the CSS file. The class name that we selected previously `reg-ar-text` is now assigned a font:
 
-```
+```css
 .reg-ar-text {
   font-family: Vazirmatn, serif;
   /* scaled up slightly w.r.t. the Latin font for readability */
   font-size: 1.2em; 
   /* line spacing not scaled for visual congruence at the expense of clashes */
-  line-height: 100%;
-}
-.alt-ar-text {
-  font-family: AmiriWeb, serif;
-  font-size: 1.2em;
   line-height: 100%;
 }
 ```
@@ -253,7 +256,16 @@ See
 [our CSS file](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srchtml/styles.css)
 for details.
 
-Amiri is specified as an alternate font. It can be specified in the `.qmd` source with `{.aralt}` instead of `{.ar}`. 
+In our CSS file, we have specified the font Amiri is specified as an alternate font:
+
+```css
+.alt-ar-text {
+  font-family: AmiriWeb, serif;
+  font-size: 1.2em;
+}
+```
+
+It can be specified in the `.qmd` source with `{.aralt}` instead of `{.ar}`. 
 You can also see how we handle it in the source code for the Lua filters above.
 
 Here is an example of a div and a span in the alternate Arabic font. 
@@ -274,7 +286,7 @@ By the way, I am not, by any means, an expert (or even proficient) in CSS, so if
 As we mentioned earlier, Latex uses the babel package to handle multiple languages. 
 In order to specify Arabic font(s), we need to add the following lines in the intermediate `.tex` file produced by Quarto:
 
-```
+```tex
 \babelfont[arabic]{rm}[Language=Default]{Vazirmatn-Light}
 \babelfont[arabic]{sf}[Language=Default]{Vazirmatn-Light}
 \babelfont[arabic]{alt}[Language=Default]{Amiri}
@@ -288,7 +300,7 @@ Here is the addition in our
 [`_quarto.yml`](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_quarto.yml)
 file:
 
-```
+```yaml
 format:
   pdf:
     template-partials:
