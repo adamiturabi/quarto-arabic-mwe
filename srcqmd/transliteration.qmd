@@ -35,19 +35,22 @@ The Romanization scheme I am using for a few of my projects is tabulated below:
 |[م]{.ar}      | [m]{.trn}           | `m`|
 |[ن]{.ar}      | [n]{.trn}           | `n`|
 |[ه]{.ar}      | [h]{.trn}           | `h`|
-|[و]{.ar} (C/V)| [w]{.trn}/[U]{.trn} | `w`|
-|[ي]{.ar} (C/V)| [y]{.trn}/[I]{.trn} | `y`|
+|[و]{.ar} (C/V)| [w]{.trn}/[U]{.trn} | `w`/`U`|
+|[ي]{.ar} (C/V)| [y]{.trn}/[I]{.trn} | `y`/`I`|
 
 As you can see, I use digraphs ([p]{.trn}, [g]{.trn}, etc.) for some letters.
 This is because, for my current projects, I prefer readability over precision.
 
-It is possible to input these special characters directly by modifying your keyboard layout or mapping, either at a operating system, or editor level.
+It is possible to input these special characters directly by modifying your keyboard layout or mapping, either at an operating system, or editor level.
 Andreas Hallberg has described a technique for inputing them in the vim editor here:
 <https://andreasmhallberg.github.io/ergonomic-arabic-transcription/>
 
-For Quarto, I prefer to input the transliterated text as ASCII characters and write a Lua filter 
-[`transliteration-span.lua`](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_extensions/arabic-support/transliteration-span.lua)
-to handle rendering them correctly. The ASCII to transliterated output mapping is shown in the table above. So if I type:
+For Quarto, I prefer to input the transliterated text as ASCII characters.
+I have written a Lua filter [`transliteration-span.lua`](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_extensions/arabic-support/transliteration-span.lua)
+to handle rendering them correctly. 
+The mapping of ASCII input to transliterated output is shown in the table above
+and is encoded in the filter. 
+So if I input:
 
 ```md
 [pahabtu maphaban]{.trn}
@@ -74,11 +77,14 @@ Note how the hash character `#` is used to control capitalization.
 
 ## Fonts
 
-For the Latin font used in your main text, you will need to pick a font that supports the dots, macrons, breves, etc needed for transliteration. I am using the 
+For the Latin font used in your main text, you will need to pick a font that supports the dots, macrons, breves, etc needed for transliteration. 
+For my transliteration scheme, the font will also need to support `U+02be` for [E]{.trn} and `U+025b` for [e]{.trn}.
+Not all Latin fonts support these extra characters.
+In this document, I am using the 
 [Charis SIL](https://software.sil.org/charis/download/)
 font.
 
-Other fonts I have experimented with are:
+Other fonts I have experimented with, that have varied support for these characters, are:
 
 + [New Computer Modern](https://ctan.org/pkg/newcomputermodern?lang=en)
 + [DejaVu Serif](https://github.com/dejavu-fonts/dejavu-fonts/releases)
