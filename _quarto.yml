@@ -26,15 +26,15 @@ format:
     mainfont: "Charis SIL"
     mainfontoptions: Numbers=OldStyle
     sansfont: "Charis SIL"
-    monofont: "DejaVu Sans Mono"
+    monofont: "DejaVu Sans Mono" # set size in CSS using class "sourceCode"
     #fontsize: 10pt
     theme: cosmo
     css: srchtml/styles.css
     include-before-body: srchtml/watermark.html
   pdf:
     #keep-tex: true
-    #documentclass: scrreprt # no roman numeral pagination but chapter page can be left or right
-    documentclass: scrbook # new chapter page only on right but adds \frontmatter command for roman numeral pagination
+    documentclass: scrreprt # no roman numeral pagination but chapter page can be left or right
+    #documentclass: scrbook # new chapter page only on right but adds \frontmatter command for roman numeral pagination
     toc: true
     geometry:
       # A4 2 pages per sheet draft
@@ -55,6 +55,7 @@ format:
     mainfontoptions: Numbers=OldStyle
     sansfont: "Charis SIL"
     monofont: "DejaVu Sans Mono"
+    monofontoptions: "Scale=0.7"
     fontsize: 10pt
     pdf-engine: xelatex
     include-in-header:

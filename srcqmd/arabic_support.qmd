@@ -50,6 +50,8 @@ The output Latex code will be something like:
 
 Under the hood, `\foreignlanguage` is a command that is used by the Latex package `babel` that Pandoc specifies in its Latex template for handling multiple languages and their scripts.
 
+### Rendered output of Arabic span
+
 Finally, this is an example of an English sentence with inline Arabic text [نَصٌّ عَرَبِيٌّ.]{.ar} within it. Locate this sentence in the source code file [here](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srcqmd/arabic_support.qmd) to see how we wrote it.
 
 ## Arabic block text: divs
@@ -113,6 +115,8 @@ In this case, the class name `otherlanguage` is not arbitrary. Furthermore anoth
 \end{otherlanguage}
 ```
 
+### Rendered output of Arabic div
+
 Finally, this is an example of an Arabic div. Locate it in the source code file [here](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srcqmd/arabic_support.qmd) to see how we wrote it.
 
 ::: {.ar}
@@ -147,7 +151,8 @@ function Span (el)
           pandoc.RawInline('latex', '\\altfamily ')
         )
       end
-      -- no dir needed for babel and throws error if it sees dir attribute. was previously needed for polyglossia
+      -- No dir needed for babel and throws error if it sees dir attribute. 
+      -- It was previously needed for polyglossia
       return pandoc.Span(contents, {lang='ar'})
     elseif FORMAT:match 'html' then
       classval = 'reg-ar-text'
@@ -179,15 +184,22 @@ function Div (el)
           pandoc.RawInline('latex', '\\altfamily ')
         )
       end
-      -- no dir needed for babel and throws error if it sees dir attribute. was previously needed for polyglossia
-      return pandoc.Div(contents, {class='otherlanguage', data_latex="{arabic}", lang='ar'})
+      -- No dir needed for babel and throws error if it sees dir attribute. 
+      -- It was previously needed for polyglossia
+      return pandoc.Div(
+        contents, 
+        {class='otherlanguage', data_latex="{arabic}", lang='ar'}
+      )
     elseif FORMAT:match 'html' then
       classval = 'reg-ar-text'
       if el.classes:includes 'aralt' then
         classval = 'alt-ar-text'
       end
       -- dir needed for html otherwise punctuation gets messed up
-      return pandoc.Div(contents, {class=classval, lang='ar', dir='rtl'})
+      return pandoc.Div(
+        contents, 
+        {class=classval, lang='ar', dir='rtl'}
+      )
     end
   end
 end

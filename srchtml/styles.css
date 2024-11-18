@@ -114,4 +114,7 @@ li {
   font-size: 1.2em; 
   /* line-height: 100%; */
 }
-
+.sourceCode {
+  /* adjust monofont size for code listings */
+  font-size: 0.95em; 
+}

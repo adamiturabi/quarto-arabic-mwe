@@ -7,11 +7,26 @@ Output is published here: https://adamiturabi.github.io/quarto-arabic-mwe/
 
 Install [Quarto](https://quarto.org/docs/get-started/).
 
-Install the [Charis SIL](https://software.sil.org/charis/download/)
+Install the [Charis SIL](https://software.sil.org/charis/download/), Amiri, 
 and [Vazirmatn](https://github.com/rastikerdar/vazirmatn/releases/tag/v33.003)
 fonts.
 
-In the above repo, use this command to render the HTML and PDF outputs:
+Install the Python3 package `jupyter`:
+
+```
+python3 -m pip install jupyter
+```
+
+If it doesn't let you install the package in this way, then follow directions to install it in a virtual environment:
+
+```
+python3 -m venv path/to/venv
+source path/to/venv/bin/activate
+python3 -m pip install jupyter
+```
+
+In the above repo, within the venv just created (if applicable), 
+use this command to render the HTML and PDF outputs:
 
 ```
 quarto render
