@@ -1,6 +1,6 @@
 # Summary {#sec-summary}
 
-## Test transliteration [abjd hwz HTy klmn sefS qrct vxp DgP]{.trn}
+## Test transliteration [Eabjd hwz HTy klmn sefS qrct vxp DgP AUI]{.trn}
 
 Dummy
 
