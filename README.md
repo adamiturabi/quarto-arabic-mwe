@@ -7,7 +7,8 @@ Output is published here: https://adamiturabi.github.io/quarto-arabic-mwe/
 
 Install [Quarto](https://quarto.org/docs/get-started/).
 
-Install the [Charis SIL](https://software.sil.org/charis/download/), Amiri, 
+Install the [Charis SIL](https://software.sil.org/charis/download/),
+[Amiri](https://github.com/alif-type/amiri/releases/latest),
 and [Vazirmatn](https://github.com/rastikerdar/vazirmatn/releases/tag/v33.003)
 fonts.
 

@@ -1,4 +1,48 @@
-# Summary
+# Summary {#sec-summary}
+
+## Quick start
+
+In order to render Arabic text correctly in your project, use the source code for this book as a template.
+
+First clone or download the repo from here: <https://github.com/adamiturabi/quarto-arabic-mwe>
+
+You must have 
+[Quarto](https://quarto.org/docs/get-started/),
+[Charis SIL](https://software.sil.org/charis/download/), 
+[Amiri](https://github.com/alif-type/amiri/releases/latest),
+and [Vazirmatn](https://github.com/rastikerdar/vazirmatn/releases/tag/v33.003)
+installed.
+
+Edit or replace one or more of the `.qmd` files in the `srcqmd` directly with your text material.
+Make sure to update the list of `.qmd` files in `_quarto.yml`.
+
+In order to render inline Arabic use the following syntax:
+
+Input for an Arabic span:
+
+```md
+[هذا نص عربي.]{.ar}
+```
+
+Input for an Arabic div:
+
+```md
+:::{.ar}
+هذا كلام عربي طويل.
+أريد أن أكتب حتى يبلغ النص سطرين.
+أستعمل برنامج قوارطو لإنتاج الملف الخارجي.
+هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
+:::
+```
+
+Rebuild the project with
+
+```sh
+quarto render
+```
+
+
+## Dummy section
 
 Dummy text to test references:
 
