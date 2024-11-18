@@ -270,7 +270,7 @@ A relative path to the font files is needed in the CSS file.
 See [our CSS file](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srchtml/styles.css)
 for details.
 
-In our CSS file, we have specified the font Amiri is specified as an alternate font:
+In our CSS file, we have specified the font Amiri as an alternate font:
 
 ```css
 .alt-ar-text {
@@ -279,7 +279,7 @@ In our CSS file, we have specified the font Amiri is specified as an alternate f
 }
 ```
 
-It can be specified in the `.qmd` source with `{.aralt}` instead of `{.ar}`. 
+It can be selected in the `.qmd` source with `{.aralt}` instead of `{.ar}`. 
 You can also see how we handle it in the source code for the Lua filters above.
 
 Here is an example of a div and a span in the alternate Arabic font. 
@@ -310,8 +310,7 @@ Quarto provides hooks for inserting such additional code using [includes](https:
 
 The above lines of code need to be inserted at a specific point after the `usepackage{babel}` line. 
 We found that replacing the partial template for `before-title.tex` worked in this case.
-Here is the addition in  
-[our `_quarto.yml` file](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_quarto.yml):
+Here is the addition in [our `_quarto.yml` file](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_quarto.yml):
 
 ```yaml
 format:
