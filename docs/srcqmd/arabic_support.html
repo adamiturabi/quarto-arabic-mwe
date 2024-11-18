@@ -250,14 +250,15 @@ watermark
 <p>Within square brackets <code>[]</code> is the content of the span. This is what will be rendered in the output. Within the curly braces <code>{}</code> is a class name and some attributes that are needed by Quarto to properly process the span.</p>
 <section id="arabic-spans-for-html-output" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="arabic-spans-for-html-output"><span class="header-section-number">2.1.1</span> Arabic spans for HTML output</h3>
-<p>In order to render the Arabic content text correctly for HTML output, the span is typed thus in the <code>.qmd</code> source file. (Note that the following code listing does not render correctly in the PDF output, exemplifying how difficult BiDi support is. We haven’t attempted to find a workaround for this.)</p>
+<p>In order to render the Arabic content text correctly for HTML output, the span is input thus in the <code>.qmd</code> source file.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">هذا نص عربي.</span><span class="co">]</span>{.reg-ar-txt dir="rtl" lang="ar"}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The class name is arbitrary. We suggest a descriptive name. We will be using it in the CSS for selecting the font later. The output HTML code will be something like:</p>
+<p>(Note that the following code listing does not render correctly in the PDF output, exemplifying how tricky BiDi support is. We haven’t attempted to find a workaround for this.)</p>
+<p>The class name is arbitrary. We suggest using a descriptive name. We will be using it in the CSS for selecting the font later. The output HTML code will be something like:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"reg-ar-txt"</span><span class="ot"> dir</span><span class="op">=</span><span class="st">"rtl"</span><span class="ot"> lang</span><span class="op">=</span><span class="st">"ar"</span><span class="dt">&gt;</span>هذا نص عربي.<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="arabic-spans-for-pdf-output" class="level3" data-number="2.1.2">
 <h3 data-number="2.1.2" class="anchored" data-anchor-id="arabic-spans-for-pdf-output"><span class="header-section-number">2.1.2</span> Arabic spans for PDF output</h3>
-<p>For PDF output, the <code>dir="rtl"</code> attribute is unneeded and actually clashes with the Xelatex PDF engine that Quarto mandates we use for documents with RTL text. So the span will need to be typed thus in the <code>.qmd</code> source file:</p>
+<p>For PDF output, the <code>dir="rtl"</code> attribute is unneeded, and in fact, clashes with the Xelatex PDF engine that Quarto mandates we use for documents with RTL text. So the span will need to be input thus in the <code>.qmd</code> source file:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">هذا نص عربي.</span><span class="co">]</span>{.reg-ar-txt lang="ar"}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The output Latex code will be something like:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\foreignlanguage</span>{arabic}{هذا نص عربي.}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -276,7 +277,7 @@ watermark
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="arabic-divs-for-html-output" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="arabic-divs-for-html-output"><span class="header-section-number">2.2.1</span> Arabic divs for HTML output</h3>
-<p>For HTML output, a div is typed thus in the <code>.qmd</code> source:</p>
+<p>For HTML output, a div is input thus in the <code>.qmd</code> source:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>:::{.reg-ar-txt dir="rtl" lang="ar"}</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>هذا كلام عربي طويل. أريد أن أكتب حتى يبلغ النص سطرين. </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>أستعمل برنامج قوارطو لإنتاج الملف الخارجي. </span>
@@ -292,14 +293,14 @@ watermark
 </section>
 <section id="arabic-divs-for-pdf-output" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="arabic-divs-for-pdf-output"><span class="header-section-number">2.2.2</span> Arabic divs for PDF output</h3>
-<p>For PDF output, a div is typed thus in the <code>.qmd</code> source:</p>
+<p>For PDF output, a div is input thus in the <code>.qmd</code> source:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>:::{.otherlanguage data-latex="{arabic}" lang='ar'}</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>هذا كلام عربي طويل.</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>أريد أن أكتب حتى يبلغ النص سطرين.</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>أستعمل برنامج قوارطو لإنتاج الملف الخارجي.</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In this case, the class name <code>otherlanguage</code> is not arbitrary. Furthermore another attribute <code>data-latex="{arabic}"</code> is also needed. And as with spans <code>lang="ar"</code> is needed but <code>dir="rtl"</code> should not be used. The output Latex code is:</p>
+<p>In this case, the class name <code>otherlanguage</code> is not arbitrary. Furthermore, another attribute <code>data-latex="{arabic}"</code> is also needed. And, as with spans, <code>lang="ar"</code> is needed but <code>dir="rtl"</code> should not be used. The output Latex code is:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">otherlanguage</span>}{arabic}</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>هذا كلام عربي طويل.</span>
@@ -399,8 +400,8 @@ watermark
 <h2 data-number="2.4" class="anchored" data-anchor-id="arabic-fonts"><span class="header-section-number">2.4</span> Arabic fonts</h2>
 <p>You can use a specific font for the Arabic text which is different from the font used for the English text. This is usually desirable because the typeface design for the Latin font often does not optimize (or even sometimes support) an Arabic font.</p>
 <p>For my project, I am using the <a href="https://github.com/rastikerdar/vazir-font/releases/latest">Vazirmatn</a> and <a href="https://github.com/alif-type/amiri/releases/latest">Amiri</a> fonts.</p>
-<p>Both of these are well designed fonts. For me a major consideration is the correct typesetting of the hamza character (<span class="reg-ar-text" dir="rtl" lang="ar">ء</span>). See here for what I’m talking about: <a href="https://adamiturabi.github.io/hamza-rules/#typographical-limitations" class="uri">https://adamiturabi.github.io/hamza-rules/#typographical-limitations</a></p>
-<p>To specify the Arabic fonts the process is different for HTML vs PDF output. We’ll describe both below:</p>
+<p>Both of these are well designed fonts. For me, a major consideration is good typesetting of diacritics and the hamza character (<span class="reg-ar-text" dir="rtl" lang="ar">ء</span>). (See here for what I’m talking about: <a href="https://adamiturabi.github.io/hamza-rules/#typographical-limitations" class="uri">https://adamiturabi.github.io/hamza-rules/#typographical-limitations</a>)</p>
+<p>To specify the Arabic fonts, the process is different for HTML vs PDF output. We’ll describe both below:</p>
 <section id="specify-arabic-font-for-html" class="level3" data-number="2.4.1">
 <h3 data-number="2.4.1" class="anchored" data-anchor-id="specify-arabic-font-for-html"><span class="header-section-number">2.4.1</span> Specify Arabic font for HTML</h3>
 <p>For HTML output, the Arabic font is specified in the CSS file. The class name that we selected previously <code>reg-ar-text</code> is now assigned a font:</p>
@@ -411,7 +412,7 @@ watermark
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* line spacing not scaled for visual congruence at the expense of clashes */</span></span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">line-height</span><span class="ch">:</span> <span class="dv">100</span><span class="dt">%</span><span class="op">;</span></span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You will also need to add the font files to your project. Quarto will copy them over to the output directory so that they can be served to the browsers of visitors viewing your site. Be aware of fonts licences before uploading and using fonts in this way. Instead of uploading font files, you can instead use a font service service like Google Fonts, although they often have outdated versions. See <a href="https://github.com/adamiturabi/quarto-arabic-mwe/tree/main/srchtml/fonts">my fonts directory</a>.</p>
+<p>You will also need to add the font files to your project. Quarto will copy them over to the output directory so that they can be served to the browsers of visitors viewing your site. Be aware of fonts licences before uploading and using fonts in this way. Instead of uploading font files, you can instead use a font delivery service like Google Fonts, although they often have outdated versions. See <a href="https://github.com/adamiturabi/quarto-arabic-mwe/tree/main/srchtml/fonts">my fonts directory</a>.</p>
 <p>The font names <code>Vazirmatn</code> and <code>AmiriWeb</code> are defined in the same CSS file. A relative path to the font files is needed in the CSS file. See <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srchtml/styles.css">our CSS file</a> for details.</p>
 <p>In our CSS file, we have specified the font Amiri is specified as an alternate font:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.alt-ar-text</span> {</span>
@@ -433,7 +434,8 @@ watermark
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\babelfont</span>[arabic]{sf}[Language=Default]{Vazirmatn-Light}</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\babelfont</span>[arabic]{alt}[Language=Default]{Amiri}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Quarto provides hooks for inserting such additional code using <a href="https://quarto.org/docs/reference/formats/pdf.html#includes">includes</a> and <a href="https://quarto.org/docs/journals/templates.html">templates</a>.</p>
-<p>The above lines of code need to be inserted at a specific point after the <code>usepackage{babel}</code> line. We found that replacing the partial template for <code>before-title.tex</code> worked in this case. Here is the addition in our <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_quarto.yml"><code>_quarto.yml</code></a> file:</p>
+<p>The above lines of code need to be inserted at a specific point after the <code>usepackage{babel}</code> line. We found that replacing the partial template for <code>before-title.tex</code> worked in this case. Here is the addition in<br>
+<a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_quarto.yml">our <code>_quarto.yml</code> file</a>:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">template-partials</span><span class="kw">:</span></span>

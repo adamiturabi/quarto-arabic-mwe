@@ -1,0 +1,27 @@
+# Figures
+
+```{tikz complete-pooling, engine.opts=font_opts}
+#| echo: false
+#| fig-cap: "Complete pooling"
+#| fig-align: center
+#| fig-ext: svg
+#| out-width: 100%
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+\begin{tikzpicture}[{every node/.append style}=draw]
+  \node [rectangle] (pop) at (0, 4) {Population};
+  \node [ellipse] (y1) at (-5, 2.5) {$y_1$};
+  \node [ellipse] (y2) at (-3, 2.5) {$y_2$};
+  \node [ellipse] (y3) at (-1, 2.5) {$y_3$};
+  \node [ellipse] (y4) at (1, 2.5) {$y_4$};
+  \node [ellipse, draw=white] (ydots) at (3, 2.5) {$\dots$};
+  \node [ellipse] (yn) at (5, 2.5) {$y_n$};
+  \draw [-latex] (pop) to (y1);
+  \draw [-latex] (pop) to (y2);
+  \draw [-latex] (pop) to (y3);
+  \draw [-latex] (pop) to (y4);
+  \draw [-latex, dashed] (pop) to (ydots);
+  \draw [-latex] (pop) to (yn);
+\end{tikzpicture}
+```
+
