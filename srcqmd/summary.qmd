@@ -13,18 +13,18 @@ You must have
 and [Vazirmatn](https://github.com/rastikerdar/vazirmatn/releases/tag/v33.003)
 installed.
 
-Edit or replace one or more of the `.qmd` files in the `srcqmd` directly with your text material.
-Make sure to update the list of `.qmd` files in `_quarto.yml`.
+Edit or replace one or more of the `.qmd` files in the `srcqmd` directory directly with your text material.
+Make sure to update the list of `.qmd` files in the `_quarto.yml` file.
 
-In order to render inline Arabic use the following syntax:
+In order to render Arabic use the following syntax:
 
-Input for an Arabic span:
+Input for an Arabic (inline) span:
 
 ```md
 [هذا نص عربي.]{.ar}
 ```
 
-Input for an Arabic div:
+Input for an Arabic (paragraph) div:
 
 ```md
 :::{.ar}

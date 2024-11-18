@@ -104,7 +104,7 @@
     "href": "srcqmd/summary.html",
     "title": "4  Summary",
     "section": "",
-    "text": "4.1 Quick start\nIn order to render Arabic text correctly in your project, use the source code for this book as a template.\nFirst clone or download the repo from here: https://github.com/adamiturabi/quarto-arabic-mwe\nYou must have Quarto, Charis SIL, Amiri, and Vazirmatn installed.\nEdit or replace one or more of the .qmd files in the srcqmd directly with your text material. Make sure to update the list of .qmd files in _quarto.yml.\nIn order to render inline Arabic use the following syntax:\nInput for an Arabic span:\nInput for an Arabic div:\nRebuild the project with",
+    "text": "4.1 Quick start\nIn order to render Arabic text correctly in your project, use the source code for this book as a template.\nFirst clone or download the repo from here: https://github.com/adamiturabi/quarto-arabic-mwe\nYou must have Quarto, Charis SIL, Amiri, and Vazirmatn installed.\nEdit or replace one or more of the .qmd files in the srcqmd directory directly with your text material. Make sure to update the list of .qmd files in the _quarto.yml file.\nIn order to render Arabic use the following syntax:\nInput for an Arabic (inline) span:\nInput for an Arabic (paragraph) div:\nRebuild the project with",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Summary</span>"
     ]

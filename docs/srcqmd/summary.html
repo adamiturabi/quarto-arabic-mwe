@@ -247,11 +247,11 @@ watermark
 <p>In order to render Arabic text correctly in your project, use the source code for this book as a template.</p>
 <p>First clone or download the repo from here: <a href="https://github.com/adamiturabi/quarto-arabic-mwe" class="uri">https://github.com/adamiturabi/quarto-arabic-mwe</a></p>
 <p>You must have <a href="https://quarto.org/docs/get-started/">Quarto</a>, <a href="https://software.sil.org/charis/download/">Charis SIL</a>, <a href="https://github.com/alif-type/amiri/releases/latest">Amiri</a>, and <a href="https://github.com/rastikerdar/vazirmatn/releases/tag/v33.003">Vazirmatn</a> installed.</p>
-<p>Edit or replace one or more of the <code>.qmd</code> files in the <code>srcqmd</code> directly with your text material. Make sure to update the list of <code>.qmd</code> files in <code>_quarto.yml</code>.</p>
-<p>In order to render inline Arabic use the following syntax:</p>
-<p>Input for an Arabic span:</p>
+<p>Edit or replace one or more of the <code>.qmd</code> files in the <code>srcqmd</code> directory directly with your text material. Make sure to update the list of <code>.qmd</code> files in the <code>_quarto.yml</code> file.</p>
+<p>In order to render Arabic use the following syntax:</p>
+<p>Input for an Arabic (inline) span:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">هذا نص عربي.</span><span class="co">]</span>{.ar}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Input for an Arabic div:</p>
+<p>Input for an Arabic (paragraph) div:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>:::{.ar}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>هذا كلام عربي طويل.</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>أريد أن أكتب حتى يبلغ النص سطرين.</span>
