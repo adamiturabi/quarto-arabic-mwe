@@ -1,5 +1,6 @@
 # Introduction
 
+<!--
 In order to create a Quarto book project (like this one), use this command:
 
 ```sh
@@ -11,8 +12,54 @@ where `mybook` is the name of your project.
 It will create a bunch of files that will be needed for the book.
 
 This procedure is described in detail here: <https://quarto.org/docs/books/>.
+-->
 
-In the next chapter we will explain how Quarto needs text to be input in order to render Arabic correctly. 
-If you wish to avoid the technical discussion, and just want to know what to do, skip ahead to @sec-summary.
+We assume familiarity with basic Quarto commands and project directory structure.
 
+In the next chapter we will explain in detail how and why Quarto needs text to be input in order to render Arabic correctly. 
+If you wish to avoid the technical discussion, and just want to know how to get going,
+follow the quick start guide below.
+<!--skip ahead to @sec-summary.-->
+
+## Quick start guide
+
+In order to render Arabic text correctly in your project, use the source code for this book as a template.
+
+First clone or download the repo from here: <https://github.com/adamiturabi/quarto-arabic-mwe>
+
+You must have 
+[Quarto](https://quarto.org/docs/get-started/) 
+and the following fonts installed on your system:
+
++ [Charis SIL](https://software.sil.org/charis/download/)
++ [Amiri](https://github.com/alif-type/amiri/releases/latest)
++ [Vazirmatn](https://github.com/rastikerdar/vazirmatn/releases/tag/v33.003)
+
+Edit or replace one or more of the `.qmd` files in the `srcqmd` directory directly with your text material.
+Make sure to update the list of `.qmd` files in the `_quarto.yml` file.
+
+Arabic text is input with the following syntax:
+
+Input for an Arabic (inline) span with sample contents:
+
+```md
+[هذا نص عربي.]{.ar}
+```
+
+Input for an Arabic (block) div with sample contents:
+
+```md
+:::{.ar}
+هذا كلام عربي طويل.
+أريد أن أكتب حتى يبلغ النص سطرين.
+أستعمل برنامج قوارطو لإنتاج الملف الخارجي.
+هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
+:::
+```
+
+Rebuild the project with
+
+```sh
+quarto render
+```
 

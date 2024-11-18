@@ -25,7 +25,7 @@ format:
   html:
     mainfont: "Charis SIL"
     mainfontoptions: Numbers=OldStyle
-    sansfont: "Charis SIL"
+    #sansfont: "Charis SIL"
     monofont: "DejaVu Sans Mono" # set size in CSS using class "sourceCode"
     #fontsize: 10pt
     theme: cosmo
@@ -45,7 +45,7 @@ format:
       #- paperheight=234mm
       #- paperwidth=6in
       #- paperheight=9in
-      - bindingoffset=16mm
+      - bindingoffset=6mm
       - textwidth=114.8mm           # = (170 - 6)*0.7
       - textheight=170.8mm          # = 244 * 0.7
       - twoside
@@ -53,7 +53,7 @@ format:
     colorlinks: true
     mainfont: "Charis SIL"
     mainfontoptions: Numbers=OldStyle
-    sansfont: "Charis SIL"
+    #sansfont: "Charis SIL"
     monofont: "DejaVu Sans Mono"
     monofontoptions: "Scale=0.7"
     fontsize: 10pt

@@ -159,7 +159,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../srcqmd/arabic_support.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" dir="rtl" lang="ar">العربية</span>) support</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" lang="ar" dir="rtl">العربية</span>) support</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -185,8 +185,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#quick-start-guide" id="toc-quick-start-guide" class="nav-link active" data-scroll-target="#quick-start-guide"><span class="header-section-number">1.1</span> Quick start guide</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -215,14 +221,47 @@ watermark
 </header>
 
 
-<p>In order to create a Quarto book project (like this one), use this command:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create project book mybook</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>where <code>mybook</code> is the name of your project.</p>
-<p>It will create a bunch of files that will be needed for the book.</p>
-<p>This procedure is described in detail here: <a href="https://quarto.org/docs/books/" class="uri">https://quarto.org/docs/books/</a>.</p>
-<p>In the next chapter we will explain how Quarto needs text to be input in order to render Arabic correctly. If you wish to avoid the technical discussion, and just want to know what to do, skip ahead to <a href="summary.html" class="quarto-xref"><span>Chapter 4</span></a>.</p>
+<!--
+In order to create a Quarto book project (like this one), use this command:
+
+```sh
+quarto create project book mybook
+```
+
+where `mybook` is the name of your project.
+
+It will create a bunch of files that will be needed for the book.
+
+This procedure is described in detail here: <https://quarto.org/docs/books/>.
+-->
+<p>We assume familiarity with basic Quarto commands and project directory structure.</p>
+<p>In the next chapter we will explain in detail how and why Quarto needs text to be input in order to render Arabic correctly. If you wish to avoid the technical discussion, and just want to know how to get going, follow the quick start guide below. <!--skip ahead to @sec-summary.--></p>
+<section id="quick-start-guide" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="quick-start-guide"><span class="header-section-number">1.1</span> Quick start guide</h2>
+<p>In order to render Arabic text correctly in your project, use the source code for this book as a template.</p>
+<p>First clone or download the repo from here: <a href="https://github.com/adamiturabi/quarto-arabic-mwe" class="uri">https://github.com/adamiturabi/quarto-arabic-mwe</a></p>
+<p>You must have <a href="https://quarto.org/docs/get-started/">Quarto</a> and the following fonts installed on your system:</p>
+<ul>
+<li><a href="https://software.sil.org/charis/download/">Charis SIL</a></li>
+<li><a href="https://github.com/alif-type/amiri/releases/latest">Amiri</a></li>
+<li><a href="https://github.com/rastikerdar/vazirmatn/releases/tag/v33.003">Vazirmatn</a></li>
+</ul>
+<p>Edit or replace one or more of the <code>.qmd</code> files in the <code>srcqmd</code> directory directly with your text material. Make sure to update the list of <code>.qmd</code> files in the <code>_quarto.yml</code> file.</p>
+<p>Arabic text is input with the following syntax:</p>
+<p>Input for an Arabic (inline) span with sample contents:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">هذا نص عربي.</span><span class="co">]</span>{.ar}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Input for an Arabic (block) div with sample contents:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>:::{.ar}</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>هذا كلام عربي طويل.</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>أريد أن أكتب حتى يبلغ النص سطرين.</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>أستعمل برنامج قوارطو لإنتاج الملف الخارجي.</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Rebuild the project with</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -653,7 +692,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="../srcqmd/arabic_support.html" class="pagination-link" aria-label="Arabic ([العربية]{.ar}) support">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" dir="rtl" lang="ar">العربية</span>) support</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" lang="ar" dir="rtl">العربية</span>) support</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

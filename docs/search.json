@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Minimum(ish) Working Example of Quarto with Arabic RTL text in an LTR document",
     "section": "",
-    "text": "Example\n\nwatermark\n\n\n\n\n\n\nPreface\nبسم الله الرحمن الرحيم\nQuarto is a document publishing software. With it, you can write your document in Pandoc flavored markdown. Quarto will use Pandoc under the hood, and do a bunch of other fancy stuff, to output your markdown document in formats of your choice, like HTML for websites, and PDF (via Latex).\nSo far so good. But many of my documents are in English with Arabic content interspersed. Arabic is written right-to-left (RTL) whereas English is written left-to-right (LTR). The support of bidirectional (BiDi) text is a notoriously tricky problem. The cursive property of the Arabic script (with joining letters) compounds the issue.\nIn this write-up, I will describe how to configure Quarto to achieve this.\n\nThe code for this book can be used as a template for RTL document projects. Along with BiDi, I’ll also discuss other aspects like fonts, figures, etc. إن شاء الله.\nThe source code for this book can be found here: https://github.com/adamiturabi/quarto-arabic-mwe.\nThe rendered output is published here: https://adamiturabi.github.io/quarto-arabic-mwe.\nA PDF version of this document can be downloaded if you click on the PDF icon next to the title at the top left of this page.",
+    "text": "Example\n\nwatermark\n\n\n\n\n\n\nPreface\nبسم الله الرحمن الرحيم\nQuarto is a document publishing software. With it, you can write your document in Pandoc flavored markdown. Quarto will use Pandoc under the hood, and do a bunch of other fancy stuff, to output your markdown document in formats of your choice, like HTML for websites, and PDF (via Latex).\nSo far so good. But many of my documents are in English with Arabic content interspersed. Arabic is written right-to-left (RTL) whereas English is written left-to-right (LTR). The support of bidirectional (BiDi) text is a notoriously tricky problem. The cursive property of the Arabic script (with joining letters) compounds the issue.\nIn this write-up, I will describe how to configure Quarto to solve some of these issues.\n\nThe code for this book can be used as a template for RTL document projects. Along with BiDi, I’ll also discuss other aspects like fonts, figures, etc. إن شاء الله.\nThe source code for this book can be found here: https://github.com/adamiturabi/quarto-arabic-mwe.\nThe rendered output is published here: https://adamiturabi.github.io/quarto-arabic-mwe.\nA PDF version of this document can be downloaded if you click on the PDF icon next to the title at the top left of this page.\nIf you have any suggestions for improvements I’d love to know about them in the discussions page for this project.",
     "crumbs": [
       "Preface"
     ]
@@ -14,7 +14,17 @@
     "href": "srcqmd/intro.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "Example\n\nwatermark\n\n\n\n\n\nIn order to create a Quarto book project (like this one), use this command:\nquarto create project book mybook\nwhere mybook is the name of your project.\nIt will create a bunch of files that will be needed for the book.\nThis procedure is described in detail here: https://quarto.org/docs/books/.\nIn the next chapter we will explain how Quarto needs text to be input in order to render Arabic correctly. If you wish to avoid the technical discussion, and just want to know what to do, skip ahead to Chapter 4.",
+    "text": "1.1 Quick start guide\nWe assume familiarity with basic Quarto commands and project directory structure.\nIn the next chapter we will explain in detail how and why Quarto needs text to be input in order to render Arabic correctly. If you wish to avoid the technical discussion, and just want to know how to get going, follow the quick start guide below.\nIn order to render Arabic text correctly in your project, use the source code for this book as a template.\nFirst clone or download the repo from here: https://github.com/adamiturabi/quarto-arabic-mwe\nYou must have Quarto and the following fonts installed on your system:\nEdit or replace one or more of the .qmd files in the srcqmd directory directly with your text material. Make sure to update the list of .qmd files in the _quarto.yml file.\nArabic text is input with the following syntax:\nInput for an Arabic (inline) span with sample contents:\nInput for an Arabic (block) div with sample contents:\nRebuild the project with",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "srcqmd/intro.html#quick-start-guide",
+    "href": "srcqmd/intro.html#quick-start-guide",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "Charis SIL\nAmiri\nVazirmatn\n\n\n\n\n[هذا نص عربي.]{.ar}\n\n:::{.ar}\nهذا كلام عربي طويل.\nأريد أن أكتب حتى يبلغ النص سطرين.\nأستعمل برنامج قوارطو لإنتاج الملف الخارجي.\nهو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.\n:::\n\nquarto render",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -104,17 +114,7 @@
     "href": "srcqmd/summary.html",
     "title": "4  Summary",
     "section": "",
-    "text": "4.1 Quick start\nIn order to render Arabic text correctly in your project, use the source code for this book as a template.\nFirst clone or download the repo from here: https://github.com/adamiturabi/quarto-arabic-mwe\nYou must have Quarto, Charis SIL, Amiri, and Vazirmatn installed.\nEdit or replace one or more of the .qmd files in the srcqmd directory directly with your text material. Make sure to update the list of .qmd files in the _quarto.yml file.\nIn order to render Arabic use the following syntax:\nInput for an Arabic (inline) span:\nInput for an Arabic (paragraph) div:\nRebuild the project with",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Summary</span>"
-    ]
-  },
-  {
-    "objectID": "srcqmd/summary.html#quick-start",
-    "href": "srcqmd/summary.html#quick-start",
-    "title": "4  Summary",
-    "section": "",
-    "text": "[هذا نص عربي.]{.ar}\n\n:::{.ar}\nهذا كلام عربي طويل.\nأريد أن أكتب حتى يبلغ النص سطرين.\nأستعمل برنامج قوارطو لإنتاج الملف الخارجي.\nهو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.\n:::\n\nquarto render",
+    "text": "4.1 Test transliteration abjd hwz ḥṭy klmn sɛfṣ qrs͡ht t͡hk͡hd͡h ḍg͡hḍ͡h\nDummy",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Summary</span>"
     ]

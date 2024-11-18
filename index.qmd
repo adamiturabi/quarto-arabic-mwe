@@ -11,7 +11,7 @@ Arabic is written right-to-left (RTL) whereas English is written left-to-right (
 The support of bidirectional (BiDi) text is a notoriously tricky problem.
 The cursive property of the Arabic script (with joining letters) compounds the issue.
 
-In this write-up, I will describe how to configure Quarto to achieve this.
+In this write-up, I will describe how to configure Quarto to solve some of these issues.
 
 <!--2. This inline text: [العربية]{.ar} and this one: [سرب القطا]{.aralt} -->
 
@@ -23,3 +23,6 @@ The rendered output is published here: <https://adamiturabi.github.io/quarto-ara
 
 A PDF version of this document can be downloaded if you click on the PDF icon next to the title at the top left of this page.
 
+If you have any suggestions for improvements I'd love to know about them in the 
+[discussions page](https://github.com/adamiturabi/quarto-arabic-mwe/discussions)
+for this project.
