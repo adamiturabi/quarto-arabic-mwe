@@ -25,7 +25,7 @@ In order to render the Arabic content text correctly for HTML output, the span i
 [هذا نص عربي.]{.reg-ar-txt dir="rtl" lang="ar"}
 ```
 
-(Note that the following code listing does not render correctly in the PDF output, exemplifying how tricky BiDi support is. We haven't attempted to find a workaround for this.)
+(Note that the the Arabic text in code listings (like the one above) does not render correctly in the PDF output, exemplifying how tricky BiDi support is. We haven't attempted to find a workaround for this.)
 
 
 The class name is arbitrary. We suggest using a descriptive name. We will be using it in the CSS for selecting the font later.
