@@ -5,6 +5,7 @@
 [Quarto](https://quarto.org/docs/books) is a document publishing software. 
 With it, you can write your document in [Pandoc flavored markdown](https://pandoc.org/MANUAL.html#pandocs-markdown).
 Quarto will use Pandoc under the hood, and do a bunch of other fancy stuff, to output your markdown document in formats of your choice, like HTML for websites, and PDF (via [Latex](https://www.latex-project.org/)).
+This site is itself produced using Quarto.
 
 So far so good. But many of my documents are in English with Arabic content interspersed.
 Arabic is written right-to-left (RTL) whereas English is written left-to-right (LTR).
@@ -15,7 +16,8 @@ In this write-up, I will describe how to configure Quarto to solve some of these
 
 <!--2. This inline text: [العربية]{.ar} and this one: [سرب القطا]{.aralt} -->
 
-The code for this book can be used as a template for RTL document projects. Along with BiDi, I'll also discuss other aspects like fonts, figures, etc. [إن شاء الله]{.aralt}.
+The source code for this book can be used as a template for RTL document projects in Quarto. 
+Along with BiDi, I'll also discuss other aspects like fonts, figures, etc. [إن شاء الله]{.aralt}.
 
 The source code for this book can be found here: <https://github.com/adamiturabi/quarto-arabic-mwe>.
 
