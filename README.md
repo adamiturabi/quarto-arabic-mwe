@@ -30,6 +30,16 @@ In the above repo, within the venv just created (if applicable),
 use this command to render the HTML and PDF outputs:
 
 ```
+source path/to/venv/bin/activate
 quarto render
+```
+
+# Figures
+
+To render the tikz fugures, first install inkscape. 
+On Mac (without sudo):
+
+```
+brew install --cask inkscape
 ```
 
