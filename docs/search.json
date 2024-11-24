@@ -110,11 +110,21 @@
     ]
   },
   {
+    "objectID": "srcqmd/transliteration.html#test-transliteration-eabjd-hwz-hty-klmn-sefs-qrct-vxp-dpg-aui",
+    "href": "srcqmd/transliteration.html#test-transliteration-eabjd-hwz-hty-klmn-sefs-qrct-vxp-dpg-aui",
+    "title": "3  Transliteration of Arabic",
+    "section": "3.3 Test transliteration ʾabjd hwz ḥṭy klmn sɛfṣ qrs͡ht t͡hk͡hd͡h ḍḍ͡hg͡h āūī",
+    "text": "3.3 Test transliteration ʾabjd hwz ḥṭy klmn sɛfṣ qrs͡ht t͡hk͡hd͡h ḍḍ͡hg͡h āūī\nDummy text",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Transliteration of Arabic</span>"
+    ]
+  },
+  {
     "objectID": "srcqmd/summary.html",
     "href": "srcqmd/summary.html",
     "title": "4  Summary",
     "section": "",
-    "text": "4.1 Test transliteration ʾabjd hwz ḥṭy klmn sɛfṣ qrs͡ht t͡hk͡hd͡h ḍg͡hḍ͡h āūī\nDummy",
+    "text": "4.1 Dummy section\nDummy text to test references:\nSee Knuth (1984) for additional discussion of literate programming.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Summary</span>"
     ]
@@ -123,8 +133,8 @@
     "objectID": "srcqmd/summary.html#dummy-section",
     "href": "srcqmd/summary.html#dummy-section",
     "title": "4  Summary",
-    "section": "4.2 Dummy section",
-    "text": "4.2 Dummy section\nDummy text to test references:\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Summary</span>"
     ]

@@ -1,9 +1,5 @@
 # Summary {#sec-summary}
 
-## Test transliteration [Eabjd hwz HTy klmn sefS qrct vxp DgP AUI]{.trn}
-
-Dummy
-
 ## Dummy section
 
 Dummy text to test references:

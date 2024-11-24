@@ -93,3 +93,8 @@ Other fonts I have experimented with, that have varied support for these charact
 + [Gentium Plus](https://software.sil.org/gentium/download/)
 + [STIX Two Text](https://github.com/stipub/stixfonts/releases)
 
+## Test transliteration [Eabjd hwz HTy klmn sefS qrct vxp DPg AUI]{.trn}
+
+Dummy text
+
+
