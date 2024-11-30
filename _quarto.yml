@@ -11,6 +11,7 @@ book:
     - srcqmd/intro.qmd
     - srcqmd/arabic_support.qmd
     - srcqmd/transliteration.qmd
+    - srcqmd/figures.qmd
     - srcqmd/summary.qmd
     - srcqmd/references.qmd
   downloads: [pdf]
@@ -65,4 +66,12 @@ format:
     template-partials:
       - srctex/before-title.tex
 
+tikzarabic:
+  cache: true
+  format: svg
+  embed_mode: link
+  engine: lualatex
+  template_html: srctex/tikz-template-html.tex
+  template_pdf: srctex/tikz-template-pdf.tex
+  libgs: /usr/local/Cellar/ghostscript/10.04.0/lib/libgs.dylib
 
