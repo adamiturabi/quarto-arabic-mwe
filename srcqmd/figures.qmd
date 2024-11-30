@@ -1,5 +1,10 @@
 # Figures
 
+TODO: 
+
++ Move tikzarabic filter YAML options to within arabicsupport section
++ Tweak template/filter font or diagram scaling so that Roman text size matches rest of document in HTML output.
+
 I sometimes need to use TiKZ figures with Arabic text in my document.
 This chapter describes how to do that.
 
@@ -7,7 +12,7 @@ In order to process TiKZ code in Quarto
 I'm have modified a filter that was originall published here: 
 <https://github.com/danmackinlay/quarto_tikz>
 
-The filter needs some options we I've set globally in `_quarto.yml`:
+The filter needs some options that I've set globally in `_quarto.yml`:
 
 ```yml
 tikzarabic:
@@ -20,6 +25,11 @@ tikzarabic:
   libgs: /usr/local/Cellar/ghostscript/10.04.0/lib/libgs.dylib
 ```
 
+Despite being named `tikzarabic` you can use this filter for regular TiKZ diagrams as well. There is an example at the end of this chapter.
+
+There is also an official filter that handles TiKZ (and other formats) here: <https://github.com/pandoc-ext/diagram>. 
+But unfortunately, I wasn't able to get it to work with Arabic text. Probably something I was doing incorrectly.
+
 Here is an explanation of the options:
 
 + `cache`: Uses a cache on the system in order not have to evaluate the TiKZ code for every render. Hasn't been tested fully. 
@@ -30,7 +40,7 @@ Here is an explanation of the options:
   Default value: `inline`.
 + `engine`: The Arabic typesetting I'm using within the figures uses the package [arabluatex](https://ctan.org/pkg/arabluatex?lang=en) which needs the LuaTex engine. This is specified using the text `lualatex`. Ideally, I should use xelatex to be consistent with the rest of the document but I haven't yet figured out how to do that. There may be some incompatibility between the babel package and TiKZ which would need to be resolved.
   Default value: `latex`.
-+ `template_html`: Common TiKZ template code for HTML output. Here's what I'm using:
++ `template_html`: Common TiKZ template code for HTML output. Here's what I'm using in my [srctex/tikkz-template-html.tex](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srctex/tikz-template-html.tex):
 
   ```tex
   \RequirePackage{luatex85}

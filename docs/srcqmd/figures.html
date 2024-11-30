@@ -159,7 +159,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../srcqmd/arabic_support.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" dir="rtl" lang="ar">العربية</span>) support</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" lang="ar" dir="rtl">العربية</span>) support</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -221,9 +221,14 @@ watermark
 </header>
 
 
+<p>TODO:</p>
+<ul>
+<li>Move tikzarabic filter YAML options to within arabicsupport section</li>
+<li>Tweak template/filter font or diagram scaling so that Roman text size matches rest of document in HTML output.</li>
+</ul>
 <p>I sometimes need to use TiKZ figures with Arabic text in my document. This chapter describes how to do that.</p>
 <p>In order to process TiKZ code in Quarto I’m have modified a filter that was originall published here: <a href="https://github.com/danmackinlay/quarto_tikz" class="uri">https://github.com/danmackinlay/quarto_tikz</a></p>
-<p>The filter needs some options we I’ve set globally in <code>_quarto.yml</code>:</p>
+<p>The filter needs some options that I’ve set globally in <code>_quarto.yml</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tikzarabic</span><span class="kw">:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">format</span><span class="kw">:</span><span class="at"> svg</span></span>
@@ -232,13 +237,15 @@ watermark
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">template_html</span><span class="kw">:</span><span class="at"> srctex/tikz-template-html.tex</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">template_pdf</span><span class="kw">:</span><span class="at"> srctex/tikz-template-pdf.tex</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">libgs</span><span class="kw">:</span><span class="at"> /usr/local/Cellar/ghostscript/10.04.0/lib/libgs.dylib</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Despite being named <code>tikzarabic</code> you can use this filter for regular TiKZ diagrams as well. There is an example at the end of this chapter.</p>
+<p>There is also an official filter that handles TiKZ (and other formats) here: <a href="https://github.com/pandoc-ext/diagram" class="uri">https://github.com/pandoc-ext/diagram</a>. But unfortunately, I wasn’t able to get it to work with Arabic text. Probably something I was doing incorrectly.</p>
 <p>Here is an explanation of the options:</p>
 <ul>
 <li><p><code>cache</code>: Uses a cache on the system in order not have to evaluate the TiKZ code for every render. Hasn’t been tested fully. Default value: <code>false</code>.</p></li>
 <li><p><code>format</code>: SVG preserves vector information for optimal rendering. Default value: <code>svg</code>.</p></li>
 <li><p><code>embed_mode</code>: Only affects HTML output. If set to <code>link</code> then the HTML includes the figure as a link. If set to <code>inline</code> then the HTML encodes the figure inline as ASCII text. Default value: <code>inline</code>.</p></li>
 <li><p><code>engine</code>: The Arabic typesetting I’m using within the figures uses the package <a href="https://ctan.org/pkg/arabluatex?lang=en">arabluatex</a> which needs the LuaTex engine. This is specified using the text <code>lualatex</code>. Ideally, I should use xelatex to be consistent with the rest of the document but I haven’t yet figured out how to do that. There may be some incompatibility between the babel package and TiKZ which would need to be resolved. Default value: <code>latex</code>.</p></li>
-<li><p><code>template_html</code>: Common TiKZ template code for HTML output. Here’s what I’m using:</p>
+<li><p><code>template_html</code>: Common TiKZ template code for HTML output. Here’s what I’m using in my <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srctex/tikz-template-html.tex">srctex/tikkz-template-html.tex</a>:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\RequirePackage</span>{luatex85}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>{<span class="ex">article</span>}</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>[luatex,active,tightpage]{<span class="ex">preview</span>}</span>
