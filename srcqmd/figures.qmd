@@ -1,6 +1,6 @@
-# Figures
+# TiKZ Figures
 
-TODO: 
+## TODO: 
 
 + Move tikzarabic filter YAML options to within arabicsupport section
 + Tweak template/filter font or diagram scaling so that Roman text size matches rest of document in HTML output.
@@ -8,8 +8,10 @@ TODO:
 I sometimes need to use TiKZ figures with Arabic text in my document.
 This chapter describes how to do that.
 
+## Filter options
+
 In order to process TiKZ code in Quarto
-I'm have modified a filter that was originall published here: 
+I'm have modified a filter that was originally published here: 
 <https://github.com/danmackinlay/quarto_tikz>
 
 The filter needs some options that I've set globally in `_quarto.yml`:
@@ -40,7 +42,7 @@ Here is an explanation of the options:
   Default value: `inline`.
 + `engine`: The Arabic typesetting I'm using within the figures uses the package [arabluatex](https://ctan.org/pkg/arabluatex?lang=en) which needs the LuaTex engine. This is specified using the text `lualatex`. Ideally, I should use xelatex to be consistent with the rest of the document but I haven't yet figured out how to do that. There may be some incompatibility between the babel package and TiKZ which would need to be resolved.
   Default value: `latex`.
-+ `template_html`: Common TiKZ template code for HTML output. Here's what I'm using in my [srctex/tikkz-template-html.tex](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srctex/tikz-template-html.tex):
++ `template_html`: Common TiKZ template code for HTML output. Here's what I'm using in my [srctex/tikz-template-html.tex](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srctex/tikz-template-html.tex):
 
   ```tex
   \RequirePackage{luatex85}
@@ -66,7 +68,7 @@ Here is an explanation of the options:
   \end{document}
   ```
 
-  The code block in the `.qmd` file will be inserted in the second `%s`'s location. Additional TiKZ libraries ay be inserted in the first `%s`'s location using the YAML option `libraries`.
+  The code block in the `.qmd` file will be inserted in the second `%s`'s location. Additional TiKZ libraries may be inserted in the first `%s`'s location using the YAML option `libraries`.
 
   Default template:
 
@@ -83,8 +85,10 @@ Here is an explanation of the options:
 + `template_pdf`: Common TiKZ template code for PDF output. My template is identical to `template_html` except for a different weight for the Arabic font: "light" instead of "regular" to match the main document.
  The default template is the same as the default for `template_html`.
 
-+ `libgs`: In order to use this filter for HTML output, you need to make sure that the utlities dvisvgm and Ghostscript are installed on your system. This can be verified using the commands: `which dvisvgm` and `which gs`. If dvisvgm was not compiled with Ghostscript then you may need to link the location of the Ghost script library on your system using the option `libgs`.
++ `libgs`: In order to use this filter for HTML output, you need to make sure that the utlities dvisvgm and Ghostscript are installed on your system. This can be verified using the commands: `which dvisvgm` and `which gs`. If dvisvgm was not compiled with Ghostscript then you may need to link the location of the Ghostscript library on your system using the option `libgs`.
   Default value: `""`.
+
+## Example TiKZ figure with Arabic text
 
 Here is an example of a TiKZ diagram with Arabic text:
 
@@ -145,7 +149,10 @@ This is the source code for the figure in the [source `.qmd` file](https://githu
 \end{tikzpicture}
 ```
 
-If you wish to override any of the global parameters you can do some inline using the comment-pipe (`%%| option: value`) format. Here is an example:
+## Overriding global options
+
+If you wish to override any of the global parameters back to their default values, or to other values,
+you can do so inline using the comment-pipe (`%%| option: value`) format. Here is an example:
 
 ```{.tikzarabic}
 %%| embed_mode: inline
