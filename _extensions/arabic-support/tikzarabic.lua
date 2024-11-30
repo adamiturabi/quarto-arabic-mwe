@@ -142,7 +142,8 @@ local function tikzToSvg(tikzCode, tmpdir, outputFile, template, libraries, engi
   if libgs ~= "" then
     libgs = "--libgs=" .. libgs
   end
-  local _, _, dvisvgmExitCode = os.execute("dvisvgm " .. libgs .. " --font-format=woff " .. dviFile .. " -n -o " .. svgFile)
+  -- scale value eyeballed to match text size
+  local _, _, dvisvgmExitCode = os.execute("dvisvgm " .. libgs .. " --font-format=woff --scale=1.28 " .. dviFile .. " -n -o " .. svgFile)
   if dvisvgmExitCode ~= 0 then
     error("dvisvgm failed with exit code " .. dvisvgmExitCode)
   end

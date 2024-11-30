@@ -1,18 +1,23 @@
-# TiKZ Figures
+# TikZ Figures
 
 ## TODO: 
 
 + Move tikzarabic filter YAML options to within arabicsupport section
-+ Tweak template/filter font or diagram scaling so that Roman text size matches rest of document in HTML output.
 
-I sometimes need to use TiKZ figures with Arabic text in my document.
+# Introduction
+
+I sometimes need to use TikZ figures with Arabic text in my document.
 This chapter describes how to do that.
 
-## Filter options
 
-In order to process TiKZ code in Quarto
-I'm have modified a filter that was originally published here: 
+In order to render TikZ figures in Quarto
+we will use a Pandoc Lua filter.
+I have modified a Pandoc Lua filter that was originally published here: 
 <https://github.com/danmackinlay/quarto_tikz>
+
+The modified filter [`tikzarabic.lua`](ihttps://github.com/adamiturabi/quarto-arabic-mwe/blob/main/_extensions/arabic-support/tikzarabic.lua) is part of my arabic-support extension.
+
+## Filter options
 
 The filter needs some options that I've set globally in `_quarto.yml`:
 
@@ -27,22 +32,22 @@ tikzarabic:
   libgs: /usr/local/Cellar/ghostscript/10.04.0/lib/libgs.dylib
 ```
 
-Despite being named `tikzarabic` you can use this filter for regular TiKZ diagrams as well. There is an example at the end of this chapter.
+Despite being named `tikzarabic` you can use this filter for regular TikZ diagrams as well. There is an example at the end of this chapter.
 
-There is also an official filter that handles TiKZ (and other formats) here: <https://github.com/pandoc-ext/diagram>. 
+There is also an official filter that handles TikZ (and other formats) here: <https://github.com/pandoc-ext/diagram>. 
 But unfortunately, I wasn't able to get it to work with Arabic text. Probably something I was doing incorrectly.
 
 Here is an explanation of the options:
 
-+ `cache`: Uses a cache on the system in order not have to evaluate the TiKZ code for every render. Hasn't been tested fully. 
++ `cache`: Uses a cache on the system in order not have to evaluate the TikZ code for every render. Hasn't been tested fully. 
   Default value: `false`.
 + `format`: SVG preserves vector information for optimal rendering. 
   Default value: `svg`.
 + `embed_mode`: Only affects HTML output. If set to `link` then the HTML includes the figure as a link. If set to `inline` then the HTML encodes the figure inline as ASCII text. 
   Default value: `inline`.
-+ `engine`: The Arabic typesetting I'm using within the figures uses the package [arabluatex](https://ctan.org/pkg/arabluatex?lang=en) which needs the LuaTex engine. This is specified using the text `lualatex`. Ideally, I should use xelatex to be consistent with the rest of the document but I haven't yet figured out how to do that. There may be some incompatibility between the babel package and TiKZ which would need to be resolved.
++ `engine`: The Arabic typesetting I'm using within the figures uses the package [arabluatex](https://ctan.org/pkg/arabluatex?lang=en) which needs the LuaTex engine. This is specified using the text `lualatex`. Ideally, I should use xelatex to be consistent with the rest of the document but I haven't yet figured out how to do that. There may be some incompatibility between the babel package and TikZ which would need to be resolved.
   Default value: `latex`.
-+ `template_html`: Common TiKZ template code for HTML output. Here's what I'm using in my [srctex/tikz-template-html.tex](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srctex/tikz-template-html.tex):
++ `template_html`: Common TikZ template code for HTML output. Here's what I'm using in my [srctex/tikz-template-html.tex](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srctex/tikz-template-html.tex):
 
   ```tex
   \RequirePackage{luatex85}
@@ -50,6 +55,9 @@ Here is an explanation of the options:
   \usepackage[luatex,active,tightpage]{preview}
   \usepackage{amsmath}
   \usepackage{tikz}
+  \usepackage{xcolor}
+  \definecolor{mydarkgray}{RGB}{52, 58, 64}
+  
   
   \usepackage{fontspec}
   \defaultfontfeatures{Scale=MatchLowercase}
@@ -63,12 +71,15 @@ Here is an explanation of the options:
   
   \begin{document}
   \begin{preview}
+  \color{mydarkgray}
   %s
   \end{preview}
   \end{document}
   ```
 
-  The code block in the `.qmd` file will be inserted in the second `%s`'s location. Additional TiKZ libraries may be inserted in the first `%s`'s location using the YAML option `libraries`.
+  Note the use of the color `mydarkgray` to match the body text of the HTML theme. The color was obtained by inspecting the stylesheet of this very page and converting the HTML color `343a40` to the RBG values `{52, 58, 64}`.
+
+  The code block in the `.qmd` file will be inserted in the second `%s`'s location. Additional TikZ libraries may be inserted in the first `%s`'s location using the YAML option `libraries`.
 
   Default template:
 
@@ -82,15 +93,15 @@ Here is an explanation of the options:
   ]]
   ```
 
-+ `template_pdf`: Common TiKZ template code for PDF output. My template is identical to `template_html` except for a different weight for the Arabic font: "light" instead of "regular" to match the main document.
++ `template_pdf`: Common TikZ template code for PDF output. My template is identical to `template_html` except for a different weight for the Arabic font: "light" instead of "regular" to match the main document, and the absence of the dark gray color for the text.
  The default template is the same as the default for `template_html`.
 
 + `libgs`: In order to use this filter for HTML output, you need to make sure that the utlities dvisvgm and Ghostscript are installed on your system. This can be verified using the commands: `which dvisvgm` and `which gs`. If dvisvgm was not compiled with Ghostscript then you may need to link the location of the Ghostscript library on your system using the option `libgs`.
   Default value: `""`.
 
-## Example TiKZ figure with Arabic text
+## Example TikZ figure with Arabic text
 
-Here is an example of a TiKZ diagram with Arabic text:
+Here is an example of a TikZ diagram with Arabic text:
 
 ```{.tikzarabic}
 \usetikzlibrary{decorations.text, decorations.pathreplacing}
