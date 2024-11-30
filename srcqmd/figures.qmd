@@ -1,35 +1,82 @@
 # Figures
 
-This renders TiKZ diagrams in markdown.
+I sometimes need to use TiKZ figures with Arabic text in my document.
+This chapter describes how to do that.
 
-<!--
-::: {#fig-example .test-class}
-```{.tikz  embed_mode="link" scale=3 filename="example"}
-%%|format: svg
--->
+In order to process TiKZ code in Quarto
+I'm have modified a filter that was originall published here: 
+<https://github.com/danmackinlay/quarto_tikz>
 
-```{.tikzarabic}
-%%| embed_mode: inline
-%%| engine: default
-%%| template_html: default
-%%| template_pdf: default
-\begin{tikzpicture}[nodes={text depth=0.25ex,text height=2.0ex}]
-\node[draw, circle] (A) at (0,0) {A};
-\node[draw, circle] (B) at (2,2) {$\phi$};
-\node[draw, circle] (C) at (4,0) {C};
-\node[draw, circle] (seven) at (5,1) {888888};
-\draw[->] (A) -- (B);
-\draw[->] (B) -- (C);
-\draw[->] (C) -- (A);
-\end{tikzpicture}
+The filter needs some options we I've set globally in `_quarto.yml`:
+
+```yml
+tikzarabic:
+  cache: true
+  format: svg
+  embed_mode: link
+  engine: lualatex
+  template_html: srctex/tikz-template-html.tex
+  template_pdf: srctex/tikz-template-pdf.tex
+  libgs: /usr/local/Cellar/ghostscript/10.04.0/lib/libgs.dylib
 ```
 
-<!--
-Rendering TikZ DAGs is easy.
-:::
--->
+Here is an explanation of the options:
 
-See, that was not so bad.
++ `cache`: Uses a cache on the system in order not have to evaluate the TiKZ code for every render. Hasn't been tested fully. 
+  Default value: `false`.
++ `format`: SVG preserves vector information for optimal rendering. 
+  Default value: `svg`.
++ `embed_mode`: Only affects HTML output. If set to `link` then the HTML includes the figure as a link. If set to `inline` then the HTML encodes the figure inline as ASCII text. 
+  Default value: `inline`.
++ `engine`: The Arabic typesetting I'm using within the figures uses the package [arabluatex](https://ctan.org/pkg/arabluatex?lang=en) which needs the LuaTex engine. This is specified using the text `lualatex`. Ideally, I should use xelatex to be consistent with the rest of the document but I haven't yet figured out how to do that. There may be some incompatibility between the babel package and TiKZ which would need to be resolved.
+  Default value: `latex`.
++ `template_html`: Common TiKZ template code for HTML output. Here's what I'm using:
+
+  ```tex
+  \RequirePackage{luatex85}
+  \documentclass{article}
+  \usepackage[luatex,active,tightpage]{preview}
+  \usepackage{amsmath}
+  \usepackage{tikz}
+  
+  \usepackage{fontspec}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+  \setmainfont{Charis SIL}
+  
+  \usetikzlibrary{%s}
+  \usetikzlibrary{matrix}
+  \usepackage{arabluatex}
+  \newfontfamily{\arabicfont}[Script=Arabic,Scale=1.2]{Vazirmatn-Regular}
+  
+  \begin{document}
+  \begin{preview}
+  %s
+  \end{preview}
+  \end{document}
+  ```
+
+  The code block in the `.qmd` file will be inserted in the second `%s`'s location. Additional TiKZ libraries ay be inserted in the first `%s`'s location using the YAML option `libraries`.
+
+  Default template:
+
+  ```tex
+  \documentclass[tikz]{standalone}
+  \usepackage{amsmath}
+  \usetikzlibrary{%s}
+  \begin{document}
+  %s
+  \end{document}
+  ]]
+  ```
+
++ `template_pdf`: Common TiKZ template code for PDF output. My template is identical to `template_html` except for a different weight for the Arabic font: "light" instead of "regular" to match the main document.
+ The default template is the same as the default for `template_html`.
+
++ `libgs`: In order to use this filter for HTML output, you need to make sure that the utlities dvisvgm and Ghostscript are installed on your system. This can be verified using the commands: `which dvisvgm` and `which gs`. If dvisvgm was not compiled with Ghostscript then you may need to link the location of the Ghost script library on your system using the option `libgs`.
+  Default value: `""`.
+
+Here is an example of a TiKZ diagram with Arabic text:
 
 ```{.tikzarabic}
 \usetikzlibrary{decorations.text, decorations.pathreplacing}
@@ -55,5 +102,72 @@ See, that was not so bad.
 \end{tikzpicture}
 ```
 
-bla bla
+<!--See the 
+[source file](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srcqmd/figures.qmd)
+for the code.
+
+If you wish to override any of the global options you may do it
+-->
+
+This is the source code for the figure in the [source `.qmd` file](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srcqmd/figures.qmd):
+
+```tex
+\usetikzlibrary{decorations.text, decorations.pathreplacing}
+\begin{tikzpicture}[nodes={text depth=0.25ex,text height=2.0ex}]
+\path [decoration={text effects along path,
+  text=.\txarb{لَقِيتُهُ بِٱلْأَمْسِ} \txarb{ٱلَّذِي} \txarb{رَأَيْتُ ٱَلرَّجُلَ},
+  text effects/.cd,
+    path from text, text along path,
+    group letters, word count=\w,
+    every word/.style={name=word-\w, execute at begin node=\strut}},
+  decorate] (0,0);
+
+\draw [decoration={brace, mirror}, decorate]
+   (word-1.south west) -- (word-1.south east)
+      node [midway, rotate=90, anchor=south, left=0ex, align=left] {\scriptsize connector};
+
+\draw [decoration={brace, mirror}, decorate]
+   (word-2.south west) -- (word-2.south east)
+      node [midway, rotate=90, anchor=south, left=0ex, align=left] {\scriptsize connected noun};
+
+\path (0,0) node [midway, below=13.5ex, right=0ex, align=left] {``I saw the [specific] man whom I met yesterday.''};
+
+\end{tikzpicture}
+```
+
+If you wish to override any of the global parameters you can do some inline using the comment-pipe (`%%| option: value`) format. Here is an example:
+
+```{.tikzarabic}
+%%| embed_mode: inline
+%%| engine: default
+%%| template_html: default
+%%| template_pdf: default
+\begin{tikzpicture}[nodes={text depth=0.25ex,text height=2.0ex}]
+\node[draw, circle] (A) at (0,0) {A};
+\node[draw, circle] (B) at (2,2) {$\phi$};
+\node[draw, circle] (C) at (4,0) {C};
+\node[draw, circle] (seven) at (5,1) {888888};
+\draw[->] (A) -- (B);
+\draw[->] (B) -- (C);
+\draw[->] (C) -- (A);
+\end{tikzpicture}
+```
+
+Source code:
+
+```tex
+%%| embed_mode: inline
+%%| engine: default
+%%| template_html: default
+%%| template_pdf: default
+\begin{tikzpicture}[nodes={text depth=0.25ex,text height=2.0ex}]
+\node[draw, circle] (A) at (0,0) {A};
+\node[draw, circle] (B) at (2,2) {$\phi$};
+\node[draw, circle] (C) at (4,0) {C};
+\node[draw, circle] (seven) at (5,1) {888888};
+\draw[->] (A) -- (B);
+\draw[->] (B) -- (C);
+\draw[->] (C) -- (A);
+\end{tikzpicture}
+```
 

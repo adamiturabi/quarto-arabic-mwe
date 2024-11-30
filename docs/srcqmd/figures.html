@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -125,7 +159,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../srcqmd/arabic_support.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" lang="ar" dir="rtl">العربية</span>) support</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" dir="rtl" lang="ar">العربية</span>) support</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -187,20 +221,103 @@ watermark
 </header>
 
 
-<p>This renders TiKZ diagrams in markdown.</p>
-<!--
-::: {#fig-example .test-class}
-```{.tikz  embed_mode="link" scale=3 filename="example"}
-%%|format: svg
+<p>I sometimes need to use TiKZ figures with Arabic text in my document. This chapter describes how to do that.</p>
+<p>In order to process TiKZ code in Quarto I’m have modified a filter that was originall published here: <a href="https://github.com/danmackinlay/quarto_tikz" class="uri">https://github.com/danmackinlay/quarto_tikz</a></p>
+<p>The filter needs some options we I’ve set globally in <code>_quarto.yml</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tikzarabic</span><span class="kw">:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">format</span><span class="kw">:</span><span class="at"> svg</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">embed_mode</span><span class="kw">:</span><span class="at"> link</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">engine</span><span class="kw">:</span><span class="at"> lualatex</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">template_html</span><span class="kw">:</span><span class="at"> srctex/tikz-template-html.tex</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">template_pdf</span><span class="kw">:</span><span class="at"> srctex/tikz-template-pdf.tex</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">libgs</span><span class="kw">:</span><span class="at"> /usr/local/Cellar/ghostscript/10.04.0/lib/libgs.dylib</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here is an explanation of the options:</p>
+<ul>
+<li><p><code>cache</code>: Uses a cache on the system in order not have to evaluate the TiKZ code for every render. Hasn’t been tested fully. Default value: <code>false</code>.</p></li>
+<li><p><code>format</code>: SVG preserves vector information for optimal rendering. Default value: <code>svg</code>.</p></li>
+<li><p><code>embed_mode</code>: Only affects HTML output. If set to <code>link</code> then the HTML includes the figure as a link. If set to <code>inline</code> then the HTML encodes the figure inline as ASCII text. Default value: <code>inline</code>.</p></li>
+<li><p><code>engine</code>: The Arabic typesetting I’m using within the figures uses the package <a href="https://ctan.org/pkg/arabluatex?lang=en">arabluatex</a> which needs the LuaTex engine. This is specified using the text <code>lualatex</code>. Ideally, I should use xelatex to be consistent with the rest of the document but I haven’t yet figured out how to do that. There may be some incompatibility between the babel package and TiKZ which would need to be resolved. Default value: <code>latex</code>.</p></li>
+<li><p><code>template_html</code>: Common TiKZ template code for HTML output. Here’s what I’m using:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\RequirePackage</span>{luatex85}</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>{<span class="ex">article</span>}</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>[luatex,active,tightpage]{<span class="ex">preview</span>}</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">amsmath</span>}</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">tikz</span>}</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">fontspec</span>}</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">\defaultfontfeatures</span>{Scale=MatchLowercase}</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">\defaultfontfeatures</span>[<span class="fu">\rmfamily</span>]{Ligatures=TeX,Scale=1}</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">\setmainfont</span>{Charis SIL}</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{<span class="co">%s}</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{matrix}</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">arabluatex</span>}</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">\newfontfamily</span>{<span class="fu">\arabicfont</span>}[Script=Arabic,Scale=1.2]{Vazirmatn-Regular}</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">preview</span>}</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">%s</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">preview</span>}</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The code block in the <code>.qmd</code> file will be inserted in the second <code>%s</code>’s location. Additional TiKZ libraries ay be inserted in the first <code>%s</code>’s location using the YAML option <code>libraries</code>.</p>
+<p>Default template:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[tikz]{<span class="ex">standalone</span>}</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">amsmath</span>}</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{<span class="co">%s}</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">%s</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><code>template_pdf</code>: Common TiKZ template code for PDF output. My template is identical to <code>template_html</code> except for a different weight for the Arabic font: “light” instead of “regular” to match the main document. The default template is the same as the default for <code>template_html</code>.</p></li>
+<li><p><code>libgs</code>: In order to use this filter for HTML output, you need to make sure that the utlities dvisvgm and Ghostscript are installed on your system. This can be verified using the commands: <code>which dvisvgm</code> and <code>which gs</code>. If dvisvgm was not compiled with Ghostscript then you may need to link the location of the Ghost script library on your system using the option <code>libgs</code>. Default value: <code>""</code>.</p></li>
+</ul>
+<p>Here is an example of a TiKZ diagram with Arabic text:</p>
+<img src="./images/tikz-output-1.svg" class="img-fluid">
+<!--See the 
+[source file](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srcqmd/figures.qmd)
+for the code.
+
+If you wish to override any of the global options you may do it
 -->
+<p>This is the source code for the figure in the <a href="https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srcqmd/figures.qmd">source <code>.qmd</code> file</a>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{decorations.text, decorations.pathreplacing}</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}[nodes={text depth=0.25ex,text height=2.0ex}]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\path</span> [decoration={text effects along path,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  text=.<span class="fu">\txarb</span>{لَقِيتُهُ بِٱلْأَمْسِ} <span class="fu">\txarb</span>{ٱلَّذِي} <span class="fu">\txarb</span>{رَأَيْتُ ٱَلرَّجُلَ},</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  text effects/.cd,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    path from text, text along path,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    group letters, word count=<span class="fu">\w</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    every word/.style={name=word-<span class="fu">\w</span>, execute at begin node=<span class="fu">\strut</span>}},</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  decorate] (0,0);</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span> [decoration={brace, mirror}, decorate]</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>   (word-1.south west) -- (word-1.south east)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>      node [midway, rotate=90, anchor=south, left=0ex, align=left] {<span class="fu">\scriptsize</span> connector};</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span> [decoration={brace, mirror}, decorate]</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>   (word-2.south west) -- (word-2.south east)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>      node [midway, rotate=90, anchor=south, left=0ex, align=left] {<span class="fu">\scriptsize</span> connected noun};</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">\path</span> (0,0) node [midway, below=13.5ex, right=0ex, align=left] {``I saw the [specific] man whom I met yesterday.''};</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you wish to override any of the global parameters you can do some inline using the comment-pipe (<code>%%| option: value</code>) format. Here is an example:</p>
 <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0nVVRGLTgnPz4KPCEtLSBUaGlzIGZpbGUgd2FzIGdlbmVyYXRlZCBieSBkdmlzdmdtIDMuMi4yIC0tPgo8c3ZnIHZlcnNpb249JzEuMScgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB4bWxuczp4bGluaz0naHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluaycgd2lkdGg9JzE3Mi44NjNwdCcgaGVpZ2h0PSc3OC4xMTM0cHQnIHZpZXdCb3g9Jy03Mi4wMDAwNSAtNzIuMDAwMDYgMTcyLjg2MyA3OC4xMTM0Jz4KPGRlZnM+CjxwYXRoIGlkPSdnMC0zMCcgZD0nTTQuMzUzNjc0LTYuNjc0OTY5QzQuMzUzNjc0LTYuNjk0ODk0IDQuMzgzNTYyLTYuODA0NDgzIDQuMzgzNTYyLTYuODE0NDQ2UzQuMzgzNTYyLTYuOTE0MDcyIDQuMjY0MDEtNi45MTQwNzJDNC4xNjQzODQtNi45MTQwNzIgNC4xNTQ0MjEtNi44ODQxODQgNC4xMTQ1Ny02LjcxNDgxOUwzLjUzNjczNy00LjQxMzQ1QzEuOTUyNjc3LTQuMzYzNjM2IC40ODgxNjktMy4wMzg2MDUgLjQ4ODE2OS0xLjY4MzY4NkMuNDg4MTY5LS43MzcyMzUgMS4xODU1NTQgLjA0OTgxMyAyLjQwMDk5NiAuMTE5NTUyQzIuMzIxMjk1IC40MjgzOTQgMi4yNTE1NTcgLjc0NzE5OCAyLjE3MTg1NiAxLjA1NjA0QzIuMDUyMzA0IDEuNTI0Mjg0IDEuOTUyNjc3IDEuOTAyODY0IDEuOTUyNjc3IDEuOTMyNzUyQzEuOTUyNjc3IDIuMDMyMzc5IDIuMDIyNDE2IDIuMDQyMzQxIDIuMDcyMjI5IDIuMDQyMzQxUzIuMTQxOTY4IDIuMDMyMzc5IDIuMTcxODU2IDIuMDAyNDkxQzIuMTkxNzgxIDEuOTgyNTY1IDIuMjUxNTU3IDEuNzQzNDYyIDIuMjgxNDQ1IDEuNjAzOTg1TDIuNjYwMDI1IC4xMTk1NTJDNC4yNjQwMSAuMDY5NzM4IDUuNzA4NTkzLTEuMjc1MjE4IDUuNzA4NTkzLTIuNjEwMjEyQzUuNzA4NTkzLTMuMzk3MjYgNS4xODA1NzMtNC4zMTM4MjMgMy43OTU3NjYtNC40MTM0NUw0LjM1MzY3NC02LjY3NDk2OVpNMi40NTA4MDktLjA5OTYyNkMxLjg1MzA1MS0uMTI5NTE0IDEuMTM1NzQxLS40NzgyMDcgMS4xMzU3NDEtMS40NzQ0NzFDMS4xMzU3NDEtMi42Njk5ODggMS45OTI1MjgtNC4wNjQ3NTcgMy40NzY5NjEtNC4xOTQyNzFMMi40NTA4MDktLjA5OTYyNlpNMy43MzU5OS00LjE5NDI3MUM0LjQ5MzE1MS00LjE1NDQyMSA1LjA2MTAyMS0zLjY5NjEzOSA1LjA2MTAyMS0yLjgxOTQyN0M1LjA2MTAyMS0xLjY0MzgzNiA0LjIwNDIzNC0uMjE5MTc4IDIuNzA5ODM4LS4wOTk2MjZMMy43MzU5OS00LjE5NDI3MVonLz4KPHBhdGggaWQ9J2cxLTU2JyBkPSdNMS42MjM5MS00LjU1MjkyN0MxLjE2NTYyOS00Ljg1MTgwNiAxLjEyNTc3OC01LjE5MDUzNSAxLjEyNTc3OC01LjM1OTlDMS4xMjU3NzgtNS45Njc2MjEgMS43NzMzNS02LjM4NjA1MiAyLjQ4MDY5Ny02LjM4NjA1MkMzLjIwNzk3LTYuMzg2MDUyIDMuODQ1NTc5LTUuODY3OTk1IDMuODQ1NTc5LTUuMTUwNjg1QzMuODQ1NTc5LTQuNTgyODE0IDMuNDU3MDM2LTQuMTA0NjA4IDIuODU5Mjc4LTMuNzU1OTE1TDEuNjIzOTEtNC41NTI5MjdaTTMuMDc4NDU2LTMuNjA2NDc2QzMuNzk1NzY2LTMuOTc1MDkzIDQuMjgzOTM1LTQuNDkzMTUxIDQuMjgzOTM1LTUuMTUwNjg1QzQuMjgzOTM1LTYuMDY3MjQ4IDMuMzk3MjYtNi42MzUxMTggMi40OTA2Ni02LjYzNTExOEMxLjQ5NDM5Ni02LjYzNTExOCAuNjg3NDIyLTUuODk3ODgzIC42ODc0MjItNC45NzEzNTdDLjY4NzQyMi00Ljc5MjAzIC43MDczNDctNC4zNDM3MTEgMS4xMjU3NzgtMy44NzU0NjdDMS4yMzUzNjctMy43NTU5MTUgMS42MDM5ODUtMy41MDY4NDkgMS44NTMwNTEtMy4zMzc0ODRDMS4yNzUyMTgtMy4wNDg1NjggLjQxODQzMS0yLjQ5MDY2IC40MTg0MzEtMS41MDQzNTlDLjQxODQzMS0uNDQ4MzE5IDEuNDM0NjIgLjIxOTE3OCAyLjQ4MDY5NyAuMjE5MTc4QzMuNjA2NDc2IC4yMTkxNzggNC41NTI5MjctLjYwNzcyMSA0LjU1MjkyNy0xLjY3MzcyNEM0LjU1MjkyNy0yLjAzMjM3OSA0LjQ0MzMzNy0yLjQ4MDY5NyA0LjA2NDc1Ny0yLjg5OTEyOEMzLjg3NTQ2Ny0zLjEwODM0NCAzLjcxNjA2NS0zLjIwNzk3IDMuMDc4NDU2LTMuNjA2NDc2Wk0yLjA4MjE5Mi0zLjE4ODA0NUwzLjMwNzU5Ny0yLjQxMDk1OUMzLjU4NjU1LTIuMjIxNjY5IDQuMDU0Nzk1LTEuOTIyNzkgNC4wNTQ3OTUtMS4zMTUwNjhDNC4wNTQ3OTUtLjU3NzgzMyAzLjMwNzU5Ny0uMDU5Nzc2IDIuNDkwNjYtLjA1OTc3NkMxLjYzMzg3My0uMDU5Nzc2IC45MTY1NjMtLjY3NzQ2IC45MTY1NjMtMS41MDQzNTlDLjkxNjU2My0yLjA4MjE5MiAxLjIzNTM2Ny0yLjcxOTgwMSAyLjA4MjE5Mi0zLjE4ODA0NVonLz4KPHBhdGggaWQ9J2cxLTY1JyBkPSdNMy45NjUxMzEtNi45MzM5OThDMy45MTUzMTgtNy4wNjM1MTIgMy44OTUzOTItNy4xMzMyNSAzLjczNTk5LTcuMTMzMjVTMy41NDY3LTcuMDczNDc0IDMuNDk2ODg3LTYuOTMzOTk4TDEuNDM0NjItLjk3NjMzOUMxLjI1NTI5My0uNDY4MjQ0IC44NTY3ODctLjMxODgwNCAuMzE4ODA0LS4zMDg4NDJWMEMuNTQ3OTQ1LS4wMDk5NjMgLjk3NjMzOS0uMDI5ODg4IDEuMzM0OTk0LS4wMjk4ODhDMS42NDM4MzYtLjAyOTg4OCAyLjE2MTg5My0uMDA5OTYzIDIuNDgwNjk3IDBWLS4zMDg4NDJDMS45ODI1NjUtLjMwODg0MiAxLjczMzQ5OS0uNTU3OTA4IDEuNzMzNDk5LS44MTY5MzZDMS43MzM0OTktLjg0NjgyNCAxLjc0MzQ2Mi0uOTQ2NDUxIDEuNzUzNDI1LS45NjYzNzZMMi4yMTE3MDYtMi4yNzE0ODJINC42NzI0NzhMNS4yMDA0OTgtLjc0NzE5OEM1LjIxMDQ2MS0uNzA3MzQ3IDUuMjMwMzg2LS42NDc1NzIgNS4yMzAzODYtLjYwNzcyMUM1LjIzMDM4Ni0uMzA4ODQyIDQuNjcyNDc4LS4zMDg4NDIgNC40MDM0ODctLjMwODg0MlYwQzQuNzYyMTQyLS4wMjk4ODggNS40NTk1MjctLjAyOTg4OCA1LjgzODEwNy0uMDI5ODg4QzYuMjY2NTAxLS4wMjk4ODggNi43MjQ3ODItLjAxOTkyNSA3LjE0MzIxMyAwVi0uMzA4ODQySDYuOTYzODg1QzYuMzY2MTI3LS4zMDg4NDIgNi4yMjY2NS0uMzc4NTggNi4xMTcwNjEtLjcwNzM0N0wzLjk2NTEzMS02LjkzMzk5OFpNMy40MzcxMTEtNS44MTgxODJMNC41NjI4ODktMi41ODAzMjRIMi4zMjEyOTVMMy40MzcxMTEtNS44MTgxODJaJy8+CjxwYXRoIGlkPSdnMS02NycgZD0nTS41NTc5MDgtMy40MDcyMjNDLjU1NzkwOC0xLjM0NDk1NiAyLjE3MTg1NiAuMjE5MTc4IDQuMDI0OTA3IC4yMTkxNzhDNS42NDg4MTcgLjIxOTE3OCA2LjYyNTE1Ni0xLjE2NTYyOSA2LjYyNTE1Ni0yLjMyMTI5NUM2LjYyNTE1Ni0yLjQyMDkyMiA2LjYyNTE1Ni0yLjQ5MDY2IDYuNDk1NjQxLTIuNDkwNjZDNi4zODYwNTItMi40OTA2NiA2LjM4NjA1Mi0yLjQzMDg4NCA2LjM3NjA5LTIuMzMxMjU4QzYuMjk2Mzg5LS45MDY2IDUuMjMwMzg2LS4wODk2NjQgNC4xNDQ0NTgtLjA4OTY2NEMzLjUzNjczNy0uMDg5NjY0IDEuNTg0MDYtLjQyODM5NCAxLjU4NDA2LTMuMzk3MjZDMS41ODQwNi02LjM3NjA5IDMuNTI2Nzc1LTYuNzE0ODE5IDQuMTM0NDk2LTYuNzE0ODE5QzUuMjIwNDIzLTYuNzE0ODE5IDYuMTA3MDk4LTUuODA4MjE5IDYuMzA2MzUxLTQuMzUzNjc0QzYuMzI2Mjc2LTQuMjE0MTk3IDYuMzI2Mjc2LTQuMTg0MzA5IDYuNDY1NzUzLTQuMTg0MzA5QzYuNjI1MTU2LTQuMTg0MzA5IDYuNjI1MTU2LTQuMjE0MTk3IDYuNjI1MTU2LTQuNDIzNDEyVi02Ljc4NDU1OEM2LjYyNTE1Ni02Ljk1MzkyMyA2LjYyNTE1Ni03LjAyMzY2MSA2LjUxNTU2Ny03LjAyMzY2MUM2LjQ3NTcxNi03LjAyMzY2MSA2LjQzNTg2Ni03LjAyMzY2MSA2LjM1NjE2NC02LjkwNDExTDUuODU4MDMyLTYuMTY2ODc0QzUuNDg5NDE1LTYuNTI1NTI5IDQuOTgxMzItNy4wMjM2NjEgNC4wMjQ5MDctNy4wMjM2NjFDMi4xNjE4OTMtNy4wMjM2NjEgLjU1NzkwOC01LjQzOTYwMSAuNTU3OTA4LTMuNDA3MjIzWicvPgo8L2RlZnM+CjxnIGlkPSdwYWdlMSc+CjxwYXRoIGQ9J00tNTAuMzAwOC00LjgzNTkzN0MtNTAuMzAwOC0xMC43NzM0NC01NS4xMTMyOC0xNS41ODU5MS02MS4wNTA3ODEtMTUuNTg1OTFDLTY2Ljk4ODI4LTE1LjU4NTkxLTcxLjgwMDgtMTAuNzczNDQtNzEuODAwOC00LjgzNTkzN0MtNzEuODAwOCAxLjEwMTU2LTY2Ljk4ODI4IDUuOTE0MDktNjEuMDUwNzgxIDUuOTE0MDlDLTU1LjExMzI4IDUuOTE0MDktNTAuMzAwOCAxLjEwMTU2LTUwLjMwMDgtNC44MzU5MzdaJyBzdHJva2U9JyMwMDAnIGZpbGw9J25vbmUnIHN0cm9rZS13aWR0aD0nLjM5ODUnLz4KPGcgdHJhbnNmb3JtPSdtYXRyaXgoMSAwIDAgMSAtMy43MzYgMy43NTMzMSknPgo8dXNlIHg9Jy02MS4wNTEyNycgeT0nLTQuODM1MTA5JyB4bGluazpocmVmPScjZzEtNjUnLz4KPC9nPgo8cGF0aCBkPSdNNS45MTQxLTYxLjUyNzMxQzUuOTE0MS02Ny4yMDMxMSAxLjMxNjQtNzEuODAwODEtNC4zNTk0LTcxLjgwMDgxQy0xMC4wMzEyLTcxLjgwMDgxLTE0LjYyODktNjcuMjAzMTEtMTQuNjI4OS02MS41MjczMUMtMTQuNjI4OS01NS44NTU1MS0xMC4wMzEyLTUxLjI1MzkxLTQuMzU5NC01MS4yNTM5MUMxLjMxNjQtNTEuMjUzOTEgNS45MTQxLTU1Ljg1NTUxIDUuOTE0MS02MS41MjczMVonIHN0cm9rZT0nIzAwMCcgZmlsbD0nbm9uZScgc3Ryb2tlLXdpZHRoPScuMzk4NScgc3Ryb2tlLW1pdGVybGltaXQ9JzEwJy8+CjxnIHRyYW5zZm9ybT0nbWF0cml4KDEgMCAwIDEgNTMuNzI1NTIgLTUyLjk0MDI5KSc+Cjx1c2UgeD0nLTYxLjA1MTI3JyB5PSctNC44MzUxMDknIHhsaW5rOmhyZWY9JyNnMC0zMCcvPgo8L2c+CjxwYXRoIGQ9J002My4wMzE3LTQuODM1OTM3QzYzLjAzMTctMTAuNzQyMTkgNTguMjQxNy0xNS41MzEyMSA1Mi4zMzU3LTE1LjUzMTIxUzQxLjY0MDctMTAuNzQyMTkgNDEuNjQwNy00LjgzNTkzN0M0MS42NDA3IDEuMDcwMzEgNDYuNDI5NyA1Ljg1OTM5IDUyLjMzNTcgNS44NTkzOVM2My4wMzE3IDEuMDcwMzEgNjMuMDMxNy00LjgzNTkzN1onIHN0cm9rZT0nIzAwMCcgZmlsbD0nbm9uZScgc3Ryb2tlLXdpZHRoPScuMzk4NScgc3Ryb2tlLW1pdGVybGltaXQ9JzEwJy8+CjxnIHRyYW5zZm9ybT0nbWF0cml4KDEgMCAwIDEgMTA5Ljc4OTYgMy43NTMzMSknPgo8dXNlIHg9Jy02MS4wNTEyNycgeT0nLTQuODM1MTA5JyB4bGluazpocmVmPScjZzEtNjcnLz4KPC9nPgo8cGF0aCBkPSdNMTAwLjY2MzctMzMuMTgzNjFDMTAwLjY2MzctNDQuMjE4NzEgOTEuNzE4Ny01My4xNjQxMSA4MC42ODM3LTUzLjE2NDExUzYwLjY5OTctNDQuMjE4NzEgNjAuNjk5Ny0zMy4xODM2MUM2MC42OTk3LTIyLjE0NDUxIDY5LjY0ODctMTMuMTk5MjIgODAuNjgzNy0xMy4xOTkyMlMxMDAuNjYzNy0yMi4xNDQ1MSAxMDAuNjYzNy0zMy4xODM2MVonIHN0cm9rZT0nIzAwMCcgZmlsbD0nbm9uZScgc3Ryb2tlLXdpZHRoPScuMzk4NScgc3Ryb2tlLW1pdGVybGltaXQ9JzEwJy8+CjxnIHRyYW5zZm9ybT0nbWF0cml4KDEgMCAwIDEgMTI2Ljc4OTggLTI0LjU5MzQ5KSc+Cjx1c2UgeD0nLTYxLjA1MTI3JyB5PSctNC44MzUxMDknIHhsaW5rOmhyZWY9JyNnMS01NicvPgo8dXNlIHg9Jy01Ni4wNjk5MzEnIHk9Jy00LjgzNTEwOScgeGxpbms6aHJlZj0nI2cxLTU2Jy8+Cjx1c2UgeD0nLTUxLjA4ODU5MicgeT0nLTQuODM1MTA5JyB4bGluazpocmVmPScjZzEtNTYnLz4KPHVzZSB4PSctNDYuMTA3MjUzJyB5PSctNC44MzUxMDknIHhsaW5rOmhyZWY9JyNnMS01NicvPgo8dXNlIHg9Jy00MS4xMjU5MTQnIHk9Jy00LjgzNTEwOScgeGxpbms6aHJlZj0nI2cxLTU2Jy8+Cjx1c2UgeD0nLTM2LjE0NDU3NScgeT0nLTQuODM1MTA5JyB4bGluazpocmVmPScjZzEtNTYnLz4KPC9nPgo8cGF0aCBkPSdNLTUzLjMwODU5LTEyLjU3ODEyTC0xMi4wODU5LTUzLjgwMDgxJyBzdHJva2U9JyMwMDAnIGZpbGw9J25vbmUnIHN0cm9rZS13aWR0aD0nLjM5ODUnIHN0cm9rZS1taXRlcmxpbWl0PScxMCcvPgo8cGF0aCBkPSdNLTE0LjA1ODYxOC01NC4wODE5ODhDLTEzLjU2NjQzOC01My43MzA0MjItMTIuMTU2Mjc5LTUzLjg3MTA0OS0xMS44NzUwMy01NC4wMTE2NzNDLTEyLjAxNTY1NS01My43MzA0MjQtMTIuMTU2MjgzLTUyLjMyMDI2Ny0xMS44MDQ3MTYtNTEuODI4MDg2JyBzdHJva2U9JyMwMDAnIGZpbGw9J25vbmUnIHN0cm9rZS13aWR0aD0nLjMxODc4Nycgc3Ryb2tlLW1pdGVybGltaXQ9JzEwJyBzdHJva2UtbGluZWNhcD0ncm91bmQnIHN0cm9rZS1saW5lam9pbj0ncm91bmQnLz4KPHBhdGggZD0nTTMuMDQ2OS01NC4xMjUwMUw0NC4zMDg3LTEyLjg2MzI4JyBzdHJva2U9JyMwMDAnIGZpbGw9J25vbmUnIHN0cm9rZS13aWR0aD0nLjM5ODUnIHN0cm9rZS1taXRlcmxpbWl0PScxMCcvPgo8cGF0aCBkPSdNNDQuNTg5ODM4LTE0LjgzNTkwNkM0NC4yMzgyNzYtMTQuMzM5ODEzIDQ0LjM3ODkwMS0xMi45MzM1NjMgNDQuNTE5NTI1LTEyLjY1MjMxM0M0NC4yMzgyNzYtMTIuNzkyOTM4IDQyLjgyODEyMS0xMi45MzM1NjEgNDIuMzM1OTM1LTEyLjU4MjAwNCcgc3Ryb2tlPScjMDAwJyBmaWxsPSdub25lJyBzdHJva2Utd2lkdGg9Jy4zMTg3ODcnIHN0cm9rZS1taXRlcmxpbWl0PScxMCcgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJyBzdHJva2UtbGluZWpvaW49J3JvdW5kJy8+CjxwYXRoIGQ9J000MS40NDE3LTQuODM1OTM3SC00OS42NDQ1JyBzdHJva2U9JyMwMDAnIGZpbGw9J25vbmUnIHN0cm9rZS13aWR0aD0nLjM5ODUnIHN0cm9rZS1taXRlcmxpbWl0PScxMCcvPgo8cGF0aCBkPSdNLTQ4LjQ0OTE3LTMuMjQyMTlDLTQ4LjU0NjgzLTMuODM5ODQ0LTQ5LjY0NDQ4MS00LjczNDM3NS00OS45NDEzNTYtNC44MzU5MzdDLTQ5LjY0NDQ4MS00LjkzMzU5NC00OC41NDY4My01LjgzMjAzMS00OC40NDkxNy02LjQyOTY5JyBzdHJva2U9JyMwMDAnIGZpbGw9J25vbmUnIHN0cm9rZS13aWR0aD0nLjMxODc5JyBzdHJva2UtbWl0ZXJsaW1pdD0nMTAnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcgc3Ryb2tlLWxpbmVqb2luPSdyb3VuZCcvPgo8L2c+Cjwvc3ZnPg==" class="img-fluid">
-<!--
-Rendering TikZ DAGs is easy.
-:::
--->
-<p>See, that was not so bad.</p>
-<img src="./images/tikz-output-2.svg" class="img-fluid">
-<p>bla bla</p>
+<p>Source code:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">%%| embed_mode: inline</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">%%| engine: default</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">%%| template_html: default</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">%%| template_pdf: default</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}[nodes={text depth=0.25ex,text height=2.0ex}]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span>[draw, circle] (A) at (0,0) {A};</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span>[draw, circle] (B) at (2,2) {<span class="ss">$</span><span class="sc">\phi</span><span class="ss">$</span>};</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span>[draw, circle] (C) at (4,0) {C};</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span>[draw, circle] (seven) at (5,1) {888888};</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;] (A) -- (B);</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;] (B) -- (C);</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;] (C) -- (A);</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 
