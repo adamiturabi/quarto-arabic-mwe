@@ -36,8 +36,10 @@ quarto render
 
 # Figures
 
-To render the tikz fugures, first install inkscape. 
-On Mac (without sudo):
+To render the tikz figures, you need Ghostscript and Dvisvgm.
+
+There is some experimental code (currently disabled) to use Inkscape instead.
+To install inkscape on Mac (without sudo):
 
 ```
 brew install --cask inkscape
