@@ -298,8 +298,8 @@ local function renderTikz(cb, options, tmpdir)
   -- Check if the result is already cached
   local cachePath
   local outputGenerated = false
+  cachePath = pandoc.path.join({ cachedir(), pandoc.sha1(cb.text) .. "." .. options.format })
   if options.cache then
-    cachePath = pandoc.path.join({ cachedir(), pandoc.sha1(cb.text) .. "." .. options.format })
     if file_exists(cachePath) then
       -- If the file exists in the cache, copy it to the output path
       os.execute("cp " .. cachePath .. " " .. outputPath)
@@ -322,9 +322,7 @@ local function renderTikz(cb, options, tmpdir)
     end
 
     -- Save the result to the cache
-    if options.cache then
-      os.execute("cp " .. outputPath .. " " .. cachePath)
-    end
+    os.execute("cp " .. outputPath .. " " .. cachePath)
   end
 
   -- Read the data
