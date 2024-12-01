@@ -321,7 +321,7 @@ local function renderTikz(cb, options, tmpdir)
       os.rename(tempOutputPath, outputPath)
     end
 
-    -- Save the result to the cache
+    -- Save the result to the cache, for the next cache enabled run
     os.execute("cp " .. outputPath .. " " .. cachePath)
   end
 
