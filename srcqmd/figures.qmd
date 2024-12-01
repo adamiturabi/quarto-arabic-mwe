@@ -70,7 +70,7 @@ Here is an explanation of the options:
   
   \usepackage{fontspec}
   \defaultfontfeatures{Scale=MatchLowercase}
-  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1.275}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1.27978125}
   \setmainfont{Charis SIL}
   
   \usetikzlibrary{%s}
@@ -91,8 +91,8 @@ Here is an explanation of the options:
 
   Also note that the font is scaled by a factor of 1.275. This number has been arrived at using the following reasoning. 
   The default font size for the Tex documentclass is 10pt. 
-  Inspecting the stylesheet for the this web page shows us thet the body text font size is 17px. Using the ratio of 92px = 72pt, we calculate that we need to have a font size of 12.75pt. 
-  So we apply a scale factor of 1.275 to the default 10pt font size.
+  Inspecting the stylesheet for the this web page shows us that the body text font size is 17px. Using the ratio of 96px = 72.27pt, we calculate that we need to have a font size of 12.7978125pt. 
+  So we apply a scale factor of 1.27978125 to the default 10pt font size.
 
   The code block in the `.qmd` file will be inserted in the second `%s`'s location. Additional TikZ libraries may be inserted in the first `%s`'s location using the YAML option `libraries`.
 
