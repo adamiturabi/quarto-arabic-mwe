@@ -27,6 +27,7 @@ tikzarabic:
   format: svg
   embed_mode: link
   engine: lualatex
+  scale_html: 1.28
   template_html: srctex/tikz-template-html.tex
   template_pdf: srctex/tikz-template-pdf.tex
   libgs: /usr/local/Cellar/ghostscript/10.04.0/lib/libgs.dylib
@@ -47,6 +48,14 @@ Here is an explanation of the options:
   Default value: `inline`.
 + `engine`: The Arabic typesetting I'm using within the figures uses the package [arabluatex](https://ctan.org/pkg/arabluatex?lang=en) which needs the LuaTex engine. This is specified using the text `lualatex`. Ideally, I should use xelatex to be consistent with the rest of the document but I haven't yet figured out how to do that. There may be some incompatibility between the babel package and TikZ which would need to be resolved.
   Default value: `latex`.
++ `scale_html`: 
+  For HTML output, we first create a `.dvi` file from the TikZ `.tex` and then convert the `.dvi` to the `.svg` file that will be included in the HTML. 
+  In the process of converting DVI to SVG, it appears that the figure gets shrunk (as it appears on my screen in the web brower) unless we apply a scale > 1. 
+  This scale is applied as an argument to the utility `dvisvgm` that we use for DVI to SVG conversion.
+  The value 1.28 has been empirically determined so that the text in the image matches in size to the surrounding body text in the HTML. 
+  It may differ for other screens. 
+  This option only affects HTML output.
+  Default value: 1.
 + `template_html`: Common TikZ template code for HTML output. Here's what I'm using in my [srctex/tikz-template-html.tex](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srctex/tikz-template-html.tex):
 
   ```tex
