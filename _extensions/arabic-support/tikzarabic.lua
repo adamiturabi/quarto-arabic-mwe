@@ -131,25 +131,44 @@ end
 
 local function tikzToSvg(tikzCode, tmpdir, outputFile, template, libraries, engine, libgs)
   local texFile = createTexFile(tikzCode, tmpdir, outputFile, template, libraries)
-  local dviFile = pandoc.path.join({ tmpdir, outputFile .. ".dvi" })
   local svgFile = pandoc.path.join({ tmpdir, outputFile .. ".svg" })
 
-  local _, _, latexExitCode = os.execute(engine .. " --output-format=dvi -interaction=nonstopmode -output-directory=" .. tmpdir .. " " .. texFile)
-  if latexExitCode ~= 0 then
-    error("latex failed with exit code " .. latexExitCode)
-  end
+  local use_inkscape = false -- inkscape messes up Arabic text joining
 
-  if libgs ~= "" then
-    libgs = "--libgs=" .. libgs
-  end
-  -- scale value eyeballed to match text size
-  local _, _, dvisvgmExitCode = os.execute("dvisvgm " .. libgs .. " --font-format=woff --scale=1.28 " .. dviFile .. " -n -o " .. svgFile)
-  if dvisvgmExitCode ~= 0 then
-    error("dvisvgm failed with exit code " .. dvisvgmExitCode)
+  if use_inkscape then
+    local pdfFile = pandoc.path.join({ tmpdir, outputFile .. ".pdf" })
+    if engine == "latex" then
+      engine = "pdflatex" -- my version of vanilla "latex" doesn't seem to produce pdf
+    end
+    local _, _, latexExitCode = os.execute(engine .. " -output-directory=" .. tmpdir .. " " .. texFile)
+    if latexExitCode ~= 0 then
+      error("latex failed with exit code " .. latexExitCode)
+    end
+    local _, _, inkscapeExitCode = os.execute("inkscape --pages=1 --export-type=svg --export-plain-svg --export-filename=" .. svgFile .. " " .. pdfFile)
+    if inkscapeExitCode ~= 0 then
+      error("dvisvgm failed with exit code " .. inkscapeExitCode)
+    end
+    os.remove(pdfFile)
+  else -- use dvisvgm
+    local dviFile = pandoc.path.join({ tmpdir, outputFile .. ".dvi" })
+
+    local _, _, latexExitCode = os.execute(engine .. " --output-format=dvi -interaction=nonstopmode -output-directory=" .. tmpdir .. " " .. texFile)
+    if latexExitCode ~= 0 then
+      error("latex failed with exit code " .. latexExitCode)
+    end
+
+    if libgs ~= "" then
+      libgs = "--libgs=" .. libgs
+    end
+    -- scale value eyeballed to match text size
+    local _, _, dvisvgmExitCode = os.execute("dvisvgm " .. libgs .. " --font-format=woff --scale=1.28 " .. dviFile .. " -n -o " .. svgFile)
+    if dvisvgmExitCode ~= 0 then
+      error("dvisvgm failed with exit code " .. dvisvgmExitCode)
+    end
+    os.remove(dviFile)
   end
 
   os.remove(texFile)
-  os.remove(dviFile)
   return svgFile
 end
 
