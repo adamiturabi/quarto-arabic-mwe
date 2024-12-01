@@ -1,6 +1,9 @@
 project:
   type: book
   output-dir: docs
+  post-render:
+    - "rm -rf images"
+    - "rm -rf srcqmd/images"
 
 book:
   title: "Minimum(ish) Working Example of Quarto with Arabic RTL text in an LTR document"
@@ -71,6 +74,7 @@ tikzarabic:
   format: svg
   embed_mode: link
   engine: lualatex
+  scale: 1.28
   template_html: srctex/tikz-template-html.tex
   template_pdf: srctex/tikz-template-pdf.tex
   libgs: /usr/local/Cellar/ghostscript/10.04.0/lib/libgs.dylib

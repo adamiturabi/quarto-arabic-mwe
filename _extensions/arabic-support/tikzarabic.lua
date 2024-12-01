@@ -72,7 +72,8 @@ local globalOptions = {
   engine = "default",
   template_html = "default",
   template_pdf = "default",
-  libgs = ""
+  libgs = "",
+  scale = "1"
 }
 -- Helper function for file existence
 local function file_exists(name)
@@ -129,7 +130,7 @@ local function createTexFile(tikzCode, tmpdir, outputFile, template, libraries)
   return texFile
 end
 
-local function tikzToSvg(tikzCode, tmpdir, outputFile, template, libraries, engine, libgs)
+local function tikzToSvg(tikzCode, tmpdir, outputFile, template, libraries, engine, libgs, scale)
   local texFile = createTexFile(tikzCode, tmpdir, outputFile, template, libraries)
   local svgFile = pandoc.path.join({ tmpdir, outputFile .. ".svg" })
 
@@ -160,8 +161,7 @@ local function tikzToSvg(tikzCode, tmpdir, outputFile, template, libraries, engi
     if libgs ~= "" then
       libgs = "--libgs=" .. libgs
     end
-    -- scale value eyeballed to match text size
-    local _, _, dvisvgmExitCode = os.execute("dvisvgm " .. libgs .. " --font-format=woff --scale=1.28 " .. dviFile .. " -n -o " .. svgFile)
+    local _, _, dvisvgmExitCode = os.execute("dvisvgm " .. libgs .. " --font-format=woff --scale=" .. scale .. " " .. dviFile .. " -n -o " .. svgFile)
     if dvisvgmExitCode ~= 0 then
       error("dvisvgm failed with exit code " .. dvisvgmExitCode)
     end
@@ -309,7 +309,7 @@ local function renderTikz(cb, options, tmpdir)
   if not outputGenerated then
     -- Generate the output
     if quarto.doc.isFormat("html") then
-      tikzToSvg(cb.text, tmpdir, options.filename, options.template_html, options.libraries, options.engine, options.libgs)
+      tikzToSvg(cb.text, tmpdir, options.filename, options.template_html, options.libraries, options.engine, options.libgs, options.scale)
     elseif quarto.doc.isFormat("pdf") then
       tikzToPdf(cb.text, tmpdir, options.filename, options.template_pdf, options.libraries, options.engine)
     else

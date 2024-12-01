@@ -4,7 +4,7 @@
 
 + Move tikzarabic filter YAML options to within arabicsupport section
 
-# Introduction
+## Introduction
 
 I sometimes need to use TikZ figures with Arabic text in my document.
 This chapter describes how to do that.
