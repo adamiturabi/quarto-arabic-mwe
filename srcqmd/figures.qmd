@@ -27,7 +27,6 @@ tikzarabic:
   format: svg
   embed_mode: link
   engine: lualatex
-  scale_html: 1.28
   template_html: srctex/tikz-template-html.tex
   template_pdf: srctex/tikz-template-pdf.tex
   libgs: /usr/local/Cellar/ghostscript/10.04.0/lib/libgs.dylib
@@ -48,15 +47,16 @@ Here is an explanation of the options:
   Default value: `inline`.
 + `engine`: The Arabic typesetting I'm using within the figures uses the package [arabluatex](https://ctan.org/pkg/arabluatex?lang=en) which needs the LuaTex engine. This is specified using the text `lualatex`. Ideally, I should use xelatex to be consistent with the rest of the document but I haven't yet figured out how to do that. There may be some incompatibility between the babel package and TikZ which would need to be resolved.
   Default value: `latex`.
+<!--
 + `scale_html`: 
   For HTML output, we first create a `.dvi` file from the TikZ `.tex` and then convert the `.dvi` to the `.svg` file that will be included in the HTML. 
-  In the process of converting DVI to SVG, it appears that the figure gets shrunk (as it appears on my screen in the web brower) unless we apply a scale > 1. 
+  In the process of converting DVI to SVG, if the image needs to be scaled up or down, we can apply a scale factor using this parameter.
   This scale is applied as an argument to the utility `dvisvgm` that we use for DVI to SVG conversion.
-  The value 1.28 has been empirically determined so that the text in the image matches in size to the surrounding body text in the HTML. 
-  It may differ for other screens. 
   This option only affects HTML output.
   Default value: 1.
-+ `template_html`: Common TikZ template code for HTML output. Here's what I'm using in my [srctex/tikz-template-html.tex](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srctex/tikz-template-html.tex):
+-->
++ `template_html`: Common TikZ template code for HTML output. 
+  Here's what I'm using in my [srctex/tikz-template-html.tex](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srctex/tikz-template-html.tex):
 
   ```tex
   \RequirePackage{luatex85}
@@ -70,7 +70,7 @@ Here is an explanation of the options:
   
   \usepackage{fontspec}
   \defaultfontfeatures{Scale=MatchLowercase}
-  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1.275}
   \setmainfont{Charis SIL}
   
   \usetikzlibrary{%s}
@@ -89,6 +89,11 @@ Here is an explanation of the options:
   Note the use of the color `mydarkgray` to match the body text of the HTML theme. 
   The color definition was obtained by inspecting this very page in a web browser, looking up the color specification from the stylesheet, and converting the HTML hexadecimal color code `343a40` to the decimal RGB values `{52, 58, 64}`.
 
+  Also note that the font is scaled by a factor of 1.275. This number has been arrived at using the following reasoning. 
+  The default font size for the Tex documentclass is 10pt. 
+  Inspecting the stylesheet for the this web page shows us thet the body text font size is 17px. Using the ratio of 92px = 72pt, we calculate that we need to have a font size of 12.75pt. 
+  So we apply a scale factor of 1.275 to the default 10pt font size.
+
   The code block in the `.qmd` file will be inserted in the second `%s`'s location. Additional TikZ libraries may be inserted in the first `%s`'s location using the YAML option `libraries`.
 
   Default template:
@@ -103,8 +108,40 @@ Here is an explanation of the options:
   ]]
   ```
 
-+ `template_pdf`: Common TikZ template code for PDF output. My template is identical to `template_html` except for a different weight for the Arabic font: "light" instead of "regular" to match the main document, and the absence of the dark gray color for the text.
- The default template is the same as the default for `template_html`.
++ `template_pdf`: Common TikZ template code for PDF output. 
+  Here's what I'm using in my [srctex/tikz-template-pdf.tex](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srctex/tikz-template-pdf.tex):
+
+  ```tex
+  \RequirePackage{luatex85}
+  \documentclass{article}
+  \usepackage[luatex,active,tightpage]{preview}
+  \usepackage{amsmath}
+  \usepackage{tikz}
+  
+  \usepackage{fontspec}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+  \setmainfont{Charis SIL}
+  
+  \usetikzlibrary{%s}
+  \usetikzlibrary{matrix}
+  \usepackage{arabluatex}
+  \newfontfamily{\arabicfont}[Script=Arabic,Scale=1.0]{Vazirmatn-Light}
+  
+  \begin{document}
+  \begin{preview}
+  %s
+  \end{preview}
+  \end{document}
+  ```
+
+  It is identical to `template_html` except for:
+
+  + a different weight for the Arabic font: "light" instead of "regular" to match the main document
+  + the absence of the dark gray color for the text,
+  + no scale applied to the Roman font.
+
+  The default template is the same as the default for `template_html`.
 
 + `libgs`: In order to use this filter for HTML output, you need to make sure that the utlities dvisvgm and Ghostscript are installed on your system. This can be verified using the commands: `which dvisvgm` and `which gs`. If dvisvgm was not compiled with Ghostscript then you may need to link the location of the Ghostscript library on your system using the option `libgs`.
   Default value: `""`.

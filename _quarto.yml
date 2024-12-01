@@ -74,7 +74,6 @@ tikzarabic:
   format: svg
   embed_mode: link
   engine: lualatex
-  scale_html: 1.28
   template_html: srctex/tikz-template-html.tex
   template_pdf: srctex/tikz-template-pdf.tex
   libgs: /usr/local/Cellar/ghostscript/10.04.0/lib/libgs.dylib
