@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.33">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -38,10 +38,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-38b73869005c16fa110ee562df33f09b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-17016333fbf74842d2f388bd4ed0d515.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -126,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./srcqmd/arabic_support.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" lang="ar" dir="rtl">العربية</span>) support</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" dir="rtl" lang="ar">العربية</span>) support</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -208,12 +208,12 @@ watermark
 
 <section id="preface" class="level1 unnumbered">
 <h1 class="unnumbered">Preface</h1>
-<p><span class="alt-ar-text" lang="ar" dir="rtl">بسم الله الرحمن الرحيم</span></p>
+<p><span class="alt-ar-text" dir="rtl" lang="ar">بسم الله الرحمن الرحيم</span></p>
 <p><a href="https://quarto.org/docs/books">Quarto</a> is a document publishing software. With it, you can write your document in <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">Pandoc flavored markdown</a>. Quarto will use Pandoc under the hood, and do a bunch of other fancy stuff, to output your markdown document in formats of your choice, like HTML for websites, and PDF (via <a href="https://www.latex-project.org/">Latex</a>). This site is itself produced using Quarto.</p>
 <p>So far so good. But many of my documents are in English with Arabic content interspersed. Arabic is written right-to-left (RTL) whereas English is written left-to-right (LTR). The support of bidirectional (BiDi) text is a notoriously tricky problem. The cursive property of the Arabic script (with joining letters) compounds the issue.</p>
 <p>In this write-up, I will describe how to configure Quarto to solve some of these issues.</p>
 <!--2. This inline text: [العربية]{.ar} and this one: [سرب القطا]{.aralt} -->
-<p>The source code for this book can be used as a template for RTL document projects in Quarto. Along with BiDi, I’ll also discuss other aspects like fonts, figures, etc. <span class="alt-ar-text" lang="ar" dir="rtl">إن شاء الله</span>.</p>
+<p>The source code for this book can be used as a template for RTL document projects in Quarto. Along with BiDi, I’ll also discuss other aspects like fonts, figures, etc. <span class="alt-ar-text" dir="rtl" lang="ar">إن شاء الله</span>.</p>
 <p>The source code for this book can be found here: <a href="https://github.com/adamiturabi/quarto-arabic-mwe" class="uri">https://github.com/adamiturabi/quarto-arabic-mwe</a>.</p>
 <p>The rendered output is published here: <a href="https://adamiturabi.github.io/quarto-arabic-mwe" class="uri">https://adamiturabi.github.io/quarto-arabic-mwe</a>.</p>
 <p>A PDF version of this document can be downloaded if you click on the PDF icon next to the title at the top left of this page.</p>
@@ -305,8 +305,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -417,7 +415,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
