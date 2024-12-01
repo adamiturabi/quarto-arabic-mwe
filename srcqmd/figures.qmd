@@ -87,7 +87,7 @@ Here is an explanation of the options:
   ```
 
   Note the use of the color `mydarkgray` to match the body text of the HTML theme. 
-  The color definition was obtained by inspecting this very page in a web browser, looking up the color specification from the stylesheet, and converting the HTML hexadecimal color code `343a40` to the decimal RBG values `{52, 58, 64}`.
+  The color definition was obtained by inspecting this very page in a web browser, looking up the color specification from the stylesheet, and converting the HTML hexadecimal color code `343a40` to the decimal RGB values `{52, 58, 64}`.
 
   The code block in the `.qmd` file will be inserted in the second `%s`'s location. Additional TikZ libraries may be inserted in the first `%s`'s location using the YAML option `libraries`.
 
