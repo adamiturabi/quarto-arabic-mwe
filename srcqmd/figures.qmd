@@ -39,7 +39,10 @@ But unfortunately, I wasn't able to get it to work with Arabic text. Probably so
 
 Here is an explanation of the options:
 
-+ `cache`: Uses a cache on the system in order not have to evaluate the TikZ code for every render. Hasn't been tested fully. 
++ `cache`: Uses a cache on the system in order to not have to build the TikZ code for every render. 
+  When cache is enabled then, if you modify the TikZ code, the figure is rebuilt. 
+  But if you modify the template or the filter, then the figures don't seem to be rebuilt.
+  So in this case you may temporarily have to set `cache` to false in order to rebuild the figures.
   Default value: `false`.
 + `format`: SVG preserves vector information for optimal rendering. 
   Default value: `svg`.
@@ -156,7 +159,7 @@ Here is an example of a TikZ diagram with Arabic text:
 \usetikzlibrary{decorations.text, decorations.pathreplacing}
 \begin{tikzpicture}[nodes={text depth=0.25ex,text height=2.0ex}]
 \path [decoration={text effects along path,
-  text=.\txarb{لَقِيتُهُ بِٱلْأَمْسِ} \txarb{ٱلَّذِي} \txarb{رَأَيْتُ ٱَلرَّجُلَ},
+  text=.\txarb{كَبِيرٌ} \txarb{ٱَلْبَيْتُ},
   text effects/.cd,
     path from text, text along path,
     group letters, word count=\w,
@@ -164,14 +167,18 @@ Here is an example of a TikZ diagram with Arabic text:
   decorate] (0,0);
 
 \draw [decoration={brace, mirror}, decorate]
-   (word-1.south west) -- (word-1.south east)
-      node [midway, rotate=90, anchor=south, left=0ex, align=left] {\scriptsize connector};
+  (word-1.south west) -- (word-1.south east)
+    node [midway, rotate=90, anchor=south, left=0ex, align=left] 
+      {\scriptsize predicate};
 
 \draw [decoration={brace, mirror}, decorate]
-   (word-2.south west) -- (word-2.south east)
-      node [midway, rotate=90, anchor=south, left=0ex, align=left] {\scriptsize connected noun};
+  (word-2.south west) -- (word-2.south east)
+    node [midway, rotate=90, anchor=south, left=0ex, align=left] 
+      {\scriptsize subject};
 
-\path (0,0) node [midway, below=13.5ex, right=0ex, align=left] {``I saw the [specific] man whom I met yesterday.''};
+\path (0,0) 
+  node [midway, below=13.5ex, right=0ex, align=left] 
+    {``The house is big.''};
 
 \end{tikzpicture}
 ```
@@ -185,11 +192,12 @@ If you wish to override any of the global options you may do it
 
 This is the source code for the figure in the [source `.qmd` file](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srcqmd/figures.qmd):
 
-```tex
+````tex
+```{.tikzarabic}
 \usetikzlibrary{decorations.text, decorations.pathreplacing}
 \begin{tikzpicture}[nodes={text depth=0.25ex,text height=2.0ex}]
 \path [decoration={text effects along path,
-  text=.\txarb{لَقِيتُهُ بِٱلْأَمْسِ} \txarb{ٱلَّذِي} \txarb{رَأَيْتُ ٱَلرَّجُلَ},
+  text=.\txarb{كَبِيرٌ} \txarb{ٱَلْبَيْتُ},
   text effects/.cd,
     path from text, text along path,
     group letters, word count=\w,
@@ -197,17 +205,22 @@ This is the source code for the figure in the [source `.qmd` file](https://githu
   decorate] (0,0);
 
 \draw [decoration={brace, mirror}, decorate]
-   (word-1.south west) -- (word-1.south east)
-      node [midway, rotate=90, anchor=south, left=0ex, align=left] {\scriptsize connector};
+  (word-1.south west) -- (word-1.south east)
+    node [midway, rotate=90, anchor=south, left=0ex, align=left] 
+      {\scriptsize predicate};
 
 \draw [decoration={brace, mirror}, decorate]
-   (word-2.south west) -- (word-2.south east)
-      node [midway, rotate=90, anchor=south, left=0ex, align=left] {\scriptsize connected noun};
+  (word-2.south west) -- (word-2.south east)
+    node [midway, rotate=90, anchor=south, left=0ex, align=left] 
+      {\scriptsize subject};
 
-\path (0,0) node [midway, below=13.5ex, right=0ex, align=left] {``I saw the [specific] man whom I met yesterday.''};
+\path (0,0) 
+  node [midway, below=13.5ex, right=0ex, align=left] 
+    {``The house is big.''};
 
 \end{tikzpicture}
 ```
+````
 
 ## Overriding global options
 
@@ -232,7 +245,8 @@ you can do so inline using the comment-pipe (`%%| option: value`) format. Here i
 
 Source code:
 
-```tex
+````tex
+```{.tikzarabic}
 %%| embed_mode: inline
 %%| engine: default
 %%| template_html: default
@@ -247,4 +261,5 @@ Source code:
 \draw[->] (C) -- (A);
 \end{tikzpicture}
 ```
+````
 
