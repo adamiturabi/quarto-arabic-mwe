@@ -244,6 +244,8 @@ fonts.
 Both of these are well designed fonts. For me, a major consideration is good typesetting of diacritics and the hamza character ([ء]{.ar}). (See here for what I'm talking about: 
 <https://adamiturabi.github.io/hamza-rules/#typographical-limitations>)
 
+[Kitab](https://github.com/mustafa0x/kitab-font) is another good font that handles inline hamza using the tatweel character.
+
 To specify the Arabic fonts, the process is different for HTML vs PDF output. We'll describe both below:
 
 ### Specify Arabic font for HTML
