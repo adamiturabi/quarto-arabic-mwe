@@ -1,8 +1,7 @@
 -- Add attributes for Arabic text in a div
 function Div (el)
   if el.classes:includes 'ar' or el.classes:includes 'aralt' then
-    text = pandoc.utils.stringify(el)
-    contents = {pandoc.Str(text)}
+    contents = el.content
     if FORMAT:match 'latex' then
       -- for handling alternate Arabic font
       if el.classes:includes 'aralt' then

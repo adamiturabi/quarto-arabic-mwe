@@ -74,6 +74,7 @@ For HTML output, a div is input thus in the `.qmd` source:
 ```md
 :::{.reg-ar-txt dir="rtl" lang="ar"}
 هذا كلام عربي طويل. أريد أن أكتب حتى يبلغ النص سطرين. 
+
 أستعمل برنامج قوارطو لإنتاج الملف الخارجي. 
 هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
 :::
@@ -85,6 +86,7 @@ The class name `reg-ar-txt` is, again, arbitrary. The output HTML code will be:
 <div class="reg-ar-text" lang="ar" dir="rtl">
 هذا كلام عربي طويل.
 أريد أن أكتب حتى يبلغ النص سطرين.
+
 أستعمل برنامج قوارطو لإنتاج الملف الخارجي.
 هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
 </div>
@@ -98,6 +100,7 @@ For PDF output, a div is input thus in the `.qmd` source:
 :::{.otherlanguage data-latex="{arabic}" lang='ar'}
 هذا كلام عربي طويل.
 أريد أن أكتب حتى يبلغ النص سطرين.
+
 أستعمل برنامج قوارطو لإنتاج الملف الخارجي.
 هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
 :::
@@ -112,6 +115,7 @@ And, as with spans, `lang="ar"` is needed but `dir="rtl"` should not be used. Th
 
 هذا كلام عربي طويل.
 أريد أن أكتب حتى يبلغ النص سطرين.
+
 أستعمل برنامج قوارطو لإنتاج الملف الخارجي.
 هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
 
@@ -125,6 +129,7 @@ Finally, this is an example of an Arabic div. Locate it in the source code file 
 ::: {.ar}
 هذا كلام عربي طويل.
 أريد أن أكتب حتى يبلغ النص سطرين.
+
 أستعمل برنامج قوارطو لإنتاج الملف الخارجي.
 هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
 :::
@@ -176,8 +181,7 @@ that we wrote for handling Arabic divs:
 -- Add attributes for Arabic text in a div
 function Div (el)
   if el.classes:includes 'ar' or el.classes:includes 'aralt' then
-    text = pandoc.utils.stringify(el)
-    contents = {pandoc.Str(text)}
+    contents = el.content
     if FORMAT:match 'latex' then
       -- for handling alternate Arabic font
       if el.classes:includes 'aralt' then
@@ -222,6 +226,7 @@ Input for an Arabic div:
 :::{.ar}
 هذا كلام عربي طويل.
 أريد أن أكتب حتى يبلغ النص سطرين.
+
 أستعمل برنامج قوارطو لإنتاج الملف الخارجي.
 هو برنامج جيد قد خلف البرنامج بكداؤن الذي كنت أستعمله من قبل.
 :::
