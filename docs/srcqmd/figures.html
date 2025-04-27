@@ -159,7 +159,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../srcqmd/arabic_support.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" dir="rtl" lang="ar">العربية</span>) support</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arabic (<span class="reg-ar-text" lang="ar" dir="rtl">العربية</span>) support</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -287,7 +287,7 @@ watermark
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{<span class="co">%s}</span></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{matrix}</span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">arabluatex</span>}</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">\newfontfamily</span>{<span class="fu">\arabicfont</span>}[Script=Arabic,Scale=1.2]{Vazirmatn-Regular}</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">\newfontfamily</span>{<span class="fu">\arabicfont</span>}[Script=Arabic,Scale=1.5357375]{Vazirmatn-Regular}</span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">preview</span>}</span>
@@ -296,7 +296,8 @@ watermark
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">preview</span>}</span>
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note the use of the color <code>mydarkgray</code> to match the body text of the HTML theme. The color definition was obtained by inspecting this very page in a web browser, looking up the color specification from the stylesheet, and converting the HTML hexadecimal color code <code>343a40</code> to the decimal RGB values <code>{52, 58, 64}</code>.</p>
-<p>Also note that the font is scaled by a factor of 1.27978125. This number has been arrived at using the following reasoning: The default font size for the Tex documentclass is 10pt. Inspecting the stylesheet for the this web page shows us that the body text font size is 17px. Using the ratio of 96px = 72.27pt, we calculate that we need to have a font size of 12.7978125pt. So we apply a scale factor of 1.27978125 to the default 10pt font size.</p>
+<p>Also note that the Roman font is scaled by a factor of 1.27978125. This number has been arrived at using the following reasoning: The default font size for the Tex documentclass is 10pt. Inspecting the stylesheet for the this web page shows us that the body text font size is 17px. Using the ratio of 96px = 72.27pt, we calculate that we need to have a font size of 12.7978125pt. So we apply a scale factor of 1.27978125 to the default 10pt font size.</p>
+<p>The Arabic font is then scaled by 1.27978125 on top of the 1.2 relative scaling of Arabic font, which is 1.5357375.</p>
 <p>The code block in the <code>.qmd</code> file will be inserted in the second <code>%s</code>’s location. Additional TikZ libraries may be inserted in the first <code>%s</code>’s location using the YAML option <code>libraries</code>.</p>
 <p>Default template:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[tikz]{<span class="ex">standalone</span>}</span>
@@ -341,6 +342,9 @@ watermark
 <section id="example-tikz-figure-with-arabic-text" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="example-tikz-figure-with-arabic-text"><span class="header-section-number">4.4</span> Example TikZ figure with Arabic text</h2>
 <p>Here is an example of a TikZ diagram with Arabic text:</p>
+<p>Arabic text:<br>
+<span class="reg-ar-text" lang="ar" dir="rtl">ٱَلْبَيْتُ كَبِيرٌ</span></p>
+<p>TikZ Figure:</p>
 <img src="./images/tikz-output-1.svg" class="img-fluid">
 <!--See the 
 [source file](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srcqmd/figures.qmd)
