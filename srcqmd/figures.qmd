@@ -27,6 +27,7 @@ tikzarabic:
   format: svg
   embed_mode: link
   engine: lualatex
+  scale_html: 1.27978125
   template_html: srctex/tikz-template-html.tex
   template_pdf: srctex/tikz-template-pdf.tex
   libgs: /usr/local/Cellar/ghostscript/10.04.0/lib/libgs.dylib
@@ -44,20 +45,26 @@ Here is an explanation of the options:
   But if you modify the template or the filter, then the figures don't seem to be rebuilt.
   So in this case you may temporarily have to set `cache` to false in order to rebuild the figures.
   Default value: `false`.
-+ `format`: SVG preserves vector information for optimal rendering. 
++ `format`: SVG preserves vector information for optimal rendering. Only valid for HTML doc output. PDF doc output always uses PDF format for TikZ figures regardless of what is specified for the `format` field.
   Default value: `svg`.
 + `embed_mode`: Only affects HTML output. If set to `link` then the HTML includes the figure as a link. If set to `inline` then the HTML encodes the figure inline as ASCII text. 
   Default value: `inline`.
 + `engine`: The Arabic typesetting I'm using within the figures uses the package [arabluatex](https://ctan.org/pkg/arabluatex?lang=en) which needs the LuaTex engine. This is specified using the text `lualatex`. Ideally, I should use xelatex to be consistent with the rest of the document but I haven't yet figured out how to do that. There may be some incompatibility between the babel package and TikZ which would need to be resolved.
   Default value: `latex`.
-<!--
 + `scale_html`: 
   For HTML output, we first create a `.dvi` file from the TikZ `.tex` and then convert the `.dvi` to the `.svg` file that will be included in the HTML. 
   In the process of converting DVI to SVG, if the image needs to be scaled up or down, we can apply a scale factor using this parameter.
   This scale is applied as an argument to the utility `dvisvgm` that we use for DVI to SVG conversion.
   This option only affects HTML output.
   Default value: 1.
--->
+
+  We specify the value 1.27978125. 
+  This number has been arrived at using the following reasoning:
+  The default font size for the Tex documentclass is 10pt. 
+  Inspecting the stylesheet for the this web page shows us that the body text font size is 17px. 
+  Using the ratio of 96px = 72.27pt, we calculate that we need to have a font size of 12.7978125pt. 
+  So we apply a scale factor of 1.27978125 to the default 10pt font size.
+
 + `template_html`: Common TikZ template code for HTML output. 
   Here's what I'm using in my [srctex/tikz-template-html.tex](https://github.com/adamiturabi/quarto-arabic-mwe/blob/main/srctex/tikz-template-html.tex):
 
@@ -73,13 +80,13 @@ Here is an explanation of the options:
   
   \usepackage{fontspec}
   \defaultfontfeatures{Scale=MatchLowercase}
-  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1.27978125}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
   \setmainfont{Charis SIL}
   
   \usetikzlibrary{%s}
   \usetikzlibrary{matrix}
   \usepackage{arabluatex}
-  \newfontfamily{\arabicfont}[Script=Arabic,Scale=1.5357375]{Vazirmatn-Regular}
+  \newfontfamily{\arabicfont}[Script=Arabic,Scale=1.2]{Vazirmatn-Regular}
   
   \begin{document}
   \begin{preview}
@@ -92,6 +99,7 @@ Here is an explanation of the options:
   Note the use of the color `mydarkgray` to match the body text of the HTML theme. 
   The color definition was obtained by inspecting this very page in a web browser, looking up the color specification from the stylesheet, and converting the HTML hexadecimal color code `343a40` to the decimal RGB values `{52, 58, 64}`.
 
+  <!--
   Also note that the Roman font is scaled by a factor of 1.27978125. 
   This number has been arrived at using the following reasoning:
   The default font size for the Tex documentclass is 10pt. 
@@ -100,6 +108,9 @@ Here is an explanation of the options:
   So we apply a scale factor of 1.27978125 to the default 10pt font size.
 
   The Arabic font is then scaled by 1.27978125 on top of the 1.2 relative scaling of Arabic font, which is 1.5357375.
+  -->
+
+  The Arabic font is then scaled by 1.2 with respect to the Roman text to match the rest of the text.
 
   The code block in the `.qmd` file will be inserted in the second `%s`'s location. Additional TikZ libraries may be inserted in the first `%s`'s location using the YAML option `libraries`.
 
@@ -150,7 +161,10 @@ Here is an explanation of the options:
 
   The default template is the same as the default for `template_html`.
 
-+ `libgs`: In order to use this filter for HTML output, you need to make sure that the utlities dvisvgm and Ghostscript are installed on your system. This can be verified using the commands: `which dvisvgm` and `which gs`. If dvisvgm was not compiled with Ghostscript then you may need to link the location of the Ghostscript library on your system using the option `libgs`.
++ `libgs`: In order to use this filter with svg format for HTML output, you need to make sure that the utlities dvisvgm and Ghostscript are installed on your system. This can be verified using the commands: `which dvisvgm` and `which gs`. If dvisvgm was not compiled with Ghostscript then you may need to link the location of the Ghostscript library on your system using the option `libgs`.
+
+  Note that if you use Homebrew on MacOS to manage installation of the ghostscript utility, then, when it updates packages it will change the version number in the path and delete the old path. So then, if you don't update the `libgs` field to point to the new path then your figures will start to look corrupted.
+
   Default value: `""`.
 
 ## Example TikZ figure with Arabic text

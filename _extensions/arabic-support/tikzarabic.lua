@@ -161,7 +161,7 @@ local function tikzToSvg(tikzCode, tmpdir, outputFile, template, libraries, engi
     if libgs ~= "" then
       libgs = "--libgs=" .. libgs
     end
-    local _, _, dvisvgmExitCode = os.execute("dvisvgm " .. libgs .. " --font-format=woff --scale=" .. scale_html .. " " .. dviFile .. " -n -o " .. svgFile)
+    local _, _, dvisvgmExitCode = os.execute("dvisvgm " .. libgs .. " --font-format=woff --scale=" .. scale_html .. " " .. dviFile .. " -o " .. svgFile) -- consider using -n option
     if dvisvgmExitCode ~= 0 then
       error("dvisvgm failed with exit code " .. dvisvgmExitCode)
     end
